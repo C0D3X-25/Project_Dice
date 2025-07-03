@@ -1,0 +1,68 @@
+#pragma once
+
+#include "BasePlayerEntity.hpp"
+#include "Attribute.hpp"
+#include "SRandom.hpp"
+
+#include <iostream>
+#include <memory>
+#include <cstdint>
+
+
+namespace entity {
+
+	class PlayerEntityGenerator {
+	public:
+		PlayerEntityGenerator(void) = default;
+		~PlayerEntityGenerator(void) = default;
+
+		BasePlayerEntity generateNewPlayerEntity(void) {
+
+			auto new_entity = BasePlayerEntity("Generated Entity");
+
+			generateAttributes(new_entity);
+
+
+			new_entity.resetToDefaultValues();
+
+			return new_entity;
+		}
+
+	private:
+
+		// Roll for each attributes is between 6 (4 + 1 + 1) and 12 (4 + 4 + 4)
+		// Final value of an attribute without other modifiers is between -4 and 2
+		void generateAttributes(BasePlayerEntity& entity) {
+
+			constexpr int8_t BASE_VALUE{ attribute::ATTRIBUTE_MIN_VALUE + 4 };
+			constexpr uint8_t DICE_SIDES{ 4 };
+			constexpr uint8_t DICE_NBR_ROLLS{ 2 };
+
+			Attribute generated_attributes;
+
+			generated_attributes.setStrength(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setDexterity(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setConstitution(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setIntelligence(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setWisdom(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setCharisma(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+
+			entity.setAttributes(generated_attributes);
+		}
+
+
+
+
+
+		int8_t getRandomValue(uint8_t max_value, uint8_t nbr_roll = 1, int8_t base_value = 0) {
+
+			int8_t total{ base_value };
+
+			for (uint8_t roll{ 0 }; roll < nbr_roll; roll++) {
+				total += helper::random::generateRandomValue(max_value, 1);
+			}
+
+			return total;
+		}
+	};
+}
