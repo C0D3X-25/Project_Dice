@@ -26,9 +26,8 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Raylib as static libraries" FORCE)
 
 
 
-
+# Project name
 project(Project_Dice)
-
 
 
 
