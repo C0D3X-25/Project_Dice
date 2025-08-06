@@ -9,11 +9,11 @@
 - [x] Raylib integration
 
 ## Next steps
+
+## ToDo
 - [ ] Character generator UI
 - [ ] Combat UI
 - [ ] document current code
-
-## ToDo
 - [ ] Combat logic
 - [ ] Capacity UI
 - [ ] Character UI

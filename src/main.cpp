@@ -59,7 +59,7 @@ int main() {
 	 std::cout << "========================================================\n\n";
 	 BaseCapacity capacity = capacity_factory.attackSingle(entity_1);
 	 std::cout << "Before: " << entity_1.getCurrentLife() << '\n';
-	 CapacityDTO capacity_modifier = capacity.getNextCapacityModifier();
+	 CapacityDTO capacity_modifier = capacity.getNextCapacityDTO();
 	 entity_1.resolveCapacity(capacity_modifier, entity_1);
 	 std::cout << "After:  " << entity_1.getCurrentLife() << '\n';
 

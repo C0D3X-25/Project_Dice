@@ -1,19 +1,21 @@
 #pragma once
 
-#include "ICapacityResolution.hpp"
+#include "IResolutionCapacity.hpp"
 
 #include <iostream>
 #include <vector>
 #include <memory>
 
-namespace capacity_resolution {
+namespace resolution_capacity {
 
-	// How a capacity is resolved when received
-    class CapacityResolution : public ICapacityResolution {
+    /// <summary>
+    /// Manages a collection of capacity resolution strategies and applies them to resolve capacity for a target entity.
+    /// </summary>
+    class ResolutionCapacity : public IResolutionCapacity {
     public:
 
         // TODO: Change by a linked list and add weight to each resolution for having an order of resolution
-        void addResolution(std::shared_ptr<ICapacityResolution> sp_resolution) {
+        void addResolution(std::shared_ptr<IResolutionCapacity> sp_resolution) {
 			if (!sp_resolution) {
 				std::cerr << "Error: Attempted to add a null resolution.\n";
 				return;
@@ -23,7 +25,7 @@ namespace capacity_resolution {
         }
 
 
-        std::shared_ptr<ICapacityResolution> getResolution(int index) {
+        std::shared_ptr<IResolutionCapacity> getResolution(int index) {
             return m_sp_resolutions.at(index);
         }
 
@@ -38,13 +40,13 @@ namespace capacity_resolution {
 		}
 
 
-        void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) override {
+        void resolveCapacity(CapacityDTO& capacity_dto, BaseEntity& target) override {
 			for (auto& resolution : m_sp_resolutions) {
-				resolution->resolveCapacity(capacity_comp, target);
+				resolution->resolveCapacity(capacity_dto, target);
 			}
         }
 
     private:
-		std::vector<std::shared_ptr<ICapacityResolution>> m_sp_resolutions;
+		std::vector<std::shared_ptr<IResolutionCapacity>> m_sp_resolutions;
     };
 }

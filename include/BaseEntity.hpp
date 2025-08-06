@@ -15,6 +15,9 @@ namespace entity {
 	using capacity::CapacityDTO;
 	using attribute::Attribute;
 
+	/// <summary>
+	/// Base Class for any entity.
+	/// </summary>
 	class BaseEntity {
 	public:
 		BaseEntity(const std::string& name);
@@ -26,7 +29,7 @@ namespace entity {
 		virtual void setAttributes(const Attribute& new_attributes);
 		virtual void updateAttributes(const Attribute& update_attributes);
 
-		virtual void setCapacityName(const std::string& name)		{ m_name = name; }
+		virtual void setEntityName(const std::string& name)		{ m_name = name; }
 		virtual void setMaxLife(int16_t life)					{ m_max_life = life; }
 		virtual void setCurrentLife(int16_t life)				{ m_current_life = life; }
 		virtual void setMaxArmor(int16_t armor)					{ m_max_armor = armor; }
@@ -57,7 +60,7 @@ namespace entity {
 		int16_t m_max_armor		{ 0 };
 		int16_t m_current_armor	{ 0 };
 		// TODO: Status m_status;
+		// TODO: Feat m_feat;
 		// TODO: Passive m_passive;
-
 	};
-} // namespace entity
+}

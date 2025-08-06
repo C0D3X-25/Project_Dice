@@ -3,12 +3,12 @@
 #include "BaseEntity.hpp"
 #include "BaseCapacity.hpp"
 #include "DiceCapacity.hpp"
-#include "ICapacityResolution.hpp"
-#include "CapacityResolution.hpp"
+#include "IResolutionCapacity.hpp"
+#include "ResolutionCapacity.hpp"
 #include "SFind.hpp"
-#include "BaseArmorResolution.hpp"
-#include "BaseDeathResolution.hpp"
-#include "BaseLifeResolution.hpp"
+#include "ResolutionArmorDefault.hpp"
+#include "ResolutionDeathDefault.hpp"
+#include "ResolutionLifeDefault.hpp"
 
 #include <iostream>
 #include <string>
@@ -21,7 +21,7 @@ namespace entity {
 
 	using namespace dice;
 	using namespace capacity;
-	using namespace capacity_resolution;
+	using namespace resolution_capacity;
 
 	inline constexpr uint8_t BASE_MAX_LIFE{ 20 };
 	inline constexpr uint8_t BASE_MIN_LIFE{ 1 };
@@ -29,13 +29,11 @@ namespace entity {
 	inline constexpr uint8_t BASE_MIN_ARMOR{ 0 };
 
 	class BasePlayerEntity : public BaseEntity, 
-		public ICapacityResolution {
+		public IResolutionCapacity {
 	
 	public:
 		BasePlayerEntity(const std::string& name);
 		virtual ~BasePlayerEntity(void) = default;
-		//BasePlayerEntity(const BasePlayerEntity& other);
-		//BasePlayerEntity& operator=(const BasePlayerEntity& other);
 
 		/**
 		* @brief Assigns a capacity to a specific side of the dice capacity
@@ -105,13 +103,13 @@ namespace entity {
 				m_capacity_resolution.clearResolutions();
 			}
 
-			std::shared_ptr<CapacityResolution> sp_armor_resolutions = std::make_shared<CapacityResolution>();
-			std::shared_ptr<CapacityResolution> sp_life_resolutions = std::make_shared<CapacityResolution>();
-			std::shared_ptr<CapacityResolution> sp_death_resolutions = std::make_shared<CapacityResolution>();
+			std::shared_ptr<ResolutionCapacity> sp_armor_resolutions = std::make_shared<ResolutionCapacity>();
+			std::shared_ptr<ResolutionCapacity> sp_life_resolutions = std::make_shared<ResolutionCapacity>();
+			std::shared_ptr<ResolutionCapacity> sp_death_resolutions = std::make_shared<ResolutionCapacity>();
 
-			sp_armor_resolutions->addResolution(std::make_shared<BaseArmorResolution>());
-			sp_life_resolutions->addResolution(std::make_shared<BaseLifeResolution>());
-			sp_death_resolutions->addResolution(std::make_shared<BaseDeathResolution>());
+			sp_armor_resolutions->addResolution(std::make_shared<ResolutionArmorDefault>());
+			sp_life_resolutions->addResolution(std::make_shared<ResolutionLifeDefault>());
+			sp_death_resolutions->addResolution(std::make_shared<ResolutionDeathDefault>());
 
 			m_capacity_resolution.addResolution(sp_armor_resolutions);
 			m_capacity_resolution.addResolution(sp_life_resolutions);
@@ -120,7 +118,7 @@ namespace entity {
 
 	private:
 
-		CapacityResolution m_capacity_resolution;
+		ResolutionCapacity m_capacity_resolution;
 		DiceCapacity m_dice_capacity;
 		// TODO: Equipment m_inventory;
 		// TODO: Feat m_feat;

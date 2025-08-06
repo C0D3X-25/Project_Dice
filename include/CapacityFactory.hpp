@@ -49,7 +49,7 @@ namespace capacity {
 				constexpr int8_t base_damage{ 3 };
 				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
 				CapacityActionDamage attack(total_damage, targets);
-				capacity.queueCapacityModifier(attack.doAction());
+				capacity.queueCapacityDTO(attack.doAction());
 			}
 			return capacity;
 		}
@@ -72,7 +72,7 @@ namespace capacity {
 				int8_t total_damage = base_damage + helper::find::getLowestValue(user.getStrength(), user.getDexterity(), min_damage);
 
 				CapacityActionDamage attack(total_damage, targets);
-				capacity.queueCapacityModifier(attack.doAction());
+				capacity.queueCapacityDTO(attack.doAction());
 			}
 
 			// Take the best between dexterity and strength
@@ -84,7 +84,7 @@ namespace capacity {
 				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
 
 				CapacityActionDamage attack(total_damage, targets);
-				capacity.queueCapacityModifier(attack.doAction());
+				capacity.queueCapacityDTO(attack.doAction());
 			}
 			return capacity;
 		}
@@ -104,7 +104,7 @@ namespace capacity {
 				constexpr int8_t base_damage{ 2 };
 				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getCharisma(), user.getWisdom(), user.getIntelligence(), min_damage);
 				CapacityActionDamage attack(total_damage, targets);
-				capacity.queueCapacityModifier(attack.doAction());
+				capacity.queueCapacityDTO(attack.doAction());
 			}
 			return capacity;
 		}
@@ -112,7 +112,7 @@ namespace capacity {
 
 		BaseCapacity protectSelf(const BaseEntity& user) {
 			BaseCapacity capacity;
-			capacity.setCapacityName("Protect yourself");
+			capacity.setCapacityName("Protect self");
 			capacity.setCapacityDescription("Protect yourself with your armor");
 			capacity.setCapacityPurposes({ DEFENSE });
 			capacity.setCapacityTriggers({ USED_WHEN_TURN_END });
@@ -125,7 +125,7 @@ namespace capacity {
 				constexpr int8_t base_armor{ 3 };
 				int8_t total_armor = base_armor + helper::find::getHighestValue(user.getStrength(), user.getWisdom(), min_armor);
 				CapacityActionDamage protect(total_armor, targets);
-				capacity.queueCapacityModifier(protect.doAction());
+				capacity.queueCapacityDTO(protect.doAction());
 			}
 			return capacity;
 		}
@@ -146,7 +146,7 @@ namespace capacity {
 				constexpr int8_t base_heal{ 1 };
 				int8_t total_heal = base_heal + helper::find::getHighestValue(user.getCharisma(), user.getWisdom(), user.getIntelligence(), min_heal);
 				CapacityActionDamage heal(total_heal, targets);
-				capacity.queueCapacityModifier(heal.doAction());
+				capacity.queueCapacityDTO(heal.doAction());
 			}
 			return capacity;
 		}
