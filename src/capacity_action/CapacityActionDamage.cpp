@@ -6,8 +6,8 @@ capacity_action::CapacityActionDamage::CapacityActionDamage(const uint8_t damage
 	: m_damage(damage), BaseCapacityAction(targets) {}
 
 
-CapacityComponent capacity_action::CapacityActionDamage::doAction(void) {
-	m_component = BaseCapacityAction::doAction();
-	m_component.m_damage = m_damage;
-	return m_component;
+CapacityDTO capacity_action::CapacityActionDamage::doAction(void) {
+	m_capacity_dto = BaseCapacityAction::doAction();
+	m_capacity_dto.m_damage = m_damage;
+	return m_capacity_dto;
 }

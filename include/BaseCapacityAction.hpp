@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CapacityComponent.hpp"
+#include "CapacityDTO.hpp"
 #include "ECapacity.hpp"
 
 #include <vector>
@@ -8,7 +8,7 @@
 
 namespace capacity_action {
 
-	using capacity::CapacityComponent;
+	using capacity::CapacityDTO;
 	using capacity::ECapacityTarget;
 
 	class BaseCapacityAction {
@@ -17,16 +17,16 @@ namespace capacity_action {
 			: m_targets(targets) {}
 		virtual ~BaseCapacityAction(void) = default;
 
-		virtual CapacityComponent doAction(void) {
-			m_component.m_targets = m_targets;
-			return m_component;
+		virtual CapacityDTO doAction(void) {
+			m_capacity_dto.m_targets = m_targets;
+			return m_capacity_dto;
 		}
 
 		virtual std::vector<ECapacityTarget> getTargets(void) const { return m_targets; }
 
 	protected:
 
-		CapacityComponent m_component;
+		CapacityDTO m_capacity_dto;
 
 	private:
 

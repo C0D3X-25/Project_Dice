@@ -12,7 +12,10 @@ namespace capacity {
 
 	//using entity::BaseEntity;
 
-	struct CapacityComponent {
+	/// <summary>
+	/// Represent the data who need to be transfered when a entity use a capacity, from source to target.
+	/// </summary>
+	struct CapacityDTO {
 
 		std::vector<ECapacityTarget> m_targets;
 

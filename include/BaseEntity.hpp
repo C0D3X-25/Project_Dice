@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "BaseCapacity.hpp"
-#include "CapacityComponent.hpp"
+#include "CapacityDTO.hpp"
 #include "Attribute.hpp"
 
 #include <memory>
@@ -12,7 +12,7 @@
 namespace entity {
 
 	using capacity::BaseCapacity;
-	using capacity::CapacityComponent;
+	using capacity::CapacityDTO;
 	using attribute::Attribute;
 
 	class BaseEntity {

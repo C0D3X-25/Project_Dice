@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ICapacityResolution.hpp"
-#include "SCalculate.hpp"
+#include "SFind.hpp"
 
 namespace capacity_resolution {
 
@@ -11,7 +11,7 @@ namespace capacity_resolution {
 	class BaseArmorResolution : public ICapacityResolution {
 	public:
 
-		void resolveCapacity(CapacityComponent& capacity_comp, BaseEntity& target) override {
+		void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) override {
 
 			std::cout << "Resolving component remove armor: " << capacity_comp.m_remove_armor << "\n";
 			std::cout << "Entity armor before: " << target.getCurrentArmor() << "\n";

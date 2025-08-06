@@ -8,7 +8,7 @@ namespace capacity_resolution {
 	class BaseDeathResolution : public ICapacityResolution {
 	public:
 
-		void resolveCapacity(CapacityComponent& capacity_comp, BaseEntity& target) override {
+		void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) override {
 
 		}
 	};

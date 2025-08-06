@@ -42,7 +42,7 @@ void entity::BasePlayerEntity::printEntity(void) const {
 //}
 
 
-//void entity::BasePlayerEntity::resolveCapacity(const CapacityComponent& capacity, const BaseEntity& source) {
+//void entity::BasePlayerEntity::resolveCapacity(const CapacityDTO& capacity, const BaseEntity& source) {
     //// Initialize modifiers
     //int16_t dmg_life = capacity.m_max_life < 0 ? -capacity.m_max_life : 0;
     //int16_t heal_life = capacity.m_max_life > 0 ? capacity.m_max_life : 0;

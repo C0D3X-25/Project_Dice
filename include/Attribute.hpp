@@ -2,15 +2,17 @@
 
 #include <cstdint>
 #include <iostream>
-#include "SCalculate.hpp"
+#include "SFind.hpp"
 
 namespace attribute {
 
 	inline constexpr int8_t ATTRIBUTE_MIN_VALUE{ -10 };
+	inline constexpr int8_t ATTRIBUTE_MAX_VALUE{ 30 };
 
 	/// <summary>
-	/// Struct to hold the stats of an entity.
+	/// Struct to hold the attributes of an entity.
 	/// Minimum value is -10.
+	/// Maximum value is 30
 	/// </summary>
 	struct Attribute {
 
@@ -24,12 +26,12 @@ namespace attribute {
 				<< "CHA: " << static_cast<int>(m_charisma) << '\n';
 		}
 
-		void setStrength(int8_t value) { m_strength = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
-		void setDexterity(int8_t value) { m_dexterity = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
-		void setConstitution(int8_t value) { m_constitution = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
-		void setIntelligence(int8_t value) { m_intelligence = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
-		void setWisdom(int8_t value) { m_wisdom = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
-		void setCharisma(int8_t value) { m_charisma = helper::calculate::getBestValue(value, ATTRIBUTE_MIN_VALUE); }
+		void setStrength(int8_t value) { m_strength = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setDexterity(int8_t value) { m_dexterity = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setConstitution(int8_t value) { m_constitution = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setIntelligence(int8_t value) { m_intelligence = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setWisdom(int8_t value) { m_wisdom = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setCharisma(int8_t value) { m_charisma = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
 
 		int8_t getStrength(void) const { return m_strength; }
 		int8_t getDexterity(void) const { return m_dexterity; }

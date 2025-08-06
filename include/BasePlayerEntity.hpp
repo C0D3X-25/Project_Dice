@@ -5,7 +5,7 @@
 #include "DiceCapacity.hpp"
 #include "ICapacityResolution.hpp"
 #include "CapacityResolution.hpp"
-#include "SCalculate.hpp"
+#include "SFind.hpp"
 #include "BaseArmorResolution.hpp"
 #include "BaseDeathResolution.hpp"
 #include "BaseLifeResolution.hpp"
@@ -65,7 +65,7 @@ namespace entity {
 			setResolution();
 		}
 
-		void resolveCapacity(CapacityComponent& capacity_comp, BaseEntity& target) override {
+		void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) override {
 			m_capacity_resolution.resolveCapacity(capacity_comp, target);
 		}
 
@@ -88,8 +88,8 @@ namespace entity {
 		void calculateMaxArmor(void) {
 
 			// TODO: max_armor += bonus_armor;
-			int16_t best_physic{ helper::calculate::getBestValue<int16_t>( m_attributes.getStrength(), m_attributes.getDexterity(), 0) };
-			int16_t best_psychic{ helper::calculate::getBestValue<int16_t>(m_attributes.getWisdom(), m_attributes.getIntelligence(), m_attributes.getCharisma(), 0) };
+			int16_t best_physic{ helper::find::getHighestValue<int16_t>( m_attributes.getStrength(), m_attributes.getDexterity(), 0) };
+			int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getWisdom(), m_attributes.getIntelligence(), m_attributes.getCharisma(), 0) };
 			int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
 
 			setMaxArmor(max_armor);

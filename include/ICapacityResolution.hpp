@@ -3,7 +3,7 @@
 #include "BaseEntity.hpp"
 
 using entity::BaseEntity;
-using capacity::CapacityComponent;
+using capacity::CapacityDTO;
 
 namespace capacity_resolution {
     // TODO: Choose between:
@@ -27,6 +27,6 @@ namespace capacity_resolution {
 	class ICapacityResolution {
 	public:
 		virtual ~ICapacityResolution(void) = default;
-		virtual void resolveCapacity(CapacityComponent& capacity_comp, BaseEntity& target) = 0;
+		virtual void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) = 0;
 	};
 }

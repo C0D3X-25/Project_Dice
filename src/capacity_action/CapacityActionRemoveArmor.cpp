@@ -6,7 +6,7 @@ capacity_action::CapacityActionRemoveArmor::CapacityActionRemoveArmor(const uint
 	: m_armor(armor), BaseCapacityAction(targets) {}
 
 
-capacity_action::CapacityComponent CapacityActionRemoveArmor::doAction(void) {
-	m_component.m_remove_armor = m_armor;
-	return m_component;
+capacity_action::CapacityDTO CapacityActionRemoveArmor::doAction(void) {
+	m_capacity_dto.m_remove_armor = m_armor;
+	return m_capacity_dto;
 }

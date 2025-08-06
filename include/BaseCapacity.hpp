@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CapacityComponent.hpp"
+#include "CapacityDTO.hpp"
 #include "ECapacity.hpp"
 #include "BaseCapacityAction.hpp"
 #include "EAttribute.hpp"
@@ -20,24 +20,24 @@ namespace capacity {
 		virtual ~BaseCapacity(void) = default;
 
 
-		std::queue<CapacityComponent> getAllCapacityModifiers(void) {
+		std::queue<CapacityDTO> getAllCapacityModifiers(void) {
 			return m_capacity_modifiers;
 		}
 
 
-		void queueCapacityModifier(const CapacityComponent& capacity_modifier) {
+		void queueCapacityModifier(const CapacityDTO& capacity_modifier) {
 			addCapacityTarget(capacity_modifier);
 			m_capacity_modifiers.push(capacity_modifier);
 		}
 
 
-		CapacityComponent getNextCapacityModifier(void) {
+		CapacityDTO getNextCapacityModifier(void) {
 			if (!m_capacity_modifiers.empty()) {
 				m_current_modifier = m_capacity_modifiers.front();
 				m_capacity_modifiers.pop();
 				return m_current_modifier;
 			}
-			return CapacityComponent{};
+			return CapacityDTO{};
 		}
 
 
@@ -82,7 +82,7 @@ namespace capacity {
 		std::vector<EAttribute> getCapacityAttributes(void) const		{ return m_capacity_attribute; }
 
 	private:
-		void addCapacityTarget(const CapacityComponent& capacity_modifier) {
+		void addCapacityTarget(const CapacityDTO& capacity_modifier) {
 			for (const auto& target : capacity_modifier.m_targets) {
 				if (std::find(m_capacity_target.begin(), m_capacity_target.end(), target) == m_capacity_target.end()) {
 					m_capacity_target.push_back(target);
@@ -93,8 +93,8 @@ namespace capacity {
 	private:
 		std::string m_name{ "N/A" };
 		std::string m_description{ "N/A" };
-		std::queue<CapacityComponent> m_capacity_modifiers;
-		CapacityComponent m_current_modifier; // Useless maybe
+		std::queue<CapacityDTO> m_capacity_modifiers;
+		CapacityDTO m_current_modifier; // Useless maybe
 		std::vector<ECapacityPurpose> m_capacity_purpose;
 		std::vector<ECapacityTarget> m_capacity_target;
 		std::vector<ECapacityTrigger> m_capacity_trigger;

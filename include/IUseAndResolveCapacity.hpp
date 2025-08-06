@@ -25,6 +25,6 @@ namespace capacity {
 		* @param capacity The capacity to resolve
 		* @param source The Entity that is the source of the capacity
 		*/
-		virtual void resolveCapacity(const CapacityComponent& capacity, const BaseEntity& source) = 0;
+		virtual void resolveCapacity(const CapacityDTO& capacity, const BaseEntity& source) = 0;
 	};
 }

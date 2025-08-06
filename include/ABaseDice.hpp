@@ -4,19 +4,28 @@
 #include <iostream>
 
 namespace dice {
-
-    /// @brief Abstract base class template for dice implementations
-    /// @tparam T The return type for dice roll results
+    
+    /// <summary>
+    /// Abstract base class template for dice implementations
+    /// </summary>
+    /// <typeparam name="T">The return type for dice roll results</typeparam>
     template <typename T>
     class ABaseDice {
     public:
         virtual ~ABaseDice(void) = default;
 
-        /// @brief Pure virtual method to roll the dice
-        /// @return Result of the dice roll as type T
+        /// <summary>
+        /// Pure virtual method to roll the dice
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns>Result of the dice roll as type T</returns>
         virtual const T roll(void) = 0;
 
-        /// @brief Pure virtual method to display dice information
+
+        /// <summary>
+        /// Pure virtual method to display dice informations in console
+        /// </summary>
+        /// <param name=""></param>
         virtual void printDiceSides(void) const = 0;
 
     protected:

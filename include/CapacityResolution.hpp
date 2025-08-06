@@ -38,7 +38,7 @@ namespace capacity_resolution {
 		}
 
 
-        void resolveCapacity(CapacityComponent& capacity_comp, BaseEntity& target) override {
+        void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) override {
 			for (auto& resolution : m_sp_resolutions) {
 				resolution->resolveCapacity(capacity_comp, target);
 			}

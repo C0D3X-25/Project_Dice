@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CapacityComponent.hpp"
+#include "CapacityDTO.hpp"
 #include "ECapacity.hpp"
 #include "BaseCapacity.hpp"
 #include "BaseCapacityAction.hpp"
