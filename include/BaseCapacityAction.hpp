@@ -11,6 +11,10 @@ namespace capacity_action {
 	using capacity::CapacityDTO;
 	using capacity::ECapacityTarget;
 
+	/// <summary>
+	/// Base class for Capacity Action.
+	/// Capacity Action hold one DTO. This is a simple action who gonna serve in Capacities
+	/// </summary>
 	class BaseCapacityAction {
 	public:
 		BaseCapacityAction(const std::vector<ECapacityTarget>& targets) 

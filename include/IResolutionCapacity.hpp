@@ -5,7 +5,7 @@
 using entity::BaseEntity;
 using capacity::CapacityDTO;
 
-namespace capacity_resolution {
+namespace resolution_capacity {
     // TODO: Choose between:
 	// 1. Chain of responsibility pattern
     //  ? How to contruct the chain in dynamic 
@@ -24,9 +24,9 @@ namespace capacity_resolution {
 	//  ? Add weight to each resolution for having an order of resolution
 
 	// How a capacity is resolved when received
-	class ICapacityResolution {
+	class IResolutionCapacity {
 	public:
-		virtual ~ICapacityResolution(void) = default;
+		virtual ~IResolutionCapacity(void) = default;
 		virtual void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) = 0;
 	};
 }
