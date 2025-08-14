@@ -104,7 +104,7 @@ A stack is removed at the beginning of the turn after being resolved.
 Examples of status effects:
 - **Burning**: Deals damage to armor and life; can be stacked.
 - **Poison**: Deals damage to life; can be stacked.
-- **Corrosion**: Deals damage to armor first and can apply negative armor if none is left.
+- **Corrosion**: Deals damage to armor.
 
 ## Upgrades
 ### Leveling Characters

@@ -9,16 +9,16 @@
 - [x] Raylib integration
 
 ## Next steps
-- [ ] Character generator UI
-- [ ] Combat UI
 - [ ] document current code
+- [ ] Character equipment logic
+- [ ] Inventory logic
 
 ## ToDo
+- [ ] Character generator UI
+- [ ] Combat UI
 - [ ] Combat logic
 - [ ] Capacity UI
 - [ ] Character UI
-- [ ] Character equipment logic
-- [ ] Inventory logic
 - [ ] Character feat logic
 - [ ] Character passive logic
 - [ ] Character leveling logic
