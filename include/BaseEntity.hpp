@@ -8,12 +8,14 @@
 #include <string>
 #include <iostream>
 #include <string_view>
+#include <PassiveHandler.hpp>
 
 namespace entity {
 
 	using capacity::BaseCapacity;
 	using capacity::CapacityDTO;
 	using attribute::Attribute;
+	using passive::PassiveHandler;
 
 	/// <summary>
 	/// Base Class for any entity.
@@ -55,12 +57,12 @@ namespace entity {
 
 		std::string m_name		{ "N/A" };
 		Attribute m_attributes;
+		PassiveHandler m_passive;
+		// TODO: StatusHandler m_status;
+		// TODO: FeatHandler m_feat;
 		int16_t m_max_life		{ 0 };
 		int16_t m_current_life	{ 0 };
 		int16_t m_max_armor		{ 0 };
 		int16_t m_current_armor	{ 0 };
-		// TODO: Status m_status;
-		// TODO: Feat m_feat;
-		// TODO: Passive m_passive;
 	};
 }

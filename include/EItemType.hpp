@@ -12,7 +12,7 @@ namespace item {
 		ARMOR,
 		WEAPON,
 		SHIELD,
-		MAGICAL_ITEM
+		ACCESSORIES
 	};
 
 	constexpr std::string_view toString(EItemType item_type) {
@@ -20,7 +20,7 @@ namespace item {
 		case ARMOR:			return "ARMOR";
 		case WEAPON:		return "WEAPON";
 		case SHIELD:		return "SHIELD";
-		case MAGICAL_ITEM:	return "MAGICAL_ITEM";
+		case ACCESSORIES:	return "ACCESSORIES";
 		default:			return "N/A";
 		}
 	}

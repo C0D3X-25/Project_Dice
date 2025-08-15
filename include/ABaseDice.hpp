@@ -12,21 +12,19 @@ namespace dice {
     template <typename T>
     class ABaseDice {
     public:
-        virtual ~ABaseDice(void) = default;
+        virtual ~ABaseDice() = default;
 
         /// <summary>
         /// Pure virtual method to roll the dice
         /// </summary>
-        /// <param name=""></param>
         /// <returns>Result of the dice roll as type T</returns>
-        virtual const T roll(void) = 0;
+        virtual const T roll() = 0;
 
 
         /// <summary>
         /// Pure virtual method to display dice informations in console
         /// </summary>
-        /// <param name=""></param>
-        virtual void printDiceSides(void) const = 0;
+        virtual void printDiceSides() const = 0;
 
     protected:
 
