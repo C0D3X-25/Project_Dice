@@ -4,6 +4,7 @@
 This game is set in a Medieval Fantasy Universe and is inspired by:
 - **Slice and Dice** (Most of the ideas are based on it)
 - **The Rules of DnD 5e** (For stats, capacities, and dice mechanics)
+- **Darkest Dungeon** (For the character management, and some combat mechanics)
 - **Slay the Spire** (For the game layout, events, and some combat mechanics)
 - **Battle Brotters** (For some combat mechanics and character creation/management)
 
@@ -104,17 +105,42 @@ A stack is removed at the beginning of the turn after being resolved.
 Examples of status effects:
 - **Burning**: Deals damage to armor and life; can be stacked.
 - **Poison**: Deals damage to life; can be stacked.
-- **Corrosion**: Deals damage to armor first and can apply negative armor if none is left.
+- **Corrosion**: Deals damage to armor.
 
 ## Upgrades
+### Rarity
+Rarity is a measure of the power of items and capacities.
+- **Common**: Basic items and capacities, no special effects.
+- **Uncommon**: Slightly more powerful items and capacities, may have minor effects.
+- **Rare**: Powerful items and capacities, often require to have certain stats/level to use.
+- **Named**: Unique items and capacities with significant effects, often tied to lore.
+- **Legendary**: Extremely powerful items and capacities, often game-changing is unique in the game.
+- **Relic**: The most powerful items and capacities, often with unique mechanics or effects that can alter the course of the game. Cursed items are often Relics.
+
 ### Leveling Characters
 Characters can upgrade their stats and passives using XP. XP is not shared across the group, so characters can have different levels.  
 Capacities can also be upgraded, but the upgrade applies to the face of the dice or a certain type of capacity.
 
 ### Items
-Characters can modify their stats with items. Items are not restricted to specific characters but may be limited by the stats of a character.  
+Characters can modify their stats with items. Items are not restricted to specific characters but may be limited by the stats of level of a character.  
 Most items also affect the capacity dice by adding capacities to certain spots.  
 Items have rarity levels, which determine their power.
+
+Items can be equipped in specific slots:
+- **Helmet**: Provides additional armor and defensive capacities.
+- **Body Armor**: Provides additional armor and defensive capacities.
+- **Shoulder Armor**: Provides additional armor and defensive capacities.
+- **Arm Guards**: Provides additional armor and defensive capacities.
+- **Leg Armor**: Provides additional armor and may have special effects like dodge AOE attack.
+- **Boots**: Provides additional armor and may have special effects like dodge AOE attack.
+- **Ring Right**: Provides various bonuses, typically to stats or capacities.
+- **Ring Left**: Provides various bonuses, typically to stats or capacities.
+- **Amulet**: Provides various bonuses, typically to stats or capacities.
+- **One-Handed Right**: Provides offencive capacities.
+- **One-Handed Left**: Provides offencive capacities, a part of the right-handed items can be used in the left hand.
+- **Two-Handed**: Provides offencive capacities.
+
+***Slot doesn't mean that the item is always providing the bonuses mentioned above.***
 
 ## Enemies
 To prevent players from stacking the same stats on their characters, enemies have resistances to certain stats, reducing the effectiveness of capacities used by player characters.

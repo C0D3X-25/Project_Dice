@@ -17,8 +17,6 @@
 - [ ] Combat logic
 - [ ] Capacity UI
 - [ ] Character UI
-- [ ] Character equipment logic
-- [ ] Inventory logic
 - [ ] Character feat logic
 - [ ] Character passive logic
 - [ ] Character leveling logic
