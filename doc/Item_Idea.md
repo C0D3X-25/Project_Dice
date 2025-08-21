@@ -3,7 +3,7 @@
 
 
 ### Template
-- Rarity: COMMON, UNCOMMON, RARE, NAMED, LEGENDARY, RELIC
+- Rarity: COMMON, UNCOMMON, RARE, NAMED, LEGENDARY, MYTHIC
 - Requirements: 
   - LVL: -
   - STR: -
@@ -109,7 +109,7 @@
 
 
 ### Death Ring
-- Rarity: RELIC
+- Rarity: MYTHIC
 - Requirements:
   - LVL: -
   - STR: -
@@ -135,7 +135,8 @@
   - INT: -
   - WIS: -
   - CHA: -
-- Slot: Amulet
-- Description: Everytime a dice is rerolled, gain + X armor at the end of the turn. Capacity on a 10 : reroll all dices and cannot reroll dices until next turn
+- Slot: AMULET
+- Description: Everytime a dice is rerolled, gain + X armor at the end of the turn. 
+- Capacity: on a 10 : reroll all dices and cannot reroll dices until next turn
 - Passive: +X Armor at end of turn when any dice is rerolled
 - When activated: always activated when equipped

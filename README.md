@@ -54,6 +54,7 @@ Every character (player and enemy) has the following stats:
 - **Constitution**: Focuses on capacities that use life for their effects. Increases the character's life.
 - **Intelligence**: Focuses on damaging capacities that affect a large number of enemies, typically magic. Increases the ability to equip magical items.
 - **Wisdom**: Focuses on supportive capacities. Enhances the effectiveness of status effects on the character.
+- **Charisma**: Focuses on capacities that affect the character's allies. Increases the ability to equip items that provide bonuses to allies.
 
 Each character has a dice containing 10 capacities, which can be changed, upgraded, or modified.
 Characters also have feats, which can be beneficial or detrimental.
@@ -72,6 +73,7 @@ Examples of feats:
 - **Strong**: The character has increased strength.
 - **Cursed**: The character's dice of capacities cannot be rerolled.
 - **Hard Skin**: The character starts combat with armor.
+- **Lucky**: The character has a chance to reroll a capacity dice when it's "do nothing"".
 
 ### Dice of Capacities
 The dice of capacities contain 10 faces, each representing a capacity.  
@@ -113,7 +115,7 @@ Rarity is a measure of the power of items and capacities.
 - **Common**: Basic items and capacities, no special effects.
 - **Uncommon**: Slightly more powerful items and capacities, may have minor effects.
 - **Rare**: Powerful items and capacities, often require to have certain stats/level to use.
-- **Named**: Unique items and capacities with significant effects, often tied to lore.
+- **Mythic**: Unique items and capacities with significant effects.
 - **Legendary**: Extremely powerful items and capacities, often game-changing is unique in the game.
 - **Relic**: The most powerful items and capacities, often with unique mechanics or effects that can alter the course of the game. Cursed items are often Relics.
 
