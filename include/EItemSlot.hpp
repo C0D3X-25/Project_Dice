@@ -7,7 +7,7 @@ namespace item {
 	/// <summary>
 	/// Slot an item can occupy or block on an entity.
 	/// </summary>
-	enum EItemSlot {
+	enum EItemEquipmentSlot {
 		HELMET,
 		BODY_ARMOR,
 		SHOULDER_ARMOR,
@@ -16,10 +16,11 @@ namespace item {
 		RING_LEFT,
 		AMULET,
 		ARM_GUARDS,
+		GLOVES,
 		BOOTS,
 		ONE_HANDED_RIGHT,
 		ONE_HANDED_LEFT,
-		TWO_HANDED,
+		TWO_HANDED
 	};
 
 	constexpr std::string_view toString(EItemSlot item_slot) {

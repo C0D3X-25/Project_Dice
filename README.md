@@ -8,6 +8,10 @@ This game is set in a Medieval Fantasy Universe and is inspired by:
 - **Slay the Spire** (For the game layout, events and some combat mechanics)
 - **Battle Brotters** (For some combat mechanics, feats balance and character creation/management)
 
+## Difficulties
+The game is designed to be challenging, with a high level of difficulty.
+Death is permanent, and the player must manage their group of characters carefully to survive.
+
 ## Game Loop
 This dice game revolves around managing a group of characters (group size is not fixed but likely ranges from 1 to 5-6) in turn-based combat against a group of enemies.  
 The objective is to defeat all enemies before the player's group is eliminated and progress to the next zone.
@@ -48,7 +52,7 @@ The game is divided into zones, each with a specific theme and unique events.
 ## Characters
 Every character (player and enemy) has the following stats:
 - **Life**: The amount of life the character has. When it reaches 0, the character dies permanently (almost).
-- **Armor**: The most common way to protect a character; it absorbs most damage.
+- **Armor**: The most common way to protect a character; it absorbs most damage. Armor is remove when the character is starting is turn.
 - **Strength**: Focuses on capacities that deal high damage in a single hit to one or nearby enemies. Increases the ability to equip heavy items.
 - **Dexterity**: Focuses on capacities that deal multiple hits to a single enemy. Increases the character's speed.
 - **Constitution**: Focuses on capacities that use life for their effects. Increases the character's life.
@@ -133,11 +137,12 @@ Characters can modify their stats with items. Items are not restricted to specif
 Most items also affect the capacity dice by adding capacities to certain side, one or more.  
 Items have rarity levels, which determine their power and chance to be found.
 
-Items can be equipped in specific slots of equipment:
+Items can be equipped in specific equipment slots:
 - **Helmet**: Provides additional armor and defensive capacities.
 - **Body Armor**: Provides additional armor and defensive capacities.
 - **Shoulder Armor**: Provides additional armor and defensive capacities.
 - **Arm Guards**: Provides additional armor and defensive capacities.
+- **Gloves**: Provides additional armor and may have special effects like dodge AOE attack.
 - **Leg Armor**: Provides additional armor and may have special effects like dodge AOE attack.
 - **Boots**: Provides additional armor and may have special effects like dodge AOE attack.
 - **Ring Right**: Provides various bonuses, typically to stats or capacities.
@@ -147,9 +152,9 @@ Items can be equipped in specific slots of equipment:
 - **One-Handed Left**: Provides offencive capacities, a part of the right-handed items can be used in the left hand (with malus).
 - **Two-Handed**: Provides offencive capacities.
 
-***Slot doesn't mean that the item is always providing the bonuses mentioned above.***
+***Equipment Slot doesn't mean that the item is always providing the bonuses mentioned above.***
 
-***Example of items can be found in doc/Item_Idea.md_***
+***Example of items can be found in doc/Item_Idea.md***
 
 ## Enemies
 To prevent players from stacking the same stats on all their characters, enemies have resistances to certain stats, reducing the effectiveness of capacities used by player characters.

@@ -4,7 +4,7 @@
 
 ### Template
 - Rarity: COMMON, UNCOMMON, RARE, MYTHIC, LEGENDARY, RELIC
-- Slot: HELMET, BODY_ARMOR, SHOULDER_ARMOR, LEG_ARMOR, RING_RIGHT, RING_LEFT, AMULET, ARM_GUARDS, BOOTS, ONE_HANDED_RIGHT, ONE_HANDED_LEFT, TWO_HANDED
+- Slot: HELMET, BODY_ARMOR, SHOULDER_ARMOR, LEG_ARMOR, RING_RIGHT, RING_LEFT, AMULET, ARM_GUARDS, GLOVES, BOOTS, ONE_HANDED_RIGHT, ONE_HANDED_LEFT, TWO_HANDED
 - Requirements: 
   - LVL: -
   - STR: -
@@ -34,7 +34,25 @@
 - Description: When life is below 30%, gain X Armor (based on CON) at the end of each turn.
 - Capacity: 
 - Passive: +X Armor at end of each turn.
-- When activated: Life <= 30% Max Life.
+- When activated: Life <= 30% Max Life, end of turn.
+
+
+### Steel Devourer
+- Rarity: RELIC
+- Slot: ARM_GUARDS
+- Requirements: 
+  - LVL: -
+  - STR: -
+  - DEX: -
+  - CON: -
+  - INT: -
+  - WIS: -
+  - CHA: -
+- Description: Remove X armor at the start of the turn and add it to your damage for the turn.
+				If you have no armor, loose health instead, but gain double the damage.
+- Capacity: 
+- Passive: 
+- When activated: Always active when equipped.
 
 
 ## Weapons
@@ -105,10 +123,10 @@
 - Description: The wearer gains +X WIS (Based on LVL).
 - Capacity:
 - Passive: +X WIS.
-- When activated: Always active
+- When activated: Always active when equipped.
 
 
-### Death Ring
+### Death Ring (need rework)
 - Rarity: RELIC
 - Slot: RING_RIGHT
 - Requirements:
@@ -122,7 +140,7 @@
 - Description: gains 30% damages at the end of all of the damages calculation when attacking. Lose 10% max HP when equipped and gains Curse : cannot reroll dices of this character
 - Capacity:
 - Passive: +30% DMG but -10% max HP, cannot reroll character dices
-- When activated: always activated when equipped
+- When activated: Always active when equipped.
 
 
 ### Joker Card 
@@ -139,4 +157,4 @@
 - Description: Everytime a dice is rerolled, gain + X armor at the end of the turn. 
 - Capacity: Side 10 -> reroll all dices and cannot reroll dices until next turn
 - Passive: +X Armor at end of turn when any dice is rerolled
-- When activated: always activated when equipped
+- When activated: Always active when equipped.
