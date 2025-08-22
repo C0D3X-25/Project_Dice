@@ -29,7 +29,7 @@
 //
 //				constexpr int8_t min_damage{ 1 };
 //				constexpr int8_t base_damage{ 3 };
-//				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
+//				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
 //				CapacityActionDamage attack(total_damage, targets);
 //				queueCapacityDTO(attack.doAction());
@@ -41,7 +41,7 @@
 //
 //				constexpr int8_t min_damage{ 1 };
 //				constexpr int8_t base_damage{ 5 };
-//				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
+//				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
 //				CapacityActionDamage attack(total_damage, targets);
 //				queueCapacityDTO(attack.doAction());

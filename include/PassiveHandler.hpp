@@ -1,29 +1,68 @@
 #pragma once 
 
 #include "IPassive.hpp"
+#include "PassiveModifierDTO.hpp"
+#include "IEntity.hpp"
 
 #include <string>
 #include <vector>
 #include <memory>
+#include <iostream>
 
 namespace passive {
 
-	/// <summary>
-	/// Facade Design for handling passive abilities.
-	/// </summary>
-	class PassiveHandler {
-	public:
-		/// <summary>
-		/// Adds a passive object to the list of passives that start at the beginning of a turn.
-		/// </summary>
-		/// <param name="sp_passive">A shared pointer to the passive object to add.</param>
-		void addPassive(std::shared_ptr<IPassive> sp_passive) {
-			m_passives_starting_turn.push_back(sp_passive);
-		}
+    using entity::IEntity;
 
+    /// <summary>
+    /// Facade Design for handling passive abilities.
+    /// </summary>
+    class PassiveHandler {
+    public:
+        PassiveHandler() = default;
+        ~PassiveHandler() = default;
 
-	private:
-		std::vector<std::shared_ptr<IPassive>> m_passives_starting_turn;
-		std::map<int, std::shared_ptr<IPassive>> m_active_passives; // <weight, passive>
-	};
+        void initializePassiveHandler(IEntity& source_entity) {
+            m_source_entity = std::shared_ptr<IEntity>(&source_entity, [](IEntity*) {});  // Non-owning wrapper
+        }
+
+        void addPassive(std::shared_ptr<IPassive> sp_passive) {
+            m_persistent_passives.push_back(sp_passive);
+        }
+
+        PassiveModifierDTO executePersistentPassives() {
+            PassiveModifierDTO passive_mod;
+            passive_mod.m_source_entity = m_source_entity;
+
+            for (const auto& passive : m_persistent_passives) {
+                passive->executePassive(passive_mod);
+            }
+
+            return passive_mod;
+        }
+
+        PassiveModifierDTO executeGettingHitPassives(IEntity& target_entity) {
+            PassiveModifierDTO passive_mod;
+            passive_mod.m_source_entity = m_source_entity;
+            passive_mod.m_target_entity = std::shared_ptr<IEntity>(&target_entity, [](IEntity*) {});
+
+            for (const auto& passive : m_persistent_passives) {
+                passive->executePassive(passive_mod);
+            }
+
+            return passive_mod;
+        }
+
+        void printListPassives() const {
+            PassiveModifierDTO passive_mod;
+            passive_mod.m_source_entity = m_source_entity;
+
+            for (const auto& passive : m_persistent_passives) {
+                passive->printPassive();
+            }
+        }
+
+    private:
+        std::vector<std::shared_ptr<IPassive>> m_persistent_passives;
+        std::shared_ptr<IEntity> m_source_entity;
+    };
 }

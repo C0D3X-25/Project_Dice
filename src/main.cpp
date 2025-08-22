@@ -10,6 +10,7 @@
 #include "raylib.h"
 
 #include "../include/CapacityPlayerSingleAttack.hpp"
+#include "../include/PassiveAugmentAttribute.hpp"
 #include "../include/CapacityFactory.hpp"
 #include "../include/DiceCapacity.hpp"
 
@@ -25,6 +26,8 @@ using namespace dice;
 using namespace entity;
 using namespace capacity;
 using namespace group;
+using namespace attribute;
+using namespace passive;
 
 int main() {
 
@@ -57,11 +60,21 @@ int main() {
 	 //team_2.printGroup();
 
 	 std::cout << "========================================================\n\n";
-	 BaseCapacity capacity = capacity_factory.attackSingle(entity_1);
-	 std::cout << "Before: " << entity_1.getCurrentLife() << '\n';
-	 CapacityDTO capacity_modifier = capacity.getNextCapacityDTO();
-	 entity_1.resolveCapacity(capacity_modifier, entity_1);
-	 std::cout << "After:  " << entity_1.getCurrentLife() << '\n';
+	 //BaseCapacity capacity = capacity_factory.attackSingle(entity_1);
+	 //std::cout << "Before: " << entity_1.getCurrentLife() << '\n';
+	 //CapacityDTO capacity_modifier = capacity.getNextCapacityDTO();
+	 //entity_1.resolveCapacity(capacity_modifier, entity_1);
+	 //std::cout << "After:  " << entity_1.getCurrentLife() << '\n';
+
+	 std::cout << "========================================================\n\n";
+	 PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);
+	 entity_1.addPassive(std::make_shared<PassiveAugmentAttribute>(passive_strength));
+	 entity_1.executePassives();
+	 entity_1.printEntity();
+
+
+
+
 
 	 // Game loop
 	 while (!WindowShouldClose()) {

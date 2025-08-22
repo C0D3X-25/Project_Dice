@@ -1,4 +1,6 @@
-#pragma once 
+#pragma once
+
+#include "PassiveModifierDTO.hpp"
 
 #include <string>
 
@@ -9,7 +11,7 @@ namespace passive {
 	class IPassive {
 	public:
 		virtual ~IPassive() = default;
-		virtual void executePassive() = 0;
+		virtual PassiveModifierDTO executePassive(PassiveModifierDTO& passive_mod) = 0;
 		virtual void printPassive() const = 0;
 		virtual std::string getPassiveName() const = 0;
 	};

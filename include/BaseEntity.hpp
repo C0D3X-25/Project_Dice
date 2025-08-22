@@ -3,66 +3,69 @@
 #include "BaseCapacity.hpp"
 #include "CapacityDTO.hpp"
 #include "Attribute.hpp"
+#include "EAttribute.hpp"
+#include "IEntity.hpp"
+#include "PassiveHandler.hpp"
 
 #include <memory>
 #include <string>
 #include <iostream>
 #include <string_view>
-#include <PassiveHandler.hpp>
 
 namespace entity {
 
-	using capacity::BaseCapacity;
-	using capacity::CapacityDTO;
-	using attribute::Attribute;
-	using passive::PassiveHandler;
+    using capacity::BaseCapacity;
+    using capacity::CapacityDTO;
+    using attribute::Attribute;
+    using attribute::EAttribute;
+    using passive::PassiveHandler;
 
-	/// <summary>
-	/// Base Class for any entity.
-	/// </summary>
-	class BaseEntity {
-	public:
-		BaseEntity(const std::string& name);
-		BaseEntity(const std::string& name, const int16_t max_life, const int16_t max_armor);
-		virtual ~BaseEntity(void) = default;
+    /// <summary>
+    /// Base Class for any entity.
+    /// </summary>
+    class BaseEntity : public IEntity {
+    public:
+        BaseEntity(const std::string& name);
+        BaseEntity(const std::string& name, const int16_t max_life, const int16_t max_armor);
+        virtual ~BaseEntity(void) = default;
 
-		virtual void printEntity(void) const;
+        virtual void initializeEntity(void);
+        virtual void printEntity(void) const;
 
-		virtual void setAttributes(const Attribute& new_attributes);
-		virtual void updateAttributes(const Attribute& update_attributes);
+        // IEntity implementation
+        void updateAttributes(const Attribute& update_attributes) override;
+        void addPassive(std::shared_ptr<passive::IPassive> sp_passive) override { m_passive.addPassive(sp_passive); }
 
-		virtual void setEntityName(const std::string& name)		{ m_name = name; }
-		virtual void setMaxLife(int16_t life)					{ m_max_life = life; }
-		virtual void setCurrentLife(int16_t life)				{ m_current_life = life; }
-		virtual void setMaxArmor(int16_t armor)					{ m_max_armor = armor; }
-		virtual void setCurrentArmor(int16_t armor)				{ m_current_armor = armor; }
+        std::string_view getEntityName(void) const override { return m_name; }
+        int16_t getMaxLife(void) const override { return m_max_life; }
+        int16_t getCurrentLife(void) const override { return m_current_life; }
+        int16_t getMaxArmor(void) const override { return m_max_armor; }
+        int16_t getCurrentArmor(void) const override { return m_current_armor; }
+        int8_t getAttribute(const EAttribute attribute_type) const override { return m_attributes.getAttribute(attribute_type); }
 
-		virtual std::string_view getEntityName(void) const		{ return m_name; }
-		virtual int16_t getMaxLife(void) const					{ return m_max_life; }
-		virtual int16_t getCurrentLife(void) const				{ return m_current_life; }
-		virtual int16_t getMaxArmor(void) const					{ return m_max_armor; }
-		virtual int16_t getCurrentArmor(void) const				{ return m_current_armor; }
-		virtual int8_t getStrength(void) const					{ return m_attributes.getStrength(); }
-		virtual int8_t getDexterity(void) const					{ return m_attributes.getDexterity(); }
-		virtual int8_t getConstitution(void) const				{ return m_attributes.getConstitution(); }
-		virtual int8_t getIntelligence(void) const				{ return m_attributes.getIntelligence(); }
-		virtual int8_t getWisdom(void) const					{ return m_attributes.getWisdom(); }
-		virtual int8_t getCharisma(void) const					{ return m_attributes.getCharisma(); }
+        void setEntityName(const std::string& name) override { m_name = name; }
+        void setMaxLife(int16_t life) override { m_max_life = life; }
+        void setCurrentLife(int16_t life) override { m_current_life = life; }
+        void setMaxArmor(int16_t armor) override { m_max_armor = armor; }
+        void setCurrentArmor(int16_t armor) override { m_current_armor = armor; }
 
-	protected:
+        void executePassives(void) {
+            m_bonus_attributes = m_passive.executePersistentPassives().m_bonus_attributes;
+        }
 
-		virtual void updateEntity(void);
+    protected:
+        virtual void updateEntity(void);
 
-	protected:
-
-		std::string m_name		{ "N/A" };
-		Attribute m_attributes;
-		PassiveHandler m_passive;
-		// TODO: StatusHandler m_status;
-		// TODO: FeatHandler m_feat;
-		int16_t m_max_life		{ 0 };
-		int16_t m_current_life	{ 0 };
-		int16_t m_max_armor		{ 0 };
-		int16_t m_current_armor	{ 0 };
-	};
+    protected:
+        PassiveHandler m_passive;
+        // TODO: StatusHandler m_status;
+        // TODO: FeatHandler m_feat;
+        Attribute m_attributes;
+		Attribute m_bonus_attributes;
+        std::string m_name      { "N/A" };
+        int16_t m_max_life      { 0 };
+        int16_t m_current_life  { 0 };
+        int16_t m_max_armor     { 0 };
+        int16_t m_current_armor { 0 };
+    };
 }

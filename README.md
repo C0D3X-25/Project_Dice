@@ -4,9 +4,9 @@
 This game is set in a Medieval Fantasy Universe and is inspired by:
 - **Slice and Dice** (Most of the ideas are based on it)
 - **The Rules of DnD 5e** (For stats, capacities, and dice mechanics)
-- **Darkest Dungeon** (For the character management, and some combat mechanics)
-- **Slay the Spire** (For the game layout, events, and some combat mechanics)
-- **Battle Brotters** (For some combat mechanics and character creation/management)
+- **Darkest Dungeon** (For the character management, some combat mechanics and items balance)
+- **Slay the Spire** (For the game layout, events and some combat mechanics)
+- **Battle Brotters** (For some combat mechanics, feats balance and character creation/management)
 
 ## Game Loop
 This dice game revolves around managing a group of characters (group size is not fixed but likely ranges from 1 to 5-6) in turn-based combat against a group of enemies.  
@@ -22,7 +22,7 @@ The combat is divided into three phases:
 
 1. **Starting Phase** (only at the start of combat):
    - The enemy group composition is generated based on the zone and other modifiers.
-   - Starting statuses and effects are applied to all characters in combat.
+   - Starting passives are applied to all characters in combat.
    - Enemy characters select a capacity to use when the player's turn ends.
 
 2. **Player Phase**:
@@ -61,11 +61,11 @@ Characters also have feats, which can be beneficial or detrimental.
 
 ### Stats
 Stats are the core of the game and are used to determine the effectiveness of capacities and the eligibility to equip items.  
-They range from -10 to 20, with -10 being the worst and 20 being the best. The average is around 0.  
+They range from -10 to 20, with -10 being the worst and 20 being the best. The average is around 2.  
 Stats cannot go below -10, and values above 20 are only possible with items.
 
 ### Feats
-Feats are abilities that provide bonuses or effects to characters in combat.  
+Feats are passives that provide bonuses or effects to characters in combat.  
 They are not directly related to the dice of capacities but can modify them.  
 It is rare to remove feats, but it is more common to add new ones.
 
@@ -109,6 +109,11 @@ Examples of status effects:
 - **Poison**: Deals damage to life; can be stacked.
 - **Corrosion**: Deals damage to armor.
 
+### Passives
+Passives are effects that modify the character's stats, capacities, or other aspects of the game.
+They are active under certain conditions, such as having a certain pourcent of life, 
+having a certain status effect of using a specific type of capacity.
+
 ## Upgrades
 ### Rarity
 Rarity is a measure of the power of items and capacities.
@@ -116,7 +121,7 @@ Rarity is a measure of the power of items and capacities.
 - **Uncommon**: Slightly more powerful items and capacities, may have minor effects.
 - **Rare**: Powerful items and capacities, often require to have certain stats/level to use.
 - **Mythic**: Unique items and capacities with significant effects.
-- **Legendary**: Extremely powerful items and capacities, often game-changing is unique in the game.
+- **Legendary**: Extremely powerful items and capacities, often game-changing and unique.
 - **Relic**: The most powerful items and capacities, often with unique mechanics or effects that can alter the course of the game. Cursed items are often Relics.
 
 ### Leveling Characters
@@ -124,11 +129,11 @@ Characters can upgrade their stats and passives using XP. XP is not shared acros
 Capacities can also be upgraded, but the upgrade applies to the face of the dice or a certain type of capacity.
 
 ### Items
-Characters can modify their stats with items. Items are not restricted to specific characters but may be limited by the stats of level of a character.  
-Most items also affect the capacity dice by adding capacities to certain spots.  
-Items have rarity levels, which determine their power.
+Characters can modify their stats with items. Items are not restricted to specific characters but may be limited by the stats or level of a character.  
+Most items also affect the capacity dice by adding capacities to certain side, one or more.  
+Items have rarity levels, which determine their power and chance to be found.
 
-Items can be equipped in specific slots:
+Items can be equipped in specific slots of equipment:
 - **Helmet**: Provides additional armor and defensive capacities.
 - **Body Armor**: Provides additional armor and defensive capacities.
 - **Shoulder Armor**: Provides additional armor and defensive capacities.
@@ -139,19 +144,21 @@ Items can be equipped in specific slots:
 - **Ring Left**: Provides various bonuses, typically to stats or capacities.
 - **Amulet**: Provides various bonuses, typically to stats or capacities.
 - **One-Handed Right**: Provides offencive capacities.
-- **One-Handed Left**: Provides offencive capacities, a part of the right-handed items can be used in the left hand.
+- **One-Handed Left**: Provides offencive capacities, a part of the right-handed items can be used in the left hand (with malus).
 - **Two-Handed**: Provides offencive capacities.
 
 ***Slot doesn't mean that the item is always providing the bonuses mentioned above.***
 
+***Example of items can be found in doc/Item_Idea.md_***
+
 ## Enemies
-To prevent players from stacking the same stats on their characters, enemies have resistances to certain stats, reducing the effectiveness of capacities used by player characters.
+To prevent players from stacking the same stats on all their characters, enemies have resistances to certain stats, reducing the effectiveness of capacities used by player characters.
 
 ### Loot
 Enemies can drop items.  
 Events can also provide items.
 
 ## Where is the Fun?
-The fun lies in managing a group of characters, their stats, and their items.  
+The fun lies in managing a group of characters, their stats, and their items.
 Players can recruit new characters, upgrade them, and manage their capacities.  
 Rolling dice and taking risks with rerolls adds an element of chance and strategy.

@@ -40,14 +40,14 @@ namespace entity {
 
 			Attribute generated_attributes;
 
-			generated_attributes.setStrength(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setDexterity(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setConstitution(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setIntelligence(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setWisdom(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setCharisma(getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::STRENGTH, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::DEXTERITY, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::CONSTITUTION, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::INTELLIGENCE, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::WISDOM, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttribute(attribute::CHARISMA, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
 
-			entity.setAttributes(generated_attributes);
+			entity.updateAttributes(generated_attributes);
 		}
 
 

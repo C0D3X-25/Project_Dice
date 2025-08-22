@@ -73,7 +73,7 @@ namespace entity {
 
 			int16_t max_life{ BASE_MAX_LIFE };
 			// TODO: max_life += bonus_life;
-			max_life += int16_t(m_attributes.getConstitution() * 1.5);
+			max_life += int16_t(m_attributes.getAttribute(attribute::CONSTITUTION) * 1.5);
 
 			setMaxLife(max_life);
 		}
@@ -86,8 +86,8 @@ namespace entity {
 		void calculateMaxArmor(void) {
 
 			// TODO: max_armor += bonus_armor;
-			int16_t best_physic{ helper::find::getHighestValue<int16_t>( m_attributes.getStrength(), m_attributes.getDexterity(), 0) };
-			int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getWisdom(), m_attributes.getIntelligence(), m_attributes.getCharisma(), 0) };
+			int16_t best_physic{ helper::find::getHighestValue<int16_t>( m_attributes.getAttribute(attribute::STRENGTH), m_attributes.getAttribute(attribute::DEXTERITY), 0) };
+			int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::WISDOM), m_attributes.getAttribute(attribute::INTELLIGENCE), m_attributes.getAttribute(attribute::CHARISMA), 0) };
 			int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
 
 			setMaxArmor(max_armor);

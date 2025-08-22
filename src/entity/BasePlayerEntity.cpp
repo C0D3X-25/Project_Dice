@@ -26,8 +26,15 @@ void entity::BasePlayerEntity::printEntity(void) const {
     std::cout << "\n---------- Attributes ----------\n";
 	m_attributes.printAllAttributes();
 
+	std::cout << "\n---------- Bonus Attributes ----------\n";
+	m_bonus_attributes.printAllAttributes();
+
     std::cout << "\n---------- Dice Capacity ----------\n";
     m_dice_capacity.printDiceSides();
+
+	std::cout << "\n---------- Passives ----------\n";
+	m_passive.printListPassives();
+
 }
 
 

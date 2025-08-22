@@ -34,7 +34,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity attackSingle(const BaseEntity& user) {
+		BaseCapacity attackSingle(const BaseEntity& source_entity) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("1 Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with STR or DEX");
@@ -47,7 +47,7 @@ namespace capacity {
 				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_SINGLE, TARGET_ENNEMY };
 				constexpr int8_t min_damage{ 1 };
 				constexpr int8_t base_damage{ 3 };
-				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
+				int8_t total_damage = base_damage + helper::find::getHighestValue(source_entity.getAttribute(STRENGTH), source_entity.getAttribute(DEXTERITY), min_damage);
 				CapacityActionDamage attack(total_damage, targets);
 				capacity.queueCapacityDTO(attack.doAction());
 			}
@@ -55,7 +55,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity attackRandom(const BaseEntity& user) {
+		BaseCapacity attackRandom(const BaseEntity& source_entity) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("1 Attack and 1 Random Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with worst STR or DEX, then attack another random ennemy with best STR or DEX");
@@ -69,7 +69,7 @@ namespace capacity {
 
 				constexpr int8_t min_damage{ 1 };
 				constexpr int8_t base_damage{ 3 };
-				int8_t total_damage = base_damage + helper::find::getLowestValue(user.getStrength(), user.getDexterity(), min_damage);
+				int8_t total_damage = base_damage + helper::find::getLowestValue(source_entity.getAttribute(STRENGTH), source_entity.getAttribute(DEXTERITY), min_damage);
 
 				CapacityActionDamage attack(total_damage, targets);
 				capacity.queueCapacityDTO(attack.doAction());
@@ -81,7 +81,7 @@ namespace capacity {
 
 				constexpr int8_t min_damage{ 1 };
 				constexpr int8_t base_damage{ 5 };
-				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getStrength(), user.getDexterity(), min_damage);
+				int8_t total_damage = base_damage + helper::find::getHighestValue(source_entity.getAttribute(STRENGTH), source_entity.getAttribute(DEXTERITY), min_damage);
 
 				CapacityActionDamage attack(total_damage, targets);
 				capacity.queueCapacityDTO(attack.doAction());
@@ -89,7 +89,7 @@ namespace capacity {
 			return capacity;
 		}
 
-		BaseCapacity attackEnnemyTeam(const BaseEntity& user) {
+		BaseCapacity attackEnnemyTeam(const BaseEntity& source_entity) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Strike the ennemy team once");
 			capacity.setCapacityDescription("Attack all ennemy with best INT, WIS or CHA");
@@ -102,7 +102,7 @@ namespace capacity {
 				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_TEAM, TARGET_ENNEMY };
 				constexpr int8_t min_damage{ 1 };
 				constexpr int8_t base_damage{ 2 };
-				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getCharisma(), user.getWisdom(), user.getIntelligence(), min_damage);
+				int8_t total_damage = base_damage + helper::find::getHighestValue(source_entity.getAttribute(CHARISMA), source_entity.getAttribute(WISDOM), source_entity.getAttribute(INTELLIGENCE), min_damage);
 				CapacityActionDamage attack(total_damage, targets);
 				capacity.queueCapacityDTO(attack.doAction());
 			}
@@ -110,7 +110,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity protectSelf(const BaseEntity& user) {
+		BaseCapacity protectSelf(const BaseEntity& source_entity) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Protect self");
 			capacity.setCapacityDescription("Protect yourself with your armor");
@@ -123,7 +123,7 @@ namespace capacity {
 				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_SINGLE, TARGET_SELF };
 				constexpr int8_t min_armor{ 1 };
 				constexpr int8_t base_armor{ 3 };
-				int8_t total_armor = base_armor + helper::find::getHighestValue(user.getStrength(), user.getWisdom(), min_armor);
+				int8_t total_armor = base_armor + helper::find::getHighestValue(source_entity.getAttribute(STRENGTH), source_entity.getAttribute(WISDOM), min_armor);
 				CapacityActionDamage protect(total_armor, targets);
 				capacity.queueCapacityDTO(protect.doAction());
 			}
@@ -131,7 +131,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity fastHeal(const BaseEntity& user) {
+		BaseCapacity fastHeal(const BaseEntity& source_entity) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Fast heal");
 			capacity.setCapacityDescription("Heal directly a single ally with best INT, WIS or CHA");
@@ -144,7 +144,7 @@ namespace capacity {
 				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_SINGLE, TARGET_ALLY };
 				constexpr int8_t min_heal{ 0 };
 				constexpr int8_t base_heal{ 1 };
-				int8_t total_heal = base_heal + helper::find::getHighestValue(user.getCharisma(), user.getWisdom(), user.getIntelligence(), min_heal);
+				int8_t total_heal = base_heal + helper::find::getHighestValue(source_entity.getAttribute(CHARISMA), source_entity.getAttribute(WISDOM), source_entity.getAttribute(INTELLIGENCE), min_heal);
 				CapacityActionDamage heal(total_heal, targets);
 				capacity.queueCapacityDTO(heal.doAction());
 			}

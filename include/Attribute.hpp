@@ -1,8 +1,10 @@
 #pragma once
 
+#include "SFind.hpp"
+#include "EAttribute.hpp"
+
 #include <cstdint>
 #include <iostream>
-#include "SFind.hpp"
 
 namespace attribute {
 
@@ -26,19 +28,59 @@ namespace attribute {
 				<< "CHA: " << static_cast<int>(m_charisma) << '\n';
 		}
 
-		void setStrength(int8_t value) { m_strength = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
-		void setDexterity(int8_t value) { m_dexterity = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
-		void setConstitution(int8_t value) { m_constitution = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
-		void setIntelligence(int8_t value) { m_intelligence = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
-		void setWisdom(int8_t value) { m_wisdom = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
-		void setCharisma(int8_t value) { m_charisma = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE); }
+		void setAttribute(const EAttribute attribute_type, int8_t value) {
 
-		int8_t getStrength(void) const { return m_strength; }
-		int8_t getDexterity(void) const { return m_dexterity; }
-		int8_t getConstitution(void) const { return m_constitution; }
-		int8_t getIntelligence(void) const { return m_intelligence; }
-		int8_t getWisdom(void) const { return m_wisdom; }
-		int8_t getCharisma(void) const { return m_charisma; }
+			int8_t safe_value = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE);
+
+			switch (attribute_type) {
+			case attribute::STRENGTH:
+				m_strength = safe_value;
+				break;
+			case attribute::DEXTERITY:
+				m_dexterity = safe_value;
+				break;
+			case attribute::CONSTITUTION:
+				m_constitution = safe_value;
+				break;
+			case attribute::INTELLIGENCE:
+				m_intelligence = safe_value;
+				break;
+			case attribute::WISDOM:
+				m_wisdom = safe_value;
+				break;
+			case attribute::CHARISMA:
+				m_charisma = safe_value;
+				break;
+			default:
+				break;
+			}
+		}
+
+
+		int8_t getAttribute(const EAttribute attribute_type) const {
+			switch (attribute_type) {
+			case attribute::STRENGTH:
+				return m_strength;
+				break;
+			case attribute::DEXTERITY:
+				return m_dexterity;
+				break;
+			case attribute::CONSTITUTION:
+				return m_constitution;
+				break;
+			case attribute::INTELLIGENCE:
+				return m_intelligence;
+				break;
+			case attribute::WISDOM:
+				return m_wisdom;
+				break;
+			case attribute::CHARISMA:
+				return m_charisma;
+				break;
+			default:
+				break;
+			}
+		}
 
 	private:
 		int8_t m_strength{ 0 };
