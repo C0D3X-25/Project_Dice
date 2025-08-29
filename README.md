@@ -3,10 +3,10 @@
 ## Game References
 This game is set in a Medieval Fantasy Universe and is inspired by:
 - **Slice and Dice** (Most of the ideas are based on it)
-- **The Rules of DnD 5e** (For stats, capacities, and dice mechanics)
+- **The Rules of DnD 5e** (For attributes, capacities, and dice mechanics)
 - **Darkest Dungeon** (For the character management, some combat mechanics and items balance)
 - **Slay the Spire** (For the game layout, events and some combat mechanics)
-- **Battle Brotters** (For some combat mechanics, feats balance and character creation/management)
+- **Battle Brothers** (For some combat mechanics, feats balance and character creation/management)
 
 ## Difficulties
 The game is designed to be challenging, with a high level of difficulty.
@@ -17,11 +17,11 @@ This dice game revolves around managing a group of characters (group size is not
 The objective is to defeat all enemies before the player's group is eliminated and progress to the next zone.
 
 ### Game Start
-The game starts with a group of 2 completely random characters, each with their own stats, items, and dice of capacities.  
+The game starts with a group of 2 completely random characters, each with their own attributes, items, and dice of capacities.  
 The player can recruit up to 2 new characters from 5 proposed options and has 1 reroll to change the proposed characters.
 
 ### Combat
-Combat is turn-based, where each character can attack, provide armor, heal, or apply status effects using their capacities.  
+Combat is turn-based, where each character can attack, provide armour, heal, or apply status effects using their capacities.  
 The combat is divided into three phases:
 
 1. **Starting Phase** (only at the start of combat):
@@ -50,9 +50,9 @@ The combat is divided into three phases:
 The game is divided into zones, each with a specific theme and unique events.
 
 ## Characters
-Every character (player and enemy) has the following stats:
+Every character (player and enemy) has the following attributes:
 - **Life**: The amount of life the character has. When it reaches 0, the character dies permanently (almost).
-- **Armor**: The most common way to protect a character; it absorbs most damage. Armor is remove when the character is starting is turn.
+- **Armour**: The most common way to protect a character; it absorbs most damage. Armour is remove when the character is starting is turn.
 - **Strength**: Focuses on capacities that deal high damage in a single hit to one or nearby enemies. Increases the ability to equip heavy items.
 - **Dexterity**: Focuses on capacities that deal multiple hits to a single enemy. Increases the character's speed.
 - **Constitution**: Focuses on capacities that use life for their effects. Increases the character's life.
@@ -63,10 +63,10 @@ Every character (player and enemy) has the following stats:
 Each character has a dice containing 10 capacities, which can be changed, upgraded, or modified.
 Characters also have feats, which can be beneficial or detrimental.
 
-### Stats
-Stats are the core of the game and are used to determine the effectiveness of capacities and the eligibility to equip items.  
+### Attributes
+Attributes are the core of the game and are used to determine the effectiveness of capacities and the eligibility to equip items.  
 They range from -10 to 20, with -10 being the worst and 20 being the best. The average is around 2.  
-Stats cannot go below -10, and values above 20 are only possible with items.
+Attributes cannot go below -10, and values above 20 are only possible with items.
 
 ### Feats
 Feats are passives that provide bonuses or effects to characters in combat.  
@@ -76,7 +76,7 @@ It is rare to remove feats, but it is more common to add new ones.
 Examples of feats:
 - **Strong**: The character has increased strength.
 - **Cursed**: The character's dice of capacities cannot be rerolled.
-- **Hard Skin**: The character starts combat with armor.
+- **Hard Skin**: The character starts combat with armour.
 - **Lucky**: The character has a chance to reroll a capacity dice when it's "do nothing"".
 
 ### Dice of Capacities
@@ -89,11 +89,11 @@ In general, the capacities are divided into 3 zones of the dice:
 - **10**: Special
 
 ### Capacities
-Capacities allow characters to deal damage, provide armor, heal, or apply status effects (e.g., burning, poison). These actions are influenced by the stats and items of the entity using them.  
+Capacities allow characters to deal damage, provide armour, heal, or apply status effects (e.g., burning, poison). These actions are influenced by the attributes and items of the entity using them.  
 
 During the player's turn:
 - All capacity dice are rolled, and the player can assign capacities to any entity, regardless of who owns the dice.
-- The effectiveness of a capacity depends on the stats of the entity using it, so the player must decide whether to accept reduced effects or reroll the dice.
+- The effectiveness of a capacity depends on the attributes of the entity using it, so the player must decide whether to accept reduced effects or reroll the dice.
 - Dice not assigned to an entity will be rerolled, but rerolls are limited to 2 times per turn by default (modifiable by items or capacities).
 
 Capacities are generally used at the end of the turn, after all dice are assigned.  
@@ -109,12 +109,12 @@ Their effects are applied at the beginning of the turn, before the player/enemy 
 A stack is removed at the beginning of the turn after being resolved.
 
 Examples of status effects:
-- **Burning**: Deals damage to armor and life; can be stacked.
+- **Burning**: Deals damage to armour and life; can be stacked.
 - **Poison**: Deals damage to life; can be stacked.
-- **Corrosion**: Deals damage to armor.
+- **Corrosion**: Deals damage to armour.
 
 ### Passives
-Passives are effects that modify the character's stats, capacities, or other aspects of the game.
+Passives are effects that modify the character's attributes, capacities, or other aspects of the game.
 They are active under certain conditions, such as having a certain pourcent of life, 
 having a certain status effect of using a specific type of capacity.
 
@@ -123,31 +123,31 @@ having a certain status effect of using a specific type of capacity.
 Rarity is a measure of the power of items and capacities.
 - **Common**: Basic items and capacities, no special effects.
 - **Uncommon**: Slightly more powerful items and capacities, may have minor effects.
-- **Rare**: Powerful items and capacities, often require to have certain stats/level to use.
+- **Rare**: Powerful items and capacities, often require to have certain attributes/level to use.
 - **Mythic**: Unique items and capacities with significant effects.
 - **Legendary**: Extremely powerful items and capacities, often game-changing and unique.
 - **Relic**: The most powerful items and capacities, often with unique mechanics or effects that can alter the course of the game. Cursed items are often Relics.
 
 ### Leveling Characters
-Characters can upgrade their stats and passives using XP. XP is not shared across the group, so characters can have different levels.  
+Characters can upgrade their attributes and passives using XP. XP is not shared across the group, so characters can have different levels.  
 Capacities can also be upgraded, but the upgrade applies to the face of the dice or a certain type of capacity.
 
 ### Items
-Characters can modify their stats with items. Items are not restricted to specific characters but may be limited by the stats or level of a character.  
+Characters can modify their attributes with items. Items are not restricted to specific characters but may be limited by the attributes or level of a character.  
 Most items also affect the capacity dice by adding capacities to certain side, one or more.  
 Items have rarity levels, which determine their power and chance to be found.
 
 Items can be equipped in specific equipment slots:
-- **Helmet**: Provides additional armor and defensive capacities.
-- **Body Armor**: Provides additional armor and defensive capacities.
-- **Shoulder Armor**: Provides additional armor and defensive capacities.
-- **Arm Guards**: Provides additional armor and defensive capacities.
-- **Gloves**: Provides additional armor and may have special effects like dodge AOE attack.
-- **Leg Armor**: Provides additional armor and may have special effects like dodge AOE attack.
-- **Boots**: Provides additional armor and may have special effects like dodge AOE attack.
-- **Ring Right**: Provides various bonuses, typically to stats or capacities.
-- **Ring Left**: Provides various bonuses, typically to stats or capacities.
-- **Amulet**: Provides various bonuses, typically to stats or capacities.
+- **Helmet**: Provides additional armour and defensive capacities.
+- **Body Armour**: Provides additional armour and defensive capacities.
+- **Shoulder Armour**: Provides additional armour and defensive capacities.
+- **Arm Guards**: Provides additional armour and defensive capacities.
+- **Gloves**: Provides additional armour and may have special effects like dodge AOE attack.
+- **Leg Armour**: Provides additional armour and may have special effects like dodge AOE attack.
+- **Boots**: Provides additional armour and may have special effects like dodge AOE attack.
+- **Ring Right**: Provides various bonuses, typically to attributes or capacities.
+- **Ring Left**: Provides various bonuses, typically to attributes or capacities.
+- **Amulet**: Provides various bonuses, typically to attributes or capacities.
 - **One-Handed Right**: Provides offencive capacities.
 - **One-Handed Left**: Provides offencive capacities, a part of the right-handed items can be used in the left hand (with malus).
 - **Two-Handed**: Provides offencive capacities.
@@ -157,13 +157,13 @@ Items can be equipped in specific equipment slots:
 ***Example of items can be found in doc/Item_Idea.md***
 
 ## Enemies
-To prevent players from stacking the same stats on all their characters, enemies have resistances to certain stats, reducing the effectiveness of capacities used by player characters.
+To prevent players from stacking the same attributes on all their characters, enemies have resistances to certain attributes, reducing the effectiveness of capacities used by player characters.
 
 ### Loot
 Enemies can drop items.  
 Events can also provide items.
 
 ## Where is the Fun?
-The fun lies in managing a group of characters, their stats, and their items.
+The fun lies in managing a group of characters, their attributes, and their items.
 Players can recruit new characters, upgrade them, and manage their capacities.  
 Rolling dice and taking risks with rerolls adds an element of chance and strategy.
