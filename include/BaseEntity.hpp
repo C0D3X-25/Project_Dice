@@ -34,7 +34,7 @@ namespace entity {
 
         // IEntity implementation
         void updateAttributes(const Attribute& update_attributes) override;
-        void addPassive(std::shared_ptr<passive::IPassive> sp_passive) override { m_passive.addPassive(sp_passive); }
+        void addPassive(passive::IPassive& sp_passive) override { m_passive.addPassive(sp_passive); }
 
         std::string_view getEntityName(void) const override { return m_name; }
         int16_t getMaxLife(void) const override { return m_max_life; }

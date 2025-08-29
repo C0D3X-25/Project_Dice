@@ -25,8 +25,16 @@ namespace passive {
             m_source_entity = std::shared_ptr<IEntity>(&source_entity, [](IEntity*) {});  // Non-owning wrapper
         }
 
-        void addPassive(std::shared_ptr<IPassive> sp_passive) {
-            m_persistent_passives.push_back(sp_passive);
+        //void addPassive(IPassive& passive) {
+        ////void addPassive(std::shared_ptr<IPassive> sp_passive) {
+			
+        //    //m_persistent_passives.push_back(sp_passive);
+        //    m_persistent_passives.push_back(std::make_shared<IPassive>(passive));
+        //}
+        
+        void addPassive(IPassive& passive) {
+            // Create a non-owning wrapper, similar to how you handle entities
+            m_persistent_passives.push_back(std::shared_ptr<IPassive>(&passive, [](IPassive*) {}));
         }
 
         PassiveModifierDTO executePersistentPassives() {

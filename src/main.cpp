@@ -68,7 +68,7 @@ int main() {
 
 	 std::cout << "========================================================\n\n";
 	 PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);
-	 entity_1.addPassive(std::make_shared<PassiveAugmentAttribute>(passive_strength));
+	 entity_1.addPassive(passive_strength);
 	 entity_1.executePassives();
 	 entity_1.printEntity();
 

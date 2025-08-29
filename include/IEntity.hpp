@@ -18,7 +18,7 @@ namespace entity {
 
         // Core entity methods
         virtual void updateAttributes(const attribute::Attribute& update_attributes) = 0;
-        virtual void addPassive(std::shared_ptr<passive::IPassive> sp_passive) = 0;
+        virtual void addPassive(passive::IPassive& sp_passive) = 0;
 
         // Getters
         virtual std::string_view getEntityName() const = 0;
