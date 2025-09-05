@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseEntity.hpp"
+#include "Character.hpp"
 
 #include <array>
 #include <memory>
@@ -11,7 +11,7 @@
 
 namespace group {
 
-    using entity::BaseEntity;
+    using character::Character;
 
     inline constexpr uint8_t GROUP_MAX_SIZE{ 20U };
 
@@ -22,15 +22,15 @@ namespace group {
         virtual ~BaseGroup(void) = default;
 
 
-        virtual bool addEntity(std::unique_ptr<BaseEntity> entity, const uint8_t index_entity) {
+        virtual bool addcharacter(std::unique_ptr<Character> character, const uint8_t index_character) {
 
             if (isGroupComplete()) {
                 return false;
             }
 
-            if (index_entity < m_group_max_size) {
-                if (!m_group.at(index_entity).has_value()) {
-                    m_group.at(index_entity) = std::move(entity);
+            if (index_character < m_group_max_size) {
+                if (!m_group.at(index_character).has_value()) {
+                    m_group.at(index_character) = std::move(character);
                     m_group_current_size++;
                     return true;
                 }
@@ -39,7 +39,7 @@ namespace group {
             // Find first empty slot
             for (size_t i = 0; i < m_group_max_size; i++) {
                 if (!m_group.at(i).has_value()) {
-                    m_group.at(i) = std::move(entity);
+                    m_group.at(i) = std::move(character);
                     m_group_current_size++;
                     return true;
                 }
@@ -48,9 +48,9 @@ namespace group {
         }
 
 
-        virtual bool removeEntity(uint8_t index_entity) {
-            if (index_entity < m_group_max_size && m_group.at(index_entity).has_value()) {
-                m_group.at(index_entity).reset();
+        virtual bool removecharacter(uint8_t index_character) {
+            if (index_character < m_group_max_size && m_group.at(index_character).has_value()) {
+                m_group.at(index_character).reset();
                 m_group_current_size--;
                 return true;
             }
@@ -58,10 +58,10 @@ namespace group {
         }
 
 
-        virtual bool transferEntityTo(BaseGroup& target_group, const uint8_t source_index_entity,  const uint8_t target_index_entity = 0) {
+        virtual bool transfercharacterTo(BaseGroup& target_group, const uint8_t source_index_character,  const uint8_t target_index_character = 0) {
 
-            if (!m_group.at(source_index_entity).has_value()) {
-                std::cerr << "Source entity doesn't exist\n";
+            if (!m_group.at(source_index_character).has_value()) {
+                std::cerr << "Source character doesn't exist\n";
                 return false;
             }
             if (target_group.isGroupComplete()) {
@@ -69,24 +69,24 @@ namespace group {
                 return false;
             }
 
-            //auto entity = std::move(m_group[source_index_entity].value());
+            //auto character = std::move(m_group[source_index_character].value());
 
-            if (target_group.addEntity(std::move(m_group.at(source_index_entity).value()), target_index_entity)) {
-                removeEntity(source_index_entity);
+            if (target_group.addcharacter(std::move(m_group.at(source_index_character).value()), target_index_character)) {
+                removecharacter(source_index_character);
                 return true;
             }
             return false;
         }
 
         // WITHOUT PTR
-        //virtual bool addEntity(BaseEntity& entity, const uint8_t index_entity) {
+        //virtual bool addcharacter(Character& character, const uint8_t index_character) {
         //    if (isGroupComplete()) {
         //        return false;
         //    }
 
-        //    if (index_entity < m_group_max_size) {
-        //        if (!m_group.at(index_entity).has_value()) {
-        //            m_group.at(index_entity) = std::move(entity);
+        //    if (index_character < m_group_max_size) {
+        //        if (!m_group.at(index_character).has_value()) {
+        //            m_group.at(index_character) = std::move(character);
         //            m_group_current_size++;
         //            return true;
         //        }
@@ -95,7 +95,7 @@ namespace group {
         //    // Find first empty slot
         //    for (size_t i = 0; i < m_group_max_size; i++) {
         //        if (!m_group.at(i).has_value()) {
-        //            m_group.at(i) = std::move(entity);
+        //            m_group.at(i) = std::move(character);
         //            m_group_current_size++;
         //            return true;
         //        }
@@ -105,9 +105,9 @@ namespace group {
 
 
         // WITHOUT PTR
-        //virtual bool transferEntityTo(const uint8_t source_index_entity, BaseGroup& target_group, const uint8_t target_index_entity = 0) {
+        //virtual bool transfercharacterTo(const uint8_t source_index_character, BaseGroup& target_group, const uint8_t target_index_character = 0) {
 
-        //    if (source_index_entity >= m_group_max_size || !m_group[source_index_entity].has_value()) {
+        //    if (source_index_character >= m_group_max_size || !m_group[source_index_character].has_value()) {
         //        return false;
         //    }
 
@@ -115,27 +115,27 @@ namespace group {
         //        return false;
         //    }
 
-        //    auto entity = std::move(m_group[source_index_entity].value());
-        //    if (target_group.addEntity(entity, target_index_entity)) {
-        //        removeEntity(source_index_entity);
+        //    auto character = std::move(m_group[source_index_character].value());
+        //    if (target_group.addcharacter(character, target_index_character)) {
+        //        removecharacter(source_index_character);
         //        return true;
         //    }
 
-        //    // If transfer failed, restore the entity
-        //    m_group[source_index_entity] = std::move(entity);
+        //    // If transfer failed, restore the character
+        //    m_group[source_index_character] = std::move(character);
         //    return false;
         //}
 
-        virtual BaseEntity& getEntity(uint8_t index_entity) {
-            if (index_entity >= m_group_max_size || !m_group.at(index_entity).has_value()) {
-                throw std::out_of_range("Invalid entity index or empty slot");
+        virtual Character& getcharacter(uint8_t index_character) {
+            if (index_character >= m_group_max_size || !m_group.at(index_character).has_value()) {
+                throw std::out_of_range("Invalid character index or empty slot");
             }
-            return *m_group.at(index_entity).value();
+            return *m_group.at(index_character).value();
         }
 
 
-        //virtual BaseEntity& operator[](uint8_t index_entity) {
-        //    return getEntity(index_entity);
+        //virtual Character& operator[](uint8_t index_character) {
+        //    return getcharacter(index_character);
         //}
 
 
@@ -150,9 +150,9 @@ namespace group {
                 return;
             }
 
-            for (const auto& entity_opt : m_group) {
-                if (entity_opt.has_value()) { // Only print if the optional contains an entity
-                    entity_opt.value()->printEntity();
+            for (const auto& character_opt : m_group) {
+                if (character_opt.has_value()) { // Only print if the optional contains an character
+                    character_opt.value()->printcharacter();
                     std::cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n\n";
                 }
             }
@@ -166,7 +166,7 @@ namespace group {
         uint8_t getGroupMaxSize(void) const { return m_group_max_size; }
 
     private:
-        std::array<std::optional<std::unique_ptr<BaseEntity>>, GROUP_MAX_SIZE> m_group;
+        std::array<std::optional<std::unique_ptr<Character>>, GROUP_MAX_SIZE> m_group;
         std::string m_group_name{ "N/A" };
         uint8_t m_group_current_size{ 0 };
         uint8_t m_group_max_size{ GROUP_MAX_SIZE };

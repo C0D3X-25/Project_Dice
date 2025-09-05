@@ -3,22 +3,22 @@
 //#include "BaseCapacity.hpp"
 //#include "CapacityActionDamage.hpp"
 //#include "Attribute.hpp"
-//#include "BaseEntity.hpp" 
+//#include "Character.hpp" 
 //#include "SFind.hpp"
 //
 //#include <vector>
 //
 //namespace capacity {
 //
-//	using namespace entity;
+//	using namespace character;
 //	using namespace attribute;
 //
 //	class CapacityPlayerSingleAttack : public BaseCapacity {
 //	public:
 //
-//		CapacityPlayerSingleAttack(const BaseEntity& user) {
+//		CapacityPlayerSingleAttack(const Character& user) {
 //
-//			setEntityName("1 Attack and 1 Random Attack");
+//			setcharacterName("1 Attack and 1 Random Attack");
 //			setCapacityDescription("Attack a single ennemy with STR or DEX, then attack a random ennemy with STR or DEX");
 //			setCapacityPurposes({ ATTACK_PHYSICAL });
 //			setCapacityTriggers({ USED_WHEN_TURN_END });

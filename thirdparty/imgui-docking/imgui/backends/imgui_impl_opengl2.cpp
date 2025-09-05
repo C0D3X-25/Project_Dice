@@ -155,11 +155,11 @@ static void ImGui_ImplOpenGL2_SetupRenderState(ImDrawData* draw_data, int fb_wid
     glViewport(0, 0, (GLsizei)fb_width, (GLsizei)fb_height);
     glMatrixMode(GL_PROJECTION);
     glPushMatrix();
-    glLoadIdentity();
+    glLoadIdcharacter();
     glOrtho(draw_data->DisplayPos.x, draw_data->DisplayPos.x + draw_data->DisplaySize.x, draw_data->DisplayPos.y + draw_data->DisplaySize.y, draw_data->DisplayPos.y, -1.0f, +1.0f);
     glMatrixMode(GL_MODELVIEW);
     glPushMatrix();
-    glLoadIdentity();
+    glLoadIdcharacter();
 }
 
 // OpenGL2 Render function.

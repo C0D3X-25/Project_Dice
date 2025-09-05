@@ -600,7 +600,7 @@ extern "C" {            // Prevents name mangling of functions
 RLAPI void rlMatrixMode(int mode);                      // Choose the current matrix to be transformed
 RLAPI void rlPushMatrix(void);                          // Push the current matrix to stack
 RLAPI void rlPopMatrix(void);                           // Pop latest inserted matrix from stack
-RLAPI void rlLoadIdentity(void);                        // Reset current matrix to identity matrix
+RLAPI void rlLoadIdcharacter(void);                        // Reset current matrix to idcharacter matrix
 RLAPI void rlTranslatef(float x, float y, float z);     // Multiply the current matrix by a translation matrix
 RLAPI void rlRotatef(float angle, float x, float y, float z); // Multiply the current matrix by a rotation matrix
 RLAPI void rlScalef(float x, float y, float z);         // Multiply the current matrix by a scaling matrix
@@ -1152,7 +1152,7 @@ typedef struct rl_float16 {
 } rl_float16;
 static rl_float16 rlMatrixToFloatV(Matrix mat);             // Get float array of matrix data
 #define rlMatrixToFloat(mat) (rlMatrixToFloatV(mat).v)      // Get float vector for Matrix
-static Matrix rlMatrixIdentity(void);                       // Get identity matrix
+static Matrix rlMatrixIdcharacter(void);                       // Get idcharacter matrix
 static Matrix rlMatrixMultiply(Matrix left, Matrix right);  // Multiply two matrices
 static Matrix rlMatrixTranspose(Matrix mat);                // Transposes provided matrix
 static Matrix rlMatrixInvert(Matrix mat);                   // Invert provided matrix
@@ -1187,7 +1187,7 @@ void rlOrtho(double left, double right, double bottom, double top, double znear,
 
 void rlPushMatrix(void) { glPushMatrix(); }
 void rlPopMatrix(void) { glPopMatrix(); }
-void rlLoadIdentity(void) { glLoadIdentity(); }
+void rlLoadIdcharacter(void) { glLoadIdcharacter(); }
 void rlTranslatef(float x, float y, float z) { glTranslatef(x, y, z); }
 void rlRotatef(float angle, float x, float y, float z) { glRotatef(angle, x, y, z); }
 void rlScalef(float x, float y, float z) { glScalef(x, y, z); }
@@ -1236,10 +1236,10 @@ void rlPopMatrix(void)
     }
 }
 
-// Reset current matrix to identity matrix
-void rlLoadIdentity(void)
+// Reset current matrix to idcharacter matrix
+void rlLoadIdcharacter(void)
 {
-    *RLGL.State.currentMatrix = rlMatrixIdentity();
+    *RLGL.State.currentMatrix = rlMatrixIdcharacter();
 }
 
 // Multiply the current matrix by a translation matrix
@@ -1260,7 +1260,7 @@ void rlTranslatef(float x, float y, float z)
 // NOTE: The provided angle must be in degrees
 void rlRotatef(float angle, float x, float y, float z)
 {
-    Matrix matRotation = rlMatrixIdentity();
+    Matrix matRotation = rlMatrixIdcharacter();
 
     // Axis vector (x, y, z) normalization
     float lengthSquared = x*x + y*y + z*z;
@@ -2273,12 +2273,12 @@ void rlglInit(int width, int height)
     RLGL.currentBatch = &RLGL.defaultBatch;
 
     // Init stack matrices (emulating OpenGL 1.1)
-    for (int i = 0; i < RL_MAX_MATRIX_STACK_SIZE; i++) RLGL.State.stack[i] = rlMatrixIdentity();
+    for (int i = 0; i < RL_MAX_MATRIX_STACK_SIZE; i++) RLGL.State.stack[i] = rlMatrixIdcharacter();
 
     // Init internal matrices
-    RLGL.State.transform = rlMatrixIdentity();
-    RLGL.State.projection = rlMatrixIdentity();
-    RLGL.State.modelview = rlMatrixIdentity();
+    RLGL.State.transform = rlMatrixIdcharacter();
+    RLGL.State.projection = rlMatrixIdcharacter();
+    RLGL.State.modelview = rlMatrixIdcharacter();
     RLGL.State.currentMatrix = &RLGL.State.modelview;
 #endif  // GRAPHICS_API_OPENGL_33 || GRAPHICS_API_OPENGL_ES2
 
@@ -2840,8 +2840,8 @@ rlRenderBatch rlLoadRenderBatch(int numBuffers, int bufferElements)
         //batch.draws[i].vaoId = 0;
         //batch.draws[i].shaderId = 0;
         batch.draws[i].textureId = RLGL.State.defaultTextureId;
-        //batch.draws[i].RLGL.State.projection = rlMatrixIdentity();
-        //batch.draws[i].RLGL.State.modelview = rlMatrixIdentity();
+        //batch.draws[i].RLGL.State.projection = rlMatrixIdcharacter();
+        //batch.draws[i].RLGL.State.modelview = rlMatrixIdcharacter();
     }
 
     batch.bufferCount = numBuffers;    // Record buffer count
@@ -4564,7 +4564,7 @@ void rlBindImageTexture(unsigned int id, unsigned int index, int format, bool re
 // Get internal modelview matrix
 Matrix rlGetMatrixModelview(void)
 {
-    Matrix matrix = rlMatrixIdentity();
+    Matrix matrix = rlMatrixIdcharacter();
 #if defined(GRAPHICS_API_OPENGL_11)
     float mat[16];
     glGetFloatv(GL_MODELVIEW_MATRIX, mat);
@@ -4622,11 +4622,11 @@ Matrix rlGetMatrixProjection(void)
 // Get internal accumulated transform matrix
 Matrix rlGetMatrixTransform(void)
 {
-    Matrix mat = rlMatrixIdentity();
+    Matrix mat = rlMatrixIdcharacter();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     // TODO: Consider possible transform matrices in the RLGL.State.stack
     // Is this the right order? or should we start with the first stored matrix instead of the last one?
-    //Matrix matStackTransform = rlMatrixIdentity();
+    //Matrix matStackTransform = rlMatrixIdcharacter();
     //for (int i = RLGL.State.stackCounter; i > 0; i--) matStackTransform = rlMatrixMultiply(RLGL.State.stack[i], matStackTransform);
     mat = RLGL.State.transform;
 #endif
@@ -4636,7 +4636,7 @@ Matrix rlGetMatrixTransform(void)
 // Get internal projection matrix for stereo render (selected eye)
 Matrix rlGetMatrixProjectionStereo(int eye)
 {
-    Matrix mat = rlMatrixIdentity();
+    Matrix mat = rlMatrixIdcharacter();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     mat = RLGL.State.projectionStereo[eye];
 #endif
@@ -4646,7 +4646,7 @@ Matrix rlGetMatrixProjectionStereo(int eye)
 // Get internal view offset matrix for stereo render (selected eye)
 Matrix rlGetMatrixViewOffsetStereo(int eye)
 {
-    Matrix mat = rlMatrixIdentity();
+    Matrix mat = rlMatrixIdcharacter();
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
     mat = RLGL.State.viewOffsetStereo[eye];
 #endif
@@ -5148,8 +5148,8 @@ static rl_float16 rlMatrixToFloatV(Matrix mat)
     return result;
 }
 
-// Get identity matrix
-static Matrix rlMatrixIdentity(void)
+// Get idcharacter matrix
+static Matrix rlMatrixIdcharacter(void)
 {
     Matrix result = {
         1.0f, 0.0f, 0.0f, 0.0f,

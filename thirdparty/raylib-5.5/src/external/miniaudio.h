@@ -28736,7 +28736,7 @@ to check for type safety. We cannot do this when linking at run time because the
 #define MA_PA_OK                                       PA_OK
 #define MA_PA_ERR_ACCESS                               PA_ERR_ACCESS
 #define MA_PA_ERR_INVALID                              PA_ERR_INVALID
-#define MA_PA_ERR_NOENTITY                             PA_ERR_NOENTITY
+#define MA_PA_ERR_NOcharacter                             PA_ERR_NOcharacter
 #define MA_PA_ERR_NOTSUPPORTED                         PA_ERR_NOTSUPPORTED
 
 #define MA_PA_CHANNELS_MAX                             PA_CHANNELS_MAX
@@ -28939,7 +28939,7 @@ typedef pa_free_cb_t            ma_pa_free_cb_t;
 #define MA_PA_OK                                       0
 #define MA_PA_ERR_ACCESS                               1
 #define MA_PA_ERR_INVALID                              2
-#define MA_PA_ERR_NOENTITY                             5
+#define MA_PA_ERR_NOcharacter                             5
 #define MA_PA_ERR_NOTSUPPORTED                         19
 
 #define MA_PA_CHANNELS_MAX                             32
@@ -29298,7 +29298,7 @@ static ma_result ma_result_from_pulse(int result)
         case MA_PA_OK:           return MA_SUCCESS;
         case MA_PA_ERR_ACCESS:   return MA_ACCESS_DENIED;
         case MA_PA_ERR_INVALID:  return MA_INVALID_ARGS;
-        case MA_PA_ERR_NOENTITY: return MA_NO_DEVICE;
+        case MA_PA_ERR_NOcharacter: return MA_NO_DEVICE;
         default:                 return MA_ERROR;
     }
 }

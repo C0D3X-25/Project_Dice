@@ -129,13 +129,13 @@ static void ImGui_ImplDX9_SetupRenderState(ImDrawData* draw_data)
 
     // Setup orthographic projection matrix
     // Our visible imgui space lies from draw_data->DisplayPos (top left) to draw_data->DisplayPos+data_data->DisplaySize (bottom right). DisplayPos is (0,0) for single viewport apps.
-    // Being agnostic of whether <d3dx9.h> or <DirectXMath.h> can be used, we aren't relying on D3DXMatrixIdentity()/D3DXMatrixOrthoOffCenterLH() or DirectX::XMMatrixIdentity()/DirectX::XMMatrixOrthographicOffCenterLH()
+    // Being agnostic of whether <d3dx9.h> or <DirectXMath.h> can be used, we aren't relying on D3DXMatrixIdcharacter()/D3DXMatrixOrthoOffCenterLH() or DirectX::XMMatrixIdcharacter()/DirectX::XMMatrixOrthographicOffCenterLH()
     {
         float L = draw_data->DisplayPos.x + 0.5f;
         float R = draw_data->DisplayPos.x + draw_data->DisplaySize.x + 0.5f;
         float T = draw_data->DisplayPos.y + 0.5f;
         float B = draw_data->DisplayPos.y + draw_data->DisplaySize.y + 0.5f;
-        D3DMATRIX mat_identity = { { { 1.0f, 0.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  0.0f, 0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 0.0f, 1.0f } } };
+        D3DMATRIX mat_idcharacter = { { { 1.0f, 0.0f, 0.0f, 0.0f,  0.0f, 1.0f, 0.0f, 0.0f,  0.0f, 0.0f, 1.0f, 0.0f,  0.0f, 0.0f, 0.0f, 1.0f } } };
         D3DMATRIX mat_projection =
         { { {
             2.0f/(R-L),   0.0f,         0.0f,  0.0f,
@@ -143,8 +143,8 @@ static void ImGui_ImplDX9_SetupRenderState(ImDrawData* draw_data)
             0.0f,         0.0f,         0.5f,  0.0f,
             (L+R)/(L-R),  (T+B)/(B-T),  0.5f,  1.0f
         } } };
-        bd->pd3dDevice->SetTransform(D3DTS_WORLD, &mat_identity);
-        bd->pd3dDevice->SetTransform(D3DTS_VIEW, &mat_identity);
+        bd->pd3dDevice->SetTransform(D3DTS_WORLD, &mat_idcharacter);
+        bd->pd3dDevice->SetTransform(D3DTS_VIEW, &mat_idcharacter);
         bd->pd3dDevice->SetTransform(D3DTS_PROJECTION, &mat_projection);
     }
 }

@@ -1107,8 +1107,8 @@ Model LoadModel(const char *fileName)
     if (IsFileExtension(fileName, ".m3d")) model = LoadM3D(fileName);
 #endif
 
-    // Make sure model transform is set to identity matrix!
-    model.transform = MatrixIdentity();
+    // Make sure model transform is set to idcharacter matrix!
+    model.transform = MatrixIdcharacter();
 
     if ((model.meshCount != 0) && (model.meshes != NULL))
     {
@@ -1139,7 +1139,7 @@ Model LoadModelFromMesh(Mesh mesh)
 {
     Model model = { 0 };
 
-    model.transform = MatrixIdentity();
+    model.transform = MatrixIdcharacter();
 
     model.meshCount = 1;
     model.meshes = (Mesh *)RL_CALLOC(model.meshCount, sizeof(Mesh));
@@ -1483,9 +1483,9 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
     // NOTE: At this point the modelview matrix just contains the view matrix (camera)
     // That's because BeginMode3D() sets it and there is no model-drawing function
     // that modifies it, all use rlPushMatrix() and rlPopMatrix()
-    Matrix matModel = MatrixIdentity();
+    Matrix matModel = MatrixIdcharacter();
     Matrix matView = rlGetMatrixModelview();
-    Matrix matModelView = MatrixIdentity();
+    Matrix matModelView = MatrixIdcharacter();
     Matrix matProjection = rlGetMatrixProjection();
 
     // Upload view and projection matrices (if locations available)
@@ -1619,7 +1619,7 @@ void DrawMesh(Mesh mesh, Material material, Matrix transform)
     for (int eye = 0; eye < eyeCount; eye++)
     {
         // Calculate model-view-projection matrix (MVP)
-        Matrix matModelViewProjection = MatrixIdentity();
+        Matrix matModelViewProjection = MatrixIdcharacter();
         if (eyeCount == 1) matModelViewProjection = MatrixMultiply(matModelView, matProjection);
         else
         {
@@ -1710,9 +1710,9 @@ void DrawMeshInstanced(Mesh mesh, Material material, const Matrix *transforms, i
     // NOTE: At this point the modelview matrix just contains the view matrix (camera)
     // That's because BeginMode3D() sets it and there is no model-drawing function
     // that modifies it, all use rlPushMatrix() and rlPopMatrix()
-    Matrix matModel = MatrixIdentity();
+    Matrix matModel = MatrixIdcharacter();
     Matrix matView = rlGetMatrixModelview();
-    Matrix matModelView = MatrixIdentity();
+    Matrix matModelView = MatrixIdcharacter();
     Matrix matProjection = rlGetMatrixProjection();
 
     // Upload view and projection matrices (if locations available)
@@ -1864,7 +1864,7 @@ void DrawMeshInstanced(Mesh mesh, Material material, const Matrix *transforms, i
     for (int eye = 0; eye < eyeCount; eye++)
     {
         // Calculate model-view-projection matrix (MVP)
-        Matrix matModelViewProjection = MatrixIdentity();
+        Matrix matModelViewProjection = MatrixIdcharacter();
         if (eyeCount == 1) matModelViewProjection = MatrixMultiply(matModelView, matProjection);
         else
         {
@@ -4198,7 +4198,7 @@ static Model LoadOBJ(const char *fileName)
     unsigned int objMaterialCount = 0;
 
     Model model = { 0 };
-    model.transform = MatrixIdentity();
+    model.transform = MatrixIdcharacter();
 
     char* fileText = LoadFileText(fileName);
 
@@ -4794,7 +4794,7 @@ static Model LoadIQM(const char *fileName)
 
         for (int j = 0; j < model.meshes[i].boneCount; j++)
         {
-            model.meshes[i].boneMatrices[j] = MatrixIdentity();
+            model.meshes[i].boneMatrices[j] = MatrixIdcharacter();
         }
     }
 
@@ -5889,7 +5889,7 @@ static Model LoadGLTF(const char *fileName)
 
                 for (int j = 0; j < model.meshes[meshIndex].boneCount; j++)
                 {
-                    model.meshes[meshIndex].boneMatrices[j] = MatrixIdentity();
+                    model.meshes[meshIndex].boneMatrices[j] = MatrixIdcharacter();
                 }
 
                 meshIndex++;       // Move to next mesh
@@ -6261,7 +6261,7 @@ static Model LoadVOX(const char *fileName)
     }
 
     // Build models from meshes
-    model.transform = MatrixIdentity();
+    model.transform = MatrixIdcharacter();
 
     model.meshCount = meshescount;
     model.meshes = (Mesh *)RL_CALLOC(model.meshCount, sizeof(Mesh));
@@ -6668,7 +6668,7 @@ static Model LoadM3D(const char *fileName)
                 model.meshes[i].boneMatrices = RL_CALLOC(model.meshes[i].boneCount, sizeof(Matrix));
                 for (j = 0; j < model.meshes[i].boneCount; j++)
                 {
-                    model.meshes[i].boneMatrices[j] = MatrixIdentity();
+                    model.meshes[i].boneMatrices[j] = MatrixIdcharacter();
                 }
             }
         }

@@ -140,7 +140,7 @@ int main(void)
             ClearBackground(RAYWHITE);
 
             BeginMode3D(camera);
-                DrawMesh(mesh, material, MatrixIdentity());
+                DrawMesh(mesh, material, MatrixIdcharacter());
             EndMode3D();
 
             DrawFPS(10, 10);

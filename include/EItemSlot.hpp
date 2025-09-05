@@ -5,7 +5,7 @@
 namespace item {
 
 	/// <summary>
-	/// Slot an item can occupy or block on an entity.
+	/// Slot an item can occupy or block on an character.
 	/// </summary>
 	enum EItemEquipmentSlot {
 		HELMET,

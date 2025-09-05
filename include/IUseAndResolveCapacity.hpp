@@ -1,11 +1,11 @@
 #pragma once
 
 #include "BaseCapacity.hpp"
-#include "BaseEntity.hpp"
+#include "Character.hpp"
 
 namespace capacity {
 
-	using namespace entity;
+	using namespace character;
 
 	/**
 	* @brief Interface for classes that can use and resolve capacities
@@ -13,18 +13,18 @@ namespace capacity {
 	class IUseAndResolveCapacity {
 	public:
 		/**
-		* @brief Use a capacity on a target entity
+		* @brief Use a capacity on a target character
 		* @param capacity The capacity to use
-		* @param target The target Entity
+		* @param target The target character
 		*/
-		virtual void useCapacity(const BaseCapacity& capacity, BaseEntity& target) = 0;
+		virtual void useCapacity(const BaseCapacity& capacity, Character& target) = 0;
 
 
 		/**
-		* @brief Resolve a capacity on the source entity
+		* @brief Resolve a capacity on the source character
 		* @param capacity The capacity to resolve
-		* @param source The Entity that is the source of the capacity
+		* @param source The character that is the source of the capacity
 		*/
-		virtual void resolveCapacity(const CapacityDTO& capacity, const BaseEntity& source) = 0;
+		virtual void resolveCapacity(const CapacityDTO& capacity, const Character& source) = 0;
 	};
 }

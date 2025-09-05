@@ -14,7 +14,7 @@
 #include "../include/CapacityFactory.hpp"
 #include "../include/DiceCapacity.hpp"
 
-#include "../include/PlayerEntityGenerator.hpp"
+#include "../include/CharacterGenerator.hpp"
 #include "../include/Team.hpp"
 
 #include <iostream>
@@ -23,7 +23,7 @@
 
 
 using namespace dice;
-using namespace entity;
+using namespace character;
 using namespace capacity;
 using namespace group;
 using namespace attribute;
@@ -36,41 +36,41 @@ int main() {
 
 	 CapacityFactory capacity_factory;
 
-	 PlayerEntityGenerator entity_generator;
-	 BasePlayerEntity entity_1 = entity_generator.generateNewPlayerEntity();
-	 //BasePlayerEntity entity_2 = entity_generator.generateNewPlayerEntity();
-	 //BasePlayerEntity entity_3 = entity_generator.generateNewPlayerEntity();
-	 //BasePlayerEntity entity_4 = entity_generator.generateNewPlayerEntity();
-	 //BasePlayerEntity entity_5 = entity_generator.generateNewPlayerEntity();
-	 //BasePlayerEntity entity_6 = entity_generator.generateNewPlayerEntity();
-	 //entity_6.setCapacity(capacity_factory.attackRandom(entity_6), 3);
+	 CharacterGenerator character_generator;
+	 Character character_1 = character_generator.generateNewPlayercharacter();
+	 //Character character_2 = character_generator.generateNewPlayercharacter();
+	 //Character character_3 = character_generator.generateNewPlayercharacter();
+	 //Character character_4 = character_generator.generateNewPlayercharacter();
+	 //Character character_5 = character_generator.generateNewPlayercharacter();
+	 //Character character_6 = character_generator.generateNewPlayercharacter();
+	 //character_6.setCapacity(capacity_factory.attackRandom(character_6), 3);
 
 	 //Team team_1("Team 1");
-	 //team_1.addEntity(std::make_unique<BasePlayerEntity>(entity_1), 0);
-	 //team_1.addEntity(std::make_unique<BasePlayerEntity>(entity_2), 0);
-	 //team_1.addEntity(std::make_unique<BasePlayerEntity>(entity_3), 0);
-	 //team_1.addEntity(std::make_unique<BasePlayerEntity>(entity_4), 0);
+	 //team_1.addcharacter(std::make_unique<Character>(character_1), 0);
+	 //team_1.addcharacter(std::make_unique<Character>(character_2), 0);
+	 //team_1.addcharacter(std::make_unique<Character>(character_3), 0);
+	 //team_1.addcharacter(std::make_unique<Character>(character_4), 0);
 
 	 //Team team_2("Team 2");
-	 //team_2.addEntity(std::make_unique<BasePlayerEntity>(entity_5), 0);
-	 //team_1.transferEntityTo(team_2, 1, 0);
-	 //team_2.addEntity(std::make_unique<BasePlayerEntity>(entity_6), 0);
+	 //team_2.addcharacter(std::make_unique<Character>(character_5), 0);
+	 //team_1.transfercharacterTo(team_2, 1, 0);
+	 //team_2.addcharacter(std::make_unique<Character>(character_6), 0);
 
 	 //team_1.printGroup();
 	 //team_2.printGroup();
 
 	 std::cout << "========================================================\n\n";
-	 //BaseCapacity capacity = capacity_factory.attackSingle(entity_1);
-	 //std::cout << "Before: " << entity_1.getCurrentLife() << '\n';
+	 //BaseCapacity capacity = capacity_factory.attackSingle(character_1);
+	 //std::cout << "Before: " << character_1.getCurrentLife() << '\n';
 	 //CapacityDTO capacity_modifier = capacity.getNextCapacityDTO();
-	 //entity_1.resolveCapacity(capacity_modifier, entity_1);
-	 //std::cout << "After:  " << entity_1.getCurrentLife() << '\n';
+	 //character_1.resolveCapacity(capacity_modifier, character_1);
+	 //std::cout << "After:  " << character_1.getCurrentLife() << '\n';
 
 	 std::cout << "========================================================\n\n";
 	 PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);
-	 entity_1.addPassive(passive_strength);
-	 entity_1.executePassives();
-	 entity_1.printEntity();
+	 //character_1.addPassive(passive_strength);
+	 //character_1.executePassives();
+	 character_1.printcharacter();
 
 
 

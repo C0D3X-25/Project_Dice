@@ -6,17 +6,17 @@
 namespace resolution_capacity {
 
 	/// <summary>
-	/// Default resolution when the entity armor is modified.
+	/// Default resolution when the character armor is modified.
 	/// When taking damage, the armor will absorb the damage taken first.
 	/// Min armor is 0.
 	/// </summary>
 	class ResolutionArmorDefault : public IResolutionCapacity {
 	public:
 
-		void resolveCapacity(CapacityDTO& capacity_dto, BaseEntity& target) override {
+		void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
 
 			std::cout << "Resolving component remove armor: " << capacity_dto.m_remove_armor << "\n";
-			std::cout << "Entity armor before: " << target.getCurrentArmor() << "\n";
+			std::cout << "character armor before: " << target.getCurrentArmor() << "\n";
 
 			// 1st - Remove armor
 			if (capacity_dto.m_remove_armor != 0 && target.getCurrentArmor() > 0) {
@@ -28,7 +28,7 @@ namespace resolution_capacity {
 				}
 			}
 
-			std::cout << "Entity armor after remove: " << target.getCurrentArmor() << "\n";
+			std::cout << "character armor after remove: " << target.getCurrentArmor() << "\n";
 			std::cout << "-----------------\n";
 			std::cout << "Resolving component damage: " << capacity_dto.m_damage << "\n";
 
@@ -45,7 +45,7 @@ namespace resolution_capacity {
 				}
 			}
 
-			std::cout << "Entity armor after damage: " << target.getCurrentArmor() << "\n";
+			std::cout << "character armor after damage: " << target.getCurrentArmor() << "\n";
 			std::cout << "-----------------\n";
 			std::cout << "Resolving component add armor: " << capacity_dto.m_add_armor << "\n";
 
@@ -60,10 +60,10 @@ namespace resolution_capacity {
 				}
 			}
 
-			std::cout << "Entity armor after add: " << target.getCurrentArmor() << "\n";
+			std::cout << "character armor after add: " << target.getCurrentArmor() << "\n";
 			
 
-			target.printEntity();
+			target.printcharacter();
 		}
 	};
 }

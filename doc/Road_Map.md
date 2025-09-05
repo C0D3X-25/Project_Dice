@@ -4,7 +4,7 @@
 - [x] Display results of dice rolls (console)
 - [x] Generate random characters attributes (console)
 - [x] Basic Capacities (console)
-- [x] Entity stats (Life / Armor)
+- [x] character stats (Life / Armor)
 - [x] CMake integration
 - [x] Raylib integration
 

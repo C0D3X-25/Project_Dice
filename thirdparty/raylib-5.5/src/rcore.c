@@ -656,7 +656,7 @@ void InitWindow(int width, int height, const char *title)
     CORE.Window.screen.width = width;
     CORE.Window.screen.height = height;
     CORE.Window.eventWaiting = false;
-    CORE.Window.screenScale = MatrixIdentity();     // No draw scaling required by default
+    CORE.Window.screenScale = MatrixIdcharacter();     // No draw scaling required by default
     if ((title != NULL) && (title[0] != 0)) CORE.Window.title = title;
 
     // Initialize global input state
@@ -876,7 +876,7 @@ void BeginDrawing(void)
     CORE.Time.update = CORE.Time.current - CORE.Time.previous;
     CORE.Time.previous = CORE.Time.current;
 
-    rlLoadIdentity();                   // Reset current matrix (modelview)
+    rlLoadIdcharacter();                   // Reset current matrix (modelview)
     rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling
 
     //rlTranslatef(0.375, 0.375, 0);    // HACK to have 2D pixel-perfect drawing on OpenGL 1.1
@@ -1004,7 +1004,7 @@ void BeginMode2D(Camera2D camera)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
 
     // Apply 2d camera transformation to modelview
     rlMultMatrixf(MatrixToFloat(GetCameraMatrix2D(camera)));
@@ -1015,7 +1015,7 @@ void EndMode2D(void)
 {
     rlDrawRenderBatchActive();      // Update and draw internal render batch
 
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
 
     if (rlGetActiveFramebuffer() == 0) rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling if required
 }
@@ -1027,7 +1027,7 @@ void BeginMode3D(Camera camera)
 
     rlMatrixMode(RL_PROJECTION);    // Switch to projection matrix
     rlPushMatrix();                 // Save previous matrix, which contains the settings for the 2d ortho projection
-    rlLoadIdentity();               // Reset current matrix (projection)
+    rlLoadIdcharacter();               // Reset current matrix (projection)
 
     float aspect = (float)CORE.Window.currentFbo.width/(float)CORE.Window.currentFbo.height;
 
@@ -1050,7 +1050,7 @@ void BeginMode3D(Camera camera)
     }
 
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
 
     // Setup Camera view
     Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
@@ -1068,7 +1068,7 @@ void EndMode3D(void)
     rlPopMatrix();                  // Restore previous matrix (projection) from matrix stack
 
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
 
     if (rlGetActiveFramebuffer() == 0) rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling if required
 
@@ -1088,14 +1088,14 @@ void BeginTextureMode(RenderTexture2D target)
     rlSetFramebufferHeight(target.texture.height);
 
     rlMatrixMode(RL_PROJECTION);    // Switch to projection matrix
-    rlLoadIdentity();               // Reset current matrix (projection)
+    rlLoadIdcharacter();               // Reset current matrix (projection)
 
     // Set orthographic projection to current framebuffer size
     // NOTE: Configured top-left corner as (0, 0)
     rlOrtho(0, target.texture.width, target.texture.height, 0, 0.0f, 1.0f);
 
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
 
     //rlScalef(0.0f, -1.0f, 0.0f);  // Flip Y-drawing (?)
 
@@ -1118,7 +1118,7 @@ void EndTextureMode(void)
 
     // Go back to the modelview state from BeginDrawing since we are back to the default FBO
     rlMatrixMode(RL_MODELVIEW);     // Switch back to modelview matrix
-    rlLoadIdentity();               // Reset current matrix (modelview)
+    rlLoadIdcharacter();               // Reset current matrix (modelview)
     rlMultMatrixf(MatrixToFloat(CORE.Window.screenScale)); // Apply screen scaling if required
 
     // Reset current fbo to screen size
@@ -1489,7 +1489,7 @@ Ray GetScreenToWorldRayEx(Vector2 position, Camera camera, int width, int height
     // Calculate view matrix from camera look at
     Matrix matView = MatrixLookAt(camera.position, camera.target, camera.up);
 
-    Matrix matProj = MatrixIdentity();
+    Matrix matProj = MatrixIdcharacter();
 
     if (camera.projection == CAMERA_PERSPECTIVE)
     {
@@ -1576,7 +1576,7 @@ Vector2 GetWorldToScreen(Vector3 position, Camera camera)
 Vector2 GetWorldToScreenEx(Vector3 position, Camera camera, int width, int height)
 {
     // Calculate projection matrix (from perspective instead of frustum
-    Matrix matProj = MatrixIdentity();
+    Matrix matProj = MatrixIdcharacter();
 
     if (camera.projection == CAMERA_PERSPECTIVE)
     {
@@ -2234,16 +2234,16 @@ FilePathList LoadDirectoryFiles(const char *dirPath)
     FilePathList files = { 0 };
     unsigned int fileCounter = 0;
 
-    struct dirent *entity;
+    struct dirent *character;
     DIR *dir = opendir(dirPath);
 
     if (dir != NULL) // It's a directory
     {
         // SCAN 1: Count files
-        while ((entity = readdir(dir)) != NULL)
+        while ((character = readdir(dir)) != NULL)
         {
             // NOTE: We skip '.' (current dir) and '..' (parent dir) filepaths
-            if ((strcmp(entity->d_name, ".") != 0) && (strcmp(entity->d_name, "..") != 0)) fileCounter++;
+            if ((strcmp(character->d_name, ".") != 0) && (strcmp(character->d_name, "..") != 0)) fileCounter++;
         }
 
         // Memory allocation for dirFileCount
@@ -3550,14 +3550,14 @@ void SetupViewport(int width, int height)
 #endif
 
     rlMatrixMode(RL_PROJECTION);        // Switch to projection matrix
-    rlLoadIdentity();                   // Reset current matrix (projection)
+    rlLoadIdcharacter();                   // Reset current matrix (projection)
 
     // Set orthographic projection to current framebuffer size
     // NOTE: Configured top-left corner as (0, 0)
     rlOrtho(0, CORE.Window.render.width, CORE.Window.render.height, 0, 0.0f, 1.0f);
 
     rlMatrixMode(RL_MODELVIEW);         // Switch back to modelview matrix
-    rlLoadIdentity();                   // Reset current matrix (modelview)
+    rlLoadIdcharacter();                   // Reset current matrix (modelview)
 }
 
 // Compute framebuffer size relative to screen size and display size

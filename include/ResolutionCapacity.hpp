@@ -9,7 +9,7 @@
 namespace resolution_capacity {
 
     /// <summary>
-    /// Manages a collection of capacity resolution strategies and applies them to resolve capacity for a target entity.
+    /// Manages a collection of capacity resolution strategies and applies them to resolve capacity for a target character.
     /// </summary>
     class ResolutionCapacity : public IResolutionCapacity {
     public:
@@ -40,7 +40,7 @@ namespace resolution_capacity {
 		}
 
 
-        void resolveCapacity(CapacityDTO& capacity_dto, BaseEntity& target) override {
+        void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
 			for (auto& resolution : m_sp_resolutions) {
 				resolution->resolveCapacity(capacity_dto, target);
 			}

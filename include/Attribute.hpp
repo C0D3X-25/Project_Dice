@@ -12,7 +12,7 @@ namespace attribute {
 	inline constexpr int8_t ATTRIBUTE_MAX_VALUE{ 30 };
 
 	/// <summary>
-	/// Struct to hold the attributes of an entity.
+	/// Struct to hold the attributes of an character.
 	/// Minimum value is -10.
 	/// Maximum value is 30
 	/// </summary>

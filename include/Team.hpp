@@ -1,13 +1,13 @@
 #pragma once
 
-#include "BaseEntity.hpp"
+#include "Character.hpp"
 #include "BaseGroup.hpp"
 
 #include <string>
 
 namespace group {
 
-	using entity::BaseEntity;
+	using character::Character;
 
 	inline constexpr uint8_t TEAM_MAX_SIZE{ 5 };
 

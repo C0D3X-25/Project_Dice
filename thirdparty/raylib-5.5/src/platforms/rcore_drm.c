@@ -1331,7 +1331,7 @@ static void InitEvdevInput(void)
 {
     char path[MAX_FILEPATH_LENGTH] = { 0 };
     DIR *directory = NULL;
-    struct dirent *entity = NULL;
+    struct dirent *character = NULL;
 
     // Initialise keyboard file descriptor
     platform.keyboardFd = -1;
@@ -1356,12 +1356,12 @@ static void InitEvdevInput(void)
 
     if (directory)
     {
-        while ((entity = readdir(directory)) != NULL)
+        while ((character = readdir(directory)) != NULL)
         {
-            if ((strncmp("event", entity->d_name, strlen("event")) == 0) ||     // Search for devices named "event*"
-                (strncmp("mouse", entity->d_name, strlen("mouse")) == 0))       // Search for devices named "mouse*"
+            if ((strncmp("event", character->d_name, strlen("event")) == 0) ||     // Search for devices named "event*"
+                (strncmp("mouse", character->d_name, strlen("mouse")) == 0))       // Search for devices named "mouse*"
             {
-                sprintf(path, "%s%s", DEFAULT_EVDEV_PATH, entity->d_name);
+                sprintf(path, "%s%s", DEFAULT_EVDEV_PATH, character->d_name);
                 ConfigureEvdevDevice(path);                                     // Configure the device if appropriate
             }
         }

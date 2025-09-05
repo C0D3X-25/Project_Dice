@@ -113,7 +113,7 @@ static void ImGui_ImplAllegro5_SetupRenderState(ImDrawData* draw_data)
         float T = draw_data->DisplayPos.y;
         float B = draw_data->DisplayPos.y + draw_data->DisplaySize.y;
         ALLEGRO_TRANSFORM transform;
-        al_identity_transform(&transform);
+        al_idcharacter_transform(&transform);
         al_use_transform(&transform);
         al_orthographic_transform(&transform, L, T, 1.0f, R, B, -1.0f);
         al_use_projection_transform(&transform);

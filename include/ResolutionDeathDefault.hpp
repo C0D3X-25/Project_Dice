@@ -5,12 +5,12 @@
 namespace resolution_capacity {
 
 	/// <summary>
-	/// Default resolution when an entity die.
+	/// Default resolution when an character die.
 	/// </summary>
 	class ResolutionDeathDefault : public IResolutionCapacity {
 	public:
 
-		void resolveCapacity(CapacityDTO& capacity_dto, BaseEntity& target) override {
+		void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
 
 		}
 	};

@@ -1556,8 +1556,8 @@ RMAPI Matrix MatrixInvert(Matrix mat)
     return result;
 }
 
-// Get identity matrix
-RMAPI Matrix MatrixIdentity(void)
+// Get idcharacter matrix
+RMAPI Matrix MatrixIdcharacter(void)
 {
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
@@ -1706,7 +1706,7 @@ RMAPI Matrix MatrixRotateX(float angle)
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
                       0.0f, 0.0f, 1.0f, 0.0f,
-                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdentity()
+                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdcharacter()
 
     float cosres = cosf(angle);
     float sinres = sinf(angle);
@@ -1726,7 +1726,7 @@ RMAPI Matrix MatrixRotateY(float angle)
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
                       0.0f, 0.0f, 1.0f, 0.0f,
-                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdentity()
+                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdcharacter()
 
     float cosres = cosf(angle);
     float sinres = sinf(angle);
@@ -1746,7 +1746,7 @@ RMAPI Matrix MatrixRotateZ(float angle)
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
                       0.0f, 0.0f, 1.0f, 0.0f,
-                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdentity()
+                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdcharacter()
 
     float cosres = cosf(angle);
     float sinres = sinf(angle);
@@ -1767,7 +1767,7 @@ RMAPI Matrix MatrixRotateXYZ(Vector3 angle)
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
                       0.0f, 0.0f, 1.0f, 0.0f,
-                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdentity()
+                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdcharacter()
 
     float cosz = cosf(-angle.z);
     float sinz = sinf(-angle.z);
@@ -2042,8 +2042,8 @@ RMAPI Quaternion QuaternionSubtractValue(Quaternion q, float sub)
     return result;
 }
 
-// Get identity quaternion
-RMAPI Quaternion QuaternionIdentity(void)
+// Get idcharacter quaternion
+RMAPI Quaternion QuaternionIdcharacter(void)
 {
     Quaternion result = { 0.0f, 0.0f, 0.0f, 1.0f };
 
@@ -2256,7 +2256,7 @@ RMAPI Quaternion QuaternionFromVector3ToVector3(Vector3 from, Vector3 to)
     result.w = 1.0f + cos2Theta;
 
     // QuaternionNormalize(q);
-    // NOTE: Normalize to essentially nlerp the original and identity to 0.5
+    // NOTE: Normalize to essentially nlerp the original and idcharacter to 0.5
     Quaternion q = result;
     float length = sqrtf(q.x*q.x + q.y*q.y + q.z*q.z + q.w*q.w);
     if (length == 0.0f) length = 1.0f;
@@ -2340,7 +2340,7 @@ RMAPI Matrix QuaternionToMatrix(Quaternion q)
     Matrix result = { 1.0f, 0.0f, 0.0f, 0.0f,
                       0.0f, 1.0f, 0.0f, 0.0f,
                       0.0f, 0.0f, 1.0f, 0.0f,
-                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdentity()
+                      0.0f, 0.0f, 0.0f, 1.0f }; // MatrixIdcharacter()
 
     float a2 = q.x*q.x;
     float b2 = q.y*q.y;
@@ -2583,8 +2583,8 @@ RMAPI void MatrixDecompose(Matrix mat, Vector3 *translation, Quaternion *rotatio
     }
     else
     {
-        // Set to identity if close to zero
-        *rotation = QuaternionIdentity();
+        // Set to idcharacter if close to zero
+        *rotation = QuaternionIdcharacter();
     }
 }
 

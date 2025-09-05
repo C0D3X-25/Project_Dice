@@ -1,9 +1,9 @@
 #pragma once
-#include "BaseCapacity.hpp"
-#include "BaseEntity.hpp"
+//#include "BaseCapacity.hpp"
+//#include "Character.hpp"
 
-using entity::BaseEntity;
-using capacity::CapacityDTO;
+//using character::Character;
+//using capacity::CapacityDTO;
 
 namespace resolution_capacity {
     // TODO: Choose between:
@@ -27,6 +27,6 @@ namespace resolution_capacity {
 	class IResolutionCapacity {
 	public:
 		virtual ~IResolutionCapacity(void) = default;
-		virtual void resolveCapacity(CapacityDTO& capacity_comp, BaseEntity& target) = 0;
+		//virtual void resolveCapacity(CapacityDTO& capacity_comp, Character& target) = 0;
 	};
 }

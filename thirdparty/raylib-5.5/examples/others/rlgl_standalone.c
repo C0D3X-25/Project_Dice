@@ -105,7 +105,7 @@ static void DrawCubeWires(Vector3 position, float width, float height, float len
 static void DrawRectangleV(Vector2 position, Vector2 size, Color color);
 
 // NOTE: We use raymath to get this functionality but it could be implemented in this module
-//static Matrix MatrixIdentity(void);
+//static Matrix MatrixIdcharacter(void);
 //static Matrix MatrixOrtho(double left, double right, double bottom, double top, double near, double far);
 //static Matrix MatrixPerspective(double fovy, double aspect, double near, double far);
 //static Matrix MatrixLookAt(Vector3 eye, Vector3 target, Vector3 up);
@@ -169,10 +169,10 @@ int main(void)
     // Initialize viewport and internal projection/modelview matrices
     rlViewport(0, 0, screenWidth, screenHeight);
     rlMatrixMode(RL_PROJECTION);                        // Switch to PROJECTION matrix
-    rlLoadIdentity();                                   // Reset current matrix (PROJECTION)
+    rlLoadIdcharacter();                                   // Reset current matrix (PROJECTION)
     rlOrtho(0, screenWidth, screenHeight, 0, 0.0f, 1.0f); // Orthographic projection with top-left corner at (0,0)
     rlMatrixMode(RL_MODELVIEW);                         // Switch back to MODELVIEW matrix
-    rlLoadIdentity();                                   // Reset current matrix (MODELVIEW)
+    rlLoadIdcharacter();                                   // Reset current matrix (MODELVIEW)
 
     rlClearColor(245, 245, 245, 255);                   // Define clear color
     rlEnableDepthTest();                                // Enable DEPTH_TEST for 3D
@@ -220,7 +220,7 @@ int main(void)
 #define RLGL_SET_MATRIX_MANUALLY
 #if defined(RLGL_SET_MATRIX_MANUALLY)
             matProj = MatrixOrtho(0.0, screenWidth, screenHeight, 0.0, 0.0, 1.0);
-            matView = MatrixIdentity();
+            matView = MatrixIdcharacter();
 
             rlSetMatrixModelview(matView);    // Set internal modelview matrix (default shader)
             rlSetMatrixProjection(matProj);   // Set internal projection matrix (default shader)
@@ -228,10 +228,10 @@ int main(void)
 #else   // Let rlgl generate and multiply matrix internally
 
             rlMatrixMode(RL_PROJECTION);                            // Enable internal projection matrix
-            rlLoadIdentity();                                       // Reset internal projection matrix
+            rlLoadIdcharacter();                                       // Reset internal projection matrix
             rlOrtho(0.0, screenWidth, screenHeight, 0.0, 0.0, 1.0); // Recalculate internal projection matrix
             rlMatrixMode(RL_MODELVIEW);                             // Enable internal modelview matrix
-            rlLoadIdentity();                                       // Reset internal modelview matrix
+            rlLoadIdcharacter();                                       // Reset internal modelview matrix
 #endif
             DrawRectangleV((Vector2){ 10.0f, 10.0f }, (Vector2){ 780.0f, 20.0f }, DARKGRAY);
 

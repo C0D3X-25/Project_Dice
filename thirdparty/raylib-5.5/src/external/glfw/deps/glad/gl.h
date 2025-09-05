@@ -2244,7 +2244,7 @@ typedef void (GLAD_API_PTR *PFNGLLINESTIPPLEPROC)(GLint factor, GLushort pattern
 typedef void (GLAD_API_PTR *PFNGLLINEWIDTHPROC)(GLfloat width);
 typedef void (GLAD_API_PTR *PFNGLLINKPROGRAMPROC)(GLuint program);
 typedef void (GLAD_API_PTR *PFNGLLISTBASEPROC)(GLuint base);
-typedef void (GLAD_API_PTR *PFNGLLOADIDENTITYPROC)(void);
+typedef void (GLAD_API_PTR *PFNGLLOADIDcharacterPROC)(void);
 typedef void (GLAD_API_PTR *PFNGLLOADMATRIXDPROC)(const GLdouble * m);
 typedef void (GLAD_API_PTR *PFNGLLOADMATRIXFPROC)(const GLfloat * m);
 typedef void (GLAD_API_PTR *PFNGLLOADNAMEPROC)(GLuint name);
@@ -3336,8 +3336,8 @@ GLAD_API_CALL PFNGLLINKPROGRAMPROC glad_glLinkProgram;
 #define glLinkProgram glad_glLinkProgram
 GLAD_API_CALL PFNGLLISTBASEPROC glad_glListBase;
 #define glListBase glad_glListBase
-GLAD_API_CALL PFNGLLOADIDENTITYPROC glad_glLoadIdentity;
-#define glLoadIdentity glad_glLoadIdentity
+GLAD_API_CALL PFNGLLOADIDcharacterPROC glad_glLoadIdcharacter;
+#define glLoadIdcharacter glad_glLoadIdcharacter
 GLAD_API_CALL PFNGLLOADMATRIXDPROC glad_glLoadMatrixd;
 #define glLoadMatrixd glad_glLoadMatrixd
 GLAD_API_CALL PFNGLLOADMATRIXFPROC glad_glLoadMatrixf;
@@ -4566,7 +4566,7 @@ PFNGLLINESTIPPLEPROC glad_glLineStipple = NULL;
 PFNGLLINEWIDTHPROC glad_glLineWidth = NULL;
 PFNGLLINKPROGRAMPROC glad_glLinkProgram = NULL;
 PFNGLLISTBASEPROC glad_glListBase = NULL;
-PFNGLLOADIDENTITYPROC glad_glLoadIdentity = NULL;
+PFNGLLOADIDcharacterPROC glad_glLoadIdcharacter = NULL;
 PFNGLLOADMATRIXDPROC glad_glLoadMatrixd = NULL;
 PFNGLLOADMATRIXFPROC glad_glLoadMatrixf = NULL;
 PFNGLLOADNAMEPROC glad_glLoadName = NULL;
@@ -5125,7 +5125,7 @@ static void glad_gl_load_GL_VERSION_1_0( GLADuserptrloadfunc load, void* userptr
     glad_glLineStipple = (PFNGLLINESTIPPLEPROC) load(userptr, "glLineStipple");
     glad_glLineWidth = (PFNGLLINEWIDTHPROC) load(userptr, "glLineWidth");
     glad_glListBase = (PFNGLLISTBASEPROC) load(userptr, "glListBase");
-    glad_glLoadIdentity = (PFNGLLOADIDENTITYPROC) load(userptr, "glLoadIdentity");
+    glad_glLoadIdcharacter = (PFNGLLOADIDcharacterPROC) load(userptr, "glLoadIdcharacter");
     glad_glLoadMatrixd = (PFNGLLOADMATRIXDPROC) load(userptr, "glLoadMatrixd");
     glad_glLoadMatrixf = (PFNGLLOADMATRIXFPROC) load(userptr, "glLoadMatrixf");
     glad_glLoadName = (PFNGLLOADNAMEPROC) load(userptr, "glLoadName");

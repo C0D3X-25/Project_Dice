@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseEntity.hpp"
+#include "Character.hpp"
 
 namespace combat {
 

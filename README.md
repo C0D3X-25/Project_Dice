@@ -89,16 +89,16 @@ In general, the capacities are divided into 3 zones of the dice:
 - **10**: Special
 
 ### Capacities
-Capacities allow characters to deal damage, provide armour, heal, or apply status effects (e.g., burning, poison). These actions are influenced by the attributes and items of the entity using them.  
+Capacities allow characters to deal damage, provide armour, heal, or apply status effects (e.g., burning, poison). These actions are influenced by the attributes and items of the character using them.  
 
 During the player's turn:
-- All capacity dice are rolled, and the player can assign capacities to any entity, regardless of who owns the dice.
-- The effectiveness of a capacity depends on the attributes of the entity using it, so the player must decide whether to accept reduced effects or reroll the dice.
-- Dice not assigned to an entity will be rerolled, but rerolls are limited to 2 times per turn by default (modifiable by items or capacities).
+- All capacity dice are rolled, and the player can assign capacities to any character, regardless of who owns the dice.
+- The effectiveness of a capacity depends on the attributes of the character using it, so the player must decide whether to accept reduced effects or reroll the dice.
+- Dice not assigned to an character will be rerolled, but rerolls are limited to 2 times per turn by default (modifiable by items or capacities).
 
 Capacities are generally used at the end of the turn, after all dice are assigned.  
-Some capacities are used immediately when assigned to an entity, even if the dice are rerolled.  
-Certain capacities are cursed and can only be used by the entity that owns the dice and/or cannot be rerolled.  
+Some capacities are used immediately when assigned to an character, even if the dice are rerolled.  
+Certain capacities are cursed and can only be used by the character that owns the dice and/or cannot be rerolled.  
 Capacities have rarity levels, which determine their power.
 
 ### Status Effects

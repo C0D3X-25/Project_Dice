@@ -86,7 +86,7 @@ It's a simple language, no high-level code abstractions like [OOP](https://en.wi
 
 ### Is raylib a videogames engine?
 
-I personally consider raylib a graphics library with some high-level features rather than an engine. The line that separates a library/framework from an engine could be very confusing; raylib provides all the required functionality to create simple games or small applications but it does not provide 3 elements that I personally consider any "engine" should provide: Screen manager, GameObject/Entity manager and Resource Manager. Still, most users do not need those elements or just code simple approaches on their own.
+I personally consider raylib a graphics library with some high-level features rather than an engine. The line that separates a library/framework from an engine could be very confusing; raylib provides all the required functionality to create simple games or small applications but it does not provide 3 elements that I personally consider any "engine" should provide: Screen manager, GameObject/character manager and Resource Manager. Still, most users do not need those elements or just code simple approaches on their own.
 
 ### What does raylib provide that other engines or libraries don't?
 

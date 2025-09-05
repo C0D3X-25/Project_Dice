@@ -19,7 +19,7 @@ namespace capacity {
 	/// Base class for all capacities.
 	/// Capacities are abilities or skills that can be used by entities in the game, she can deal damage, heal, add armor, buff, debuff other entities.
 	/// It's composed of a name, description, purposes, targets, triggers, attributes and capacity DTO.
-	/// When an entity uses a capacity, there is only the capacity DTO who is send tho the target manager.
+	/// When an character uses a capacity, there is only the capacity DTO who is send tho the target manager.
 	/// </summary>
 	class BaseCapacity {
 	public:

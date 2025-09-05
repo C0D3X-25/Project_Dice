@@ -2328,11 +2328,11 @@
 
     <event name="axis_relative_direction" since="9">
       <description summary="axis relative physical direction event">
-	Relative directional information of the entity causing the axis
+	Relative directional information of the character causing the axis
 	motion.
 
 	For a wl_pointer.axis event, the wl_pointer.axis_relative_direction
-	event specifies the movement direction of the entity causing the
+	event specifies the movement direction of the character causing the
 	wl_pointer.axis event. For example:
 	- if a user's fingers on a touchpad move down and this
 	  causes a wl_pointer.axis vertical_scroll down event, the physical
