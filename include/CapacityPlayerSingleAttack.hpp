@@ -2,7 +2,7 @@
 //
 //#include "BaseCapacity.hpp"
 //#include "CapacityActionDamage.hpp"
-//#include "Attribute.hpp"
+//#include "AttributeData.hpp"
 //#include "Character.hpp" 
 //#include "SFind.hpp"
 //

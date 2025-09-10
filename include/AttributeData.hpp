@@ -16,7 +16,7 @@ namespace attribute {
 	/// Minimum value is -10.
 	/// Maximum value is 30
 	/// </summary>
-	struct Attribute {
+	struct AttributeData {
 
 		void printAllAttributes(void) const {
 			std::cout

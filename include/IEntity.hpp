@@ -1,6 +1,6 @@
 //#pragma once
 //
-//#include "Attribute.hpp"
+//#include "AttributeData.hpp"
 //#include "EAttribute.hpp"
 //
 //#include <string_view>
@@ -17,7 +17,7 @@
 //        virtual ~Icharacter() = default;
 //
 //        // Core character methods
-//        virtual void updateAttributes(const attribute::Attribute& update_attributes) = 0;
+//        virtual void updateAttributes(const attribute::AttributeData& update_attributes) = 0;
 //        virtual void addPassive(passive::IPassive& sp_passive) = 0;
 //
 //        // Getters

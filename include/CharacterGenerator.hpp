@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.hpp"
-#include "Attribute.hpp"
+#include "AttributeData.hpp"
 #include "SRandom.hpp"
 
 #include <iostream>
@@ -38,7 +38,7 @@ namespace character {
 			constexpr uint8_t DICE_SIDES{ 4 };
 			constexpr uint8_t DICE_NBR_ROLLS{ 2 };
 
-			Attribute generated_attributes;
+			AttributeData generated_attributes;
 
 			generated_attributes.setAttribute(attribute::STRENGTH, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
 			generated_attributes.setAttribute(attribute::DEXTERITY, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));

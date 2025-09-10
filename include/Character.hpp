@@ -7,7 +7,7 @@
 #include "BaseCapacity.hpp"
 //#include "DiceCapacity.hpp"
 #include "CapacityDTO.hpp"
-#include "Attribute.hpp"
+#include "AttributeData.hpp"
 //#include "PassiveHandler.hpp"
 //#include "ResolutionCapacity.hpp"
 //#include "ResolutionArmorDefault.hpp"
@@ -29,7 +29,7 @@ namespace character {
 
     using capacity::BaseCapacity;
     using capacity::CapacityDTO;
-    using attribute::Attribute;
+    using attribute::AttributeData;
     using attribute::EAttribute;
 	//using dice::DiceCapacity;
 
@@ -42,7 +42,7 @@ namespace character {
         Character(const std::string& name, const int16_t max_life, const int16_t max_armor);
         virtual ~Character(void) = default;
 
-        void updateAttributes(const Attribute& update_attributes);
+        void updateAttributes(const AttributeData& update_attributes);
         //void addPassive(passive::IPassive& sp_passive) { m_passive.addPassive(sp_passive); }
 
         std::string_view getcharacterName(void) const { return m_name; }
@@ -141,11 +141,11 @@ namespace character {
 		//}
 
 		private:
-			// TODO: m_passive[];
-			// TODO: m_status[];
-			// TODO: m_feat[];
-			Attribute m_attributes;
-			Attribute m_bonus_attributes;
+			// TODO: m_passives[];
+			// TODO: m_statuses[];
+			// TODO: m_feats[];
+			AttributeData m_attributes;
+			AttributeData m_bonus_attributes;
 			std::string m_name{ "N/A" };
 			int16_t m_max_life{ 0 };
 			int16_t m_current_life{ 0 };
@@ -153,8 +153,7 @@ namespace character {
 			int16_t m_current_armor{ 0 };
 			//ResolutionCapacity m_capacity_resolution;
 			//DiceCapacity m_dice_capacity;
-			// TODO: Equipment m_inventory;
-			// TODO: Feat m_feat;
+			// TODO: Equipment m_equipment;
 
 	};
 } // namespace character

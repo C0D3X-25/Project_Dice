@@ -4,19 +4,15 @@ using namespace character;
 
 character::Character::Character(const std::string& name)
 	: m_name(name)
-{
-
-}
+{}
 
 
 character::Character::Character(const std::string& name, const int16_t max_life, const int16_t max_armor)
 	: m_name(name), m_max_life(max_life), m_max_armor(max_armor)
-{
-
-}
+{}
 
 
-void character::Character::updateAttributes(const Attribute& update_attribute) {
+void character::Character::updateAttributes(const AttributeData& update_attribute) {
 
 	m_attributes.setAttribute(attribute::STRENGTH, update_attribute.getAttribute(attribute::STRENGTH));
 	m_attributes.setAttribute(attribute::DEXTERITY, update_attribute.getAttribute(attribute::DEXTERITY));
