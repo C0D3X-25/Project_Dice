@@ -1,6 +1,6 @@
 #pragma once
 #include "ECapacity.hpp"
-//#include "Character.hpp"
+//#include "CharacterSystem.hpp"
 
 #include <cstdint>
 #include <vector>
@@ -10,7 +10,7 @@
 
 namespace capacity {
 
-	//using character::Character;
+	//using character::CharacterSystem;
 
 	/// <summary>
 	/// Represent the data who need to be transfered when a character use a capacity, from source to target.
@@ -19,7 +19,7 @@ namespace capacity {
 
 		std::vector<ECapacityTarget> m_targets;
 
-		//std::shared_ptr<Character> m_p_user;
+		//std::shared_ptr<CharacterSystem> m_p_user;
 
 		uint16_t m_damage{ 0 };
 		uint16_t m_heal{ 0 };

@@ -1,8 +1,8 @@
 #pragma once
 //#include "BaseCapacity.hpp"
-//#include "Character.hpp"
+//#include "CharacterSystem.hpp"
 
-//using character::Character;
+//using character::CharacterSystem;
 //using capacity::CapacityDTO;
 
 namespace resolution_capacity {
@@ -27,6 +27,6 @@ namespace resolution_capacity {
 	class IResolutionCapacity {
 	public:
 		virtual ~IResolutionCapacity(void) = default;
-		//virtual void resolveCapacity(CapacityDTO& capacity_comp, Character& target) = 0;
+		//virtual void resolveCapacity(CapacityDTO& capacity_comp, CharacterSystem& target) = 0;
 	};
 }

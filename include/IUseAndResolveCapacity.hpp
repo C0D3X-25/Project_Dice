@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseCapacity.hpp"
-#include "Character.hpp"
+#include "CharacterSystem.hpp""
 
 namespace capacity {
 

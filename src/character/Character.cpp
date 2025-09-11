@@ -1,46 +1,48 @@
-#include "../include/Character.hpp"
+#include "../include/CharacterSystem.hpp""
 
 using namespace character;
 
-character::Character::Character(const std::string& name)
-	: m_name(name)
-{}
-
-
-character::Character::Character(const std::string& name, const int16_t max_life, const int16_t max_armor)
-	: m_name(name), m_max_life(max_life), m_max_armor(max_armor)
-{}
-
-
-void character::Character::updateAttributes(const AttributeData& update_attribute) {
-
-	m_attributes.setAttribute(attribute::STRENGTH, update_attribute.getAttribute(attribute::STRENGTH));
-	m_attributes.setAttribute(attribute::DEXTERITY, update_attribute.getAttribute(attribute::DEXTERITY));
-	m_attributes.setAttribute(attribute::CONSTITUTION, update_attribute.getAttribute(attribute::CONSTITUTION));
-	m_attributes.setAttribute(attribute::INTELLIGENCE, update_attribute.getAttribute(attribute::INTELLIGENCE));
-	m_attributes.setAttribute(attribute::WISDOM, update_attribute.getAttribute(attribute::WISDOM));
-	m_attributes.setAttribute(attribute::CHARISMA, update_attribute.getAttribute(attribute::CHARISMA));
-
-	updatecharacter();
+character::CharacterSystem::CharacterSystem(const std::string& name) {
+    m_stats.setStatsInString(character::NAME, name);
 }
 
 
-//void character::Character::setCapacity(const BaseCapacity& capacity, const uint8_t side) {
+character::CharacterSystem::CharacterSystem(const std::string& name, const int16_t max_life, const int16_t max_armor) {
+
+    m_stats.setStatsInString(character::NAME, name);
+    m_stats.setStats(character::MAX_LIFE, max_life);
+    m_stats.setStats(character::MAX_ARMOR, max_armor);
+
+    resetToDefaultValues();
+}
+
+
+void character::CharacterSystem::updateAttributes(const AttributeData& update_attribute) {
+
+    m_attributes.setAttribute(attribute::STRENGTH, update_attribute.getAttribute(attribute::STRENGTH));
+    m_attributes.setAttribute(attribute::DEXTERITY, update_attribute.getAttribute(attribute::DEXTERITY));
+    m_attributes.setAttribute(attribute::CONSTITUTION, update_attribute.getAttribute(attribute::CONSTITUTION));
+    m_attributes.setAttribute(attribute::INTELLIGENCE, update_attribute.getAttribute(attribute::INTELLIGENCE));
+    m_attributes.setAttribute(attribute::WISDOM, update_attribute.getAttribute(attribute::WISDOM));
+    m_attributes.setAttribute(attribute::CHARISMA, update_attribute.getAttribute(attribute::CHARISMA));
+
+    updatecharacter();
+}
+
+
+//void character::CharacterSystem::setCapacity(const BaseCapacity& capacity, const uint8_t side) {
 //    m_dice_capacity.setCapacity(capacity, side);
 //}
 
 
-//const BaseCapacity character::Character::rollDiceCapacity(void) {
+//const BaseCapacity character::CharacterSystem::rollDiceCapacity(void) {
 //    return m_dice_capacity.roll();
 //}
 
 
-void character::Character::printcharacter(void) const {
-    std::cout
-        << m_name
-        << " || " << m_current_life << "/" << m_max_life << " Life "
-        << " | " << m_current_armor << "/" << m_max_armor << " Armor "
-        << '\n';
+void character::CharacterSystem::printcharacter(void) const {
+
+	m_stats.printAllStats();
 
     std::cout << "\n---------- Attributes ----------\n";
     m_attributes.printAllAttributes();
@@ -57,7 +59,7 @@ void character::Character::printcharacter(void) const {
 }
 
 
-//void character::Character::useCapacity(const BaseCapacity& capacity, Character& target) {
+//void character::CharacterSystem::useCapacity(const BaseCapacity& capacity, CharacterSystem& target) {
 //	std::cout
 //		<< m_name
 //		<< " use capacity " << capacity.getCapacityName()
@@ -68,7 +70,7 @@ void character::Character::printcharacter(void) const {
 //}
 
 
-//void character::Character::resolveCapacity(const CapacityDTO& capacity, const Character& source) {
+//void character::CharacterSystem::resolveCapacity(const CapacityDTO& capacity, const CharacterSystem& source) {
     //// Initialize modifiers
     //int16_t dmg_life = capacity.m_max_life < 0 ? -capacity.m_max_life : 0;
     //int16_t heal_life = capacity.m_max_life > 0 ? capacity.m_max_life : 0;

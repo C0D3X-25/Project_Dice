@@ -3,7 +3,7 @@
 //#include "BaseCapacity.hpp"
 //#include "CapacityActionDamage.hpp"
 //#include "AttributeData.hpp"
-//#include "Character.hpp" 
+//#include "CharacterSystem.hpp" 
 //#include "SFind.hpp"
 //
 //#include <vector>
@@ -16,7 +16,7 @@
 //	class CapacityPlayerSingleAttack : public BaseCapacity {
 //	public:
 //
-//		CapacityPlayerSingleAttack(const Character& user) {
+//		CapacityPlayerSingleAttack(const CharacterSystem& user) {
 //
 //			setcharacterName("1 Attack and 1 Random Attack");
 //			setCapacityDescription("Attack a single ennemy with STR or DEX, then attack a random ennemy with STR or DEX");

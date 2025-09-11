@@ -2,14 +2,14 @@
 
 #include "IPassive.hpp"
 #include "EAttribute.hpp"
-#include "Character.hpp"
+#include "CharacterSystem.hpp""
 #include "PassiveModifierDTO.hpp"
 
 #include <memory>
 
 namespace passive {
 
-	using character::Character;
+	using character::CharacterSystem;
 	using attribute::EAttribute;
 
 	class PassiveAugmentAttribute : public IPassive {

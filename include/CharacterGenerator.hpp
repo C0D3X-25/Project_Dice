@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Character.hpp"
+#include "CharacterSystem.hpp""
 #include "AttributeData.hpp"
 #include "SRandom.hpp"
 
@@ -16,9 +16,9 @@ namespace character {
 		CharacterGenerator(void) = default;
 		~CharacterGenerator(void) = default;
 
-		Character generateNewPlayercharacter(void) {
+		CharacterSystem generateNewPlayercharacter(void) {
 
-			auto new_character = Character("Generated character");
+			auto new_character = CharacterSystem("Generated character");
 
 			generateAttributes(new_character);
 
@@ -32,7 +32,7 @@ namespace character {
 
 		// Roll for each attributes is between 6 (4 + 1 + 1) and 12 (4 + 4 + 4)
 		// Final value of an attribute without other modifiers is between -4 and 2
-		void generateAttributes(Character& character) {
+		void generateAttributes(CharacterSystem& character) {
 
 			constexpr int8_t BASE_VALUE{ attribute::ATTRIBUTE_MIN_VALUE + 4 };
 			constexpr uint8_t DICE_SIDES{ 4 };

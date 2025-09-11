@@ -2,7 +2,7 @@
 //
 //#include "IPassive.hpp"
 //#include "PassiveModifierDTO.hpp"
-////#include "Icharacter.hpp"
+////#include "ICharacterSystem.hpp""
 //
 //#include <string>
 //#include <vector>

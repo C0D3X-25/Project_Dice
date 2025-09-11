@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Character.hpp"
+#include "CharacterSystem.hpp""
 #include "BaseGroup.hpp"
 
 #include <string>
 
 namespace group {
 
-	using character::Character;
+	using character::CharacterSystem;
 
 	inline constexpr uint8_t TEAM_MAX_SIZE{ 5 };
 

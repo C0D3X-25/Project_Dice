@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Character.hpp"
+#include "CharacterSystem.hpp""
 
 #include <array>
 #include <memory>
@@ -11,7 +11,7 @@
 
 namespace group {
 
-    using character::Character;
+    using character::CharacterSystem;
 
     inline constexpr uint8_t GROUP_MAX_SIZE{ 20U };
 
@@ -22,7 +22,7 @@ namespace group {
         virtual ~BaseGroup(void) = default;
 
 
-        virtual bool addcharacter(std::unique_ptr<Character> character, const uint8_t index_character) {
+        virtual bool addcharacter(std::unique_ptr<CharacterSystem> character, const uint8_t index_character) {
 
             if (isGroupComplete()) {
                 return false;
@@ -79,7 +79,7 @@ namespace group {
         }
 
         // WITHOUT PTR
-        //virtual bool addcharacter(Character& character, const uint8_t index_character) {
+        //virtual bool addcharacter(CharacterSystem& character, const uint8_t index_character) {
         //    if (isGroupComplete()) {
         //        return false;
         //    }
@@ -126,7 +126,7 @@ namespace group {
         //    return false;
         //}
 
-        virtual Character& getcharacter(uint8_t index_character) {
+        virtual CharacterSystem& getcharacter(uint8_t index_character) {
             if (index_character >= m_group_max_size || !m_group.at(index_character).has_value()) {
                 throw std::out_of_range("Invalid character index or empty slot");
             }
@@ -134,7 +134,7 @@ namespace group {
         }
 
 
-        //virtual Character& operator[](uint8_t index_character) {
+        //virtual CharacterSystem& operator[](uint8_t index_character) {
         //    return getcharacter(index_character);
         //}
 
@@ -166,7 +166,7 @@ namespace group {
         uint8_t getGroupMaxSize(void) const { return m_group_max_size; }
 
     private:
-        std::array<std::optional<std::unique_ptr<Character>>, GROUP_MAX_SIZE> m_group;
+        std::array<std::optional<std::unique_ptr<CharacterSystem>>, GROUP_MAX_SIZE> m_group;
         std::string m_group_name{ "N/A" };
         uint8_t m_group_current_size{ 0 };
         uint8_t m_group_max_size{ GROUP_MAX_SIZE };

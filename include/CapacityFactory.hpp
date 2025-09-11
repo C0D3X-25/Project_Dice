@@ -3,7 +3,7 @@
 #include "BaseCapacity.hpp"
 #include "CapacityActionDamage.hpp"
 #include "AttributeData.hpp"
-#include "Character.hpp" 
+#include "CharacterSystem.hpp"" 
 #include "SFind.hpp"
 
 #include <vector>
@@ -34,7 +34,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity attackSingle(const Character& source_character) {
+		BaseCapacity attackSingle(const CharacterSystem& source_character) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("1 Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with STR or DEX");
@@ -55,7 +55,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity attackRandom(const Character& source_character) {
+		BaseCapacity attackRandom(const CharacterSystem& source_character) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("1 Attack and 1 Random Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with worst STR or DEX, then attack another random ennemy with best STR or DEX");
@@ -89,7 +89,7 @@ namespace capacity {
 			return capacity;
 		}
 
-		BaseCapacity attackEnnemyTeam(const Character& source_character) {
+		BaseCapacity attackEnnemyTeam(const CharacterSystem& source_character) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Strike the ennemy team once");
 			capacity.setCapacityDescription("Attack all ennemy with best INT, WIS or CHA");
@@ -110,7 +110,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity protectSelf(const Character& source_character) {
+		BaseCapacity protectSelf(const CharacterSystem& source_character) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Protect self");
 			capacity.setCapacityDescription("Protect yourself with your armor");
@@ -131,7 +131,7 @@ namespace capacity {
 		}
 
 
-		BaseCapacity fastHeal(const Character& source_character) {
+		BaseCapacity fastHeal(const CharacterSystem& source_character) {
 			BaseCapacity capacity;
 			capacity.setCapacityName("Fast heal");
 			capacity.setCapacityDescription("Heal directly a single ally with best INT, WIS or CHA");

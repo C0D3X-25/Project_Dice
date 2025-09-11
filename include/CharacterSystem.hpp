@@ -4,11 +4,12 @@
 //#include "IResolutionCapacity.hpp"
 #include "SFind.hpp"
 #include "EAttribute.hpp"
+#include "EStatsData.hpp"
 #include "BaseCapacity.hpp"
 //#include "DiceCapacity.hpp"
 #include "CapacityDTO.hpp"
 #include "AttributeData.hpp"
-//#include "PassiveHandler.hpp"
+#include "StatsData.hpp"
 //#include "ResolutionCapacity.hpp"
 //#include "ResolutionArmorDefault.hpp"
 //#include "ResolutionDeathDefault.hpp"
@@ -36,27 +37,15 @@ namespace character {
     /// <summary>
     /// Base Class for any character.
     /// </summary>
-    class Character /*: public IResolutionCapacity*/ {
+    class CharacterSystem /*: public IResolutionCapacity*/ {
     public:
-        Character(const std::string& name);
-        Character(const std::string& name, const int16_t max_life, const int16_t max_armor);
-        virtual ~Character(void) = default;
+        CharacterSystem(const std::string& name);
+        CharacterSystem(const std::string& name, const int16_t max_life, const int16_t max_armor);
+        ~CharacterSystem() = default;
 
         void updateAttributes(const AttributeData& update_attributes);
         //void addPassive(passive::IPassive& sp_passive) { m_passive.addPassive(sp_passive); }
 
-        std::string_view getcharacterName(void) const { return m_name; }
-        int16_t getMaxLife(void) const { return m_max_life; }
-        int16_t getCurrentLife(void) const { return m_current_life; }
-        int16_t getMaxArmor(void) const { return m_max_armor; }
-        int16_t getCurrentArmor(void) const { return m_current_armor; }
-        int8_t getAttribute(const EAttribute attribute_type) const { return m_attributes.getAttribute(attribute_type); }
-
-        void setcharacterName(const std::string& name) { m_name = name; }
-        void setMaxLife(int16_t life) { m_max_life = life; }
-        void setCurrentLife(int16_t life) { m_current_life = life; }
-        void setMaxArmor(int16_t armor) { m_max_armor = armor; }
-        void setCurrentArmor(int16_t armor) { m_current_armor = armor; }
 
 
 		/**
@@ -64,42 +53,51 @@ namespace character {
 		* @param sp_capacity The capacity to assign
 		* @param side The side number to assign the capacity to (1-10)
 		*/
-		void setCapacity(const BaseCapacity& sp_capacity, const uint8_t side);
+		void setCapacity(const BaseCapacity& capacity, const uint8_t side);
 
-		const BaseCapacity rollDiceCapacity(void);
+		const BaseCapacity rollDiceCapacity();
 
-		//void useCapacity(const BaseCapacity& capacity, Character& target) override;
+		//void useCapacity(const BaseCapacity& capacity, CharacterSystem& target) override;
 
 
-		void printcharacter(void) const;
+		void printcharacter() const;
 
-		void resetToDefaultValues(void) {
+		void resetToDefaultValues() {
 			updatecharacter();
-			m_current_life = m_max_life;
-			m_current_armor = m_max_armor;
+			setStats(EStatsData::LIFE, getStats(EStatsData::MAX_LIFE));
+			setStats(EStatsData::ARMOR, getStats(EStatsData::MAX_ARMOR));
 		}
 
 
-		void updatecharacter(void) {
+		void updatecharacter() {
 			calculateMaxLife();
 			calculateMaxArmor();
 			//setResolution();
 		}
 
-		//void resolveCapacity(CapacityDTO& capacity_comp, Character& target) {
+		//void resolveCapacity(CapacityDTO& capacity_comp, CharacterSystem& target) {
 		//	m_capacity_resolution.resolveCapacity(capacity_comp, target);
 		//}
 
+        std::string getcharacterName()								const { return m_stats.getStatsInString(EStatsData::NAME); }
+		int8_t getAttribute(const EAttribute attribute_type)		const { return m_attributes.getAttribute(attribute_type); }
+		int8_t getBonusAttribute(const EAttribute attribute_type)	const { return m_bonus_attributes.getAttribute(attribute_type); }
+		int8_t getStats(const EStatsData stats)						const { return m_stats.getStats(stats); }
+
+        void setcharacterName(const std::string& name)							{ m_stats.setStatsInString(EStatsData::NAME, name); }
+		void setAttribute(const EAttribute attribute_type, int8_t value)		{ m_attributes.setAttribute(attribute_type, value); }
+		void setBonusAttribute(const EAttribute attribute_type, int8_t value)	{ m_bonus_attributes.setAttribute(attribute_type, value); }
+		void setStats(const EStatsData stats, int16_t value)					{ m_stats.setStats(stats, value); }
 
 	private:
 
-		void calculateMaxLife(void) {
+		void calculateMaxLife() {
 
 			int16_t max_life{ BASE_MAX_LIFE };
 			// TODO: max_life += bonus_life;
 			max_life += int16_t(m_attributes.getAttribute(attribute::CONSTITUTION) * 1.5);
 
-			setMaxLife(max_life);
+			setStats(EStatsData::MAX_LIFE, max_life);
 		}
 
 
@@ -114,7 +112,7 @@ namespace character {
 			int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::WISDOM), m_attributes.getAttribute(attribute::INTELLIGENCE), m_attributes.getAttribute(attribute::CHARISMA), 0) };
 			int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
 
-			setMaxArmor(max_armor);
+			setStats(EStatsData::MAX_ARMOR, max_armor);
 		}
 
 
@@ -142,15 +140,11 @@ namespace character {
 
 		private:
 			// TODO: m_passives[];
-			// TODO: m_statuses[];
-			// TODO: m_feats[];
+			// TODO: m_status;
+			// TODO: m_feat;
 			AttributeData m_attributes;
 			AttributeData m_bonus_attributes;
-			std::string m_name{ "N/A" };
-			int16_t m_max_life{ 0 };
-			int16_t m_current_life{ 0 };
-			int16_t m_max_armor{ 0 };
-			int16_t m_current_armor{ 0 };
+			StatsData m_stats;
 			//ResolutionCapacity m_capacity_resolution;
 			//DiceCapacity m_dice_capacity;
 			// TODO: Equipment m_equipment;
