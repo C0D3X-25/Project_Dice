@@ -1,5 +1,5 @@
 #pragma once
-#include "SRandom.hpp"
+#include "SRandomSystem.hpp"
 
 #include <iostream>
 
@@ -10,9 +10,9 @@ namespace dice {
     /// </summary>
     /// <typeparam name="T">The return type for dice roll results</typeparam>
     template <typename T>
-    class ABaseDice {
+    class ABaseDiceSystem {
     public:
-        virtual ~ABaseDice() = default;
+        virtual ~ABaseDiceSystem() = default;
 
         /// <summary>
         /// Pure virtual method to roll the dice

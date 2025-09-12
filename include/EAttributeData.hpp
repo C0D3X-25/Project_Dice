@@ -3,7 +3,7 @@
 
 namespace attribute {
 
-	enum EAttribute {
+	enum EAttributeData {
 		STRENGTH,
 		DEXTERITY,
 		CONSTITUTION,
@@ -12,7 +12,7 @@ namespace attribute {
 		CHARISMA
 	};
 
-	constexpr std::string_view toString(EAttribute attribute) {
+	constexpr std::string_view toString(EAttributeData attribute) {
 		switch (attribute) {
 		case STRENGTH:		return "STRENGTH";
 		case DEXTERITY:		return "DEXTERITY";

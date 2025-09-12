@@ -5,7 +5,7 @@
 namespace capacity {
 
 	// Goal of the capacity
-	enum ECapacityPurpose {
+	enum ECapacityPurposeData {
 		ATTACK_PHYSICAL,
 		ATTACK_MAGIC,
 		DEFENSE,
@@ -17,7 +17,7 @@ namespace capacity {
 		SPECIAL
 	};
 
-	constexpr std::string_view toString(ECapacityPurpose purpose) {
+	constexpr std::string_view toString(ECapacityPurposeData purpose) {
 		switch (purpose) {
 			case ATTACK_PHYSICAL:	return "ATTACK_PHYSICAL";
 			case ATTACK_MAGIC:		return "ATTACK_MAGIC";
@@ -34,7 +34,7 @@ namespace capacity {
 
 
 	// Target of the capacity
-	enum ECapacityTarget {
+	enum ECapacityTargetData {
 		TARGET_SELF,
 		TARGET_SINGLE,
 		TARGET_RANDOM,
@@ -47,7 +47,7 @@ namespace capacity {
 		TARGET_DEAD,
 	};
 
-	constexpr std::string_view toString(ECapacityTarget target) {
+	constexpr std::string_view toString(ECapacityTargetData target) {
 		switch (target) {
 			case TARGET_SELF:      return "TARGET_SELF";
 			case TARGET_SINGLE:    return "TARGET_SINGLE";
@@ -65,13 +65,13 @@ namespace capacity {
 
 
 	// When the capacity is used
-	enum ECapacityTrigger {
+	enum ECapacityTriggerData {
 		USED_WHEN_TURN_END,
 		USED_WHEN_TURN_START,
 		USED_WHEN_ASSIGNED
 	};
 
-	constexpr std::string_view toString(ECapacityTrigger trigger) {
+	constexpr std::string_view toString(ECapacityTriggerData trigger) {
 		switch (trigger) {
 			case USED_WHEN_TURN_END:	return "USED_WHEN_TURN_END";
 			case USED_WHEN_TURN_START:	return "USED_WHEN_TURN_START";

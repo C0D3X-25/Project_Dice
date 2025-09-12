@@ -1,6 +1,5 @@
-#include "../include/CharacterSystem.hpp""
+#include "../include/CharacterSystem.hpp"
 
-using namespace character;
 
 character::CharacterSystem::CharacterSystem(const std::string& name) {
     m_stats.setStatsInString(character::NAME, name);
@@ -30,12 +29,12 @@ void character::CharacterSystem::updateAttributes(const AttributeData& update_at
 }
 
 
-//void character::CharacterSystem::setCapacity(const BaseCapacity& capacity, const uint8_t side) {
+//void character::CharacterSystem::setCapacity(const CapacitySystem& capacity, const uint8_t side) {
 //    m_dice_capacity.setCapacity(capacity, side);
 //}
 
 
-//const BaseCapacity character::CharacterSystem::rollDiceCapacity(void) {
+//const CapacitySystem character::CharacterSystem::rollDiceCapacity(void) {
 //    return m_dice_capacity.roll();
 //}
 
@@ -48,10 +47,10 @@ void character::CharacterSystem::printcharacter(void) const {
     m_attributes.printAllAttributes();
 
     std::cout << "\n---------- Bonus Attributes ----------\n";
-    m_bonus_attributes.printAllAttributes();
+    m_temp_attributes.printAllAttributes();
 
     std::cout << "\n---------- Dice Capacity ----------\n";
-    //m_dice_capacity.printDiceSides();
+    m_dice_capacity.printDiceSides();
 
     std::cout << "\n---------- Passives ----------\n";
     //m_passive.printListPassives();
@@ -59,7 +58,32 @@ void character::CharacterSystem::printcharacter(void) const {
 }
 
 
-//void character::CharacterSystem::useCapacity(const BaseCapacity& capacity, CharacterSystem& target) {
+void character::CharacterSystem::calculateMaxLife() {
+
+    int16_t max_life{ BASE_MAX_LIFE };
+    // TODO: max_life += bonus_life;
+    max_life += int16_t(m_attributes.getAttribute(attribute::CONSTITUTION) * 1.5);
+
+    setStats(EStatsData::MAX_LIFE, max_life);
+}
+
+
+// Calculate the maximum armor value based on the attributes
+// best physic = max(strength, dexterity)
+// best psychic = max(wisdom, intelligence, charisma)
+// max_armor = base_max_armor + best_physic + best_psychic
+void character::CharacterSystem::calculateMaxArmor() {
+
+    // TODO: max_armor += bonus_armor;
+    int16_t best_physic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::STRENGTH), m_attributes.getAttribute(attribute::DEXTERITY), 0) };
+    int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::WISDOM), m_attributes.getAttribute(attribute::INTELLIGENCE), m_attributes.getAttribute(attribute::CHARISMA), 0) };
+    int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
+
+    setStats(EStatsData::MAX_ARMOR, max_armor);
+}
+
+
+//void character::CharacterSystem::useCapacity(const CapacitySystem& capacity, CharacterSystem& target) {
 //	std::cout
 //		<< m_name
 //		<< " use capacity " << capacity.getCapacityName()

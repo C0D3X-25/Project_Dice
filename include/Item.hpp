@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../include/Attribute.hpp"
+#include "AttributeData.hpp"
 
 #include <string>
 #include <cstdint>

@@ -134,7 +134,7 @@
           <mxGeometry y="83" width="140" height="20" as="geometry" />
         </mxCell>
         <mxCell id="RR9mRWik63vwz12lQq3k-18" value="&amp;lt;&amp;lt;static&amp;gt;&amp;gt;&lt;br&gt;&lt;b&gt;SFindSystem&lt;/b&gt;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=55;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;fillColor=#0050ef;strokeColor=#001DBC;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="1065" y="1490" width="140" height="103" as="geometry" />
+          <mxGeometry x="1110" y="1490" width="140" height="103" as="geometry" />
         </mxCell>
         <mxCell id="RR9mRWik63vwz12lQq3k-19" value="- attribute1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;" vertex="1" parent="RR9mRWik63vwz12lQq3k-18">
           <mxGeometry y="55" width="140" height="20" as="geometry" />

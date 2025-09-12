@@ -2,7 +2,7 @@
  * @file   Main.cpp
  * @brief  Entry point of the app
  * 
- * @author codex
+ * @author THUMELIN Jocelin
  * @date   January 2025
  *********************************************************************/
 #pragma once
@@ -12,10 +12,10 @@
 #include "../include/CapacityPlayerSingleAttack.hpp"
 #include "../include/PassiveAugmentAttribute.hpp"
 #include "../include/CapacityFactory.hpp"
-#include "../include/DiceCapacity.hpp"
+#include "../include/CapacitySystem.hpp"
+#include "../include/DiceCapacitySystem.hpp"
 
-#include "../include/CharacterGenerator.hpp"
-#include "../include/Team.hpp"
+#include "../include/CharacterGeneratorSystem.hpp"
 
 #include <iostream>
 #include <array>
@@ -25,7 +25,6 @@
 using namespace dice;
 using namespace character;
 using namespace capacity;
-using namespace group;
 using namespace attribute;
 using namespace passive;
 
@@ -36,7 +35,7 @@ int main() {
 
 	 CapacityFactory capacity_factory;
 
-	 CharacterGenerator character_generator;
+	 CharacterGeneratorSystem character_generator;
 	 CharacterSystem character_1 = character_generator.generateNewPlayercharacter();
 	 //CharacterSystem character_2 = character_generator.generateNewPlayercharacter();
 	 //CharacterSystem character_3 = character_generator.generateNewPlayercharacter();
@@ -60,7 +59,7 @@ int main() {
 	 //team_2.printGroup();
 
 	 std::cout << "========================================================\n\n";
-	 //BaseCapacity capacity = capacity_factory.attackSingle(character_1);
+	 //CapacitySystem capacity = capacity_factory.attackSingle(character_1);
 	 //std::cout << "Before: " << character_1.getCurrentLife() << '\n';
 	 //CapacityDTO capacity_modifier = capacity.getNextCapacityDTO();
 	 //character_1.resolveCapacity(capacity_modifier, character_1);

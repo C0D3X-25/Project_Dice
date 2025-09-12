@@ -1,0 +1,22 @@
+#pragma once
+
+#include "BaseCapacityActionSystem.hpp"
+#include "CapacityActionData.hpp"
+
+#include <cstdint>
+
+namespace capacity_action {
+
+	using capacity::CapacityActionData;
+
+	class CapacityActionHealSystem : public BaseCapacityActionSystem {
+	public:
+		CapacityActionHealSystem(const uint8_t heal, const std::vector<ECapacityTargetData>& targets);
+
+		CapacityActionData doAction(void) override;
+
+	private:
+		CapacityActionData m_capacity_dto;
+		uint8_t m_heal{ 0 };
+	};
+}

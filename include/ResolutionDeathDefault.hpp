@@ -10,7 +10,7 @@ namespace resolution_capacity {
 	class ResolutionDeathDefault : public IResolutionCapacity {
 	public:
 
-		void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
+		void resolveCapacity(CapacityActionData& capacity_dto, Character& target) override {
 
 		}
 	};

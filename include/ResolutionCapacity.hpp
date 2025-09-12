@@ -40,7 +40,7 @@ namespace resolution_capacity {
 		}
 
 
-        void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
+        void resolveCapacity(CapacityActionData& capacity_dto, Character& target) override {
 			for (auto& resolution : m_sp_resolutions) {
 				resolution->resolveCapacity(capacity_dto, target);
 			}

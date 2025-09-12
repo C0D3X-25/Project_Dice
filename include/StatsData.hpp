@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFind.hpp"
+#include "SFindSystem.hpp"
 #include "EStatsData.hpp"
 
 #include <cstdint>

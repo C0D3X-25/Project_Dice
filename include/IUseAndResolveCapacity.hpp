@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BaseCapacity.hpp"
+#include "BasECapacityData.hpp"
 #include "CharacterSystem.hpp""
 
 namespace capacity {
@@ -17,7 +17,7 @@ namespace capacity {
 		* @param capacity The capacity to use
 		* @param target The target character
 		*/
-		virtual void useCapacity(const BaseCapacity& capacity, Character& target) = 0;
+		virtual void useCapacity(const CapacitySystem& capacity, Character& target) = 0;
 
 
 		/**
@@ -25,6 +25,6 @@ namespace capacity {
 		* @param capacity The capacity to resolve
 		* @param source The character that is the source of the capacity
 		*/
-		virtual void resolveCapacity(const CapacityDTO& capacity, const Character& source) = 0;
+		virtual void resolveCapacity(const CapacityActionData& capacity, const Character& source) = 0;
 	};
 }

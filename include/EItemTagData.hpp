@@ -6,16 +6,16 @@ namespace item {
 
 	/// <summary>
 	/// Represents the different tags of items in the game.
-	/// An item can be more than 1 tag, but it must have at least one type.
+	/// An item can be more than 1 tag, but it must have at least one tag.
 	/// </summary>
-	enum EItemTag {
+	enum EItemTagData {
 		ARMOR,
 		WEAPON,
 		SHIELD,
 		ACCESSORIES
 	};
 
-	constexpr std::string_view toString(EItemTag item_tag) {
+	constexpr std::string_view toString(EItemTagData item_tag) {
 		switch (item_tag) {
 		case ARMOR:			return "ARMOR";
 		case WEAPON:		return "WEAPON";

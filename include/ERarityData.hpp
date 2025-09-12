@@ -4,7 +4,7 @@
 
 namespace rarity {
 
-	enum ERarity {
+	enum ERarityData {
 		COMMON,
 		UNCOMMON,
 		RARE,
@@ -13,7 +13,7 @@ namespace rarity {
 		RELIC
 	};
 
-	constexpr std::string_view toString(ERarity rarity) {
+	constexpr std::string_view toString(ERarityData rarity) {
 		switch (rarity) {
 		case COMMON:		return "COMMON";
 		case UNCOMMON:		return "UNCOMMON";

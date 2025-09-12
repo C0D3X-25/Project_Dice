@@ -1,7 +1,7 @@
 #pragma once
 
 #include "IResolutionCapacity.hpp"
-#include "SFind.hpp"
+#include "SFindSystem.hpp"
 
 namespace resolution_capacity {
 
@@ -13,7 +13,7 @@ namespace resolution_capacity {
 	class ResolutionArmorDefault : public IResolutionCapacity {
 	public:
 
-		void resolveCapacity(CapacityDTO& capacity_dto, Character& target) override {
+		void resolveCapacity(CapacityActionData& capacity_dto, Character& target) override {
 
 			std::cout << "Resolving component remove armor: " << capacity_dto.m_remove_armor << "\n";
 			std::cout << "character armor before: " << target.getCurrentArmor() << "\n";

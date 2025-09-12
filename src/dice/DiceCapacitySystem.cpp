@@ -1,19 +1,19 @@
-#include "../include/DiceCapacity.hpp"
+#include "../include/DiceCapacitySystem.hpp"
 
 
 using namespace dice;
 
-DiceCapacity::DiceCapacity(void) {
-	CapacityFactory capacity_factory;
+DiceCapacitySystem::DiceCapacitySystem(void) {
+	//CapacityFactory capacity_factory;
 
-    // Initialize sides 1 through m_SIDES_COUNT (inclusive)
-    for (uint8_t i{ 1 }; i <= m_SIDES_COUNT; i++) {
-        m_sides.emplace(i, capacity_factory.nothing());
-    }
+ //   // Initialize sides 1 through m_SIDES_COUNT (inclusive)
+ //   for (uint8_t i{ 1 }; i <= m_SIDES_COUNT; i++) {
+ //       m_sides.emplace(i, capacity_factory.nothing());
+ //   }
 }
 
 
-void DiceCapacity::setCapacity(const BaseCapacity& capacity, const uint8_t side) {
+void DiceCapacitySystem::setCapacity(const CapacitySystem& capacity, const uint8_t side) {
     if (side > m_SIDES_COUNT || side < 1) {
         std::cerr << "Out of range-> capacity {" << capacity.getCapacityName() << "} for side " << static_cast<int>(side) << '\n';
         throw std::runtime_error("Invalid side for capacity assignment.");
@@ -22,7 +22,7 @@ void DiceCapacity::setCapacity(const BaseCapacity& capacity, const uint8_t side)
 }
 
 
-const BaseCapacity* DiceCapacity::getCapacity(const uint8_t side) const {
+const CapacitySystem* DiceCapacitySystem::getCapacity(const uint8_t side) const {
     auto it = m_sides.find(side);
     if (it != m_sides.end()) {
         return &(it->second);  // Return address of the found capacity
@@ -31,7 +31,7 @@ const BaseCapacity* DiceCapacity::getCapacity(const uint8_t side) const {
 }
 
 
-void DiceCapacity::printDiceSides(void) const {
+void DiceCapacitySystem::printDiceSides(void) const {
     for (const auto& [side, capacity] : m_sides) {
         std::cout << "Side " << static_cast<int>(side) << ":\n";
         capacity.printCapacity();
@@ -41,25 +41,25 @@ void DiceCapacity::printDiceSides(void) const {
 
 #pragma warning(push)
 #pragma warning(disable: 4244) // Disable warning about possible data loss
-const BaseCapacity DiceCapacity::roll(void) {
+const CapacitySystem DiceCapacitySystem::roll(void) {
 
     auto it = m_sides.find(getRandomValue(m_SIDES_COUNT));
 
     if (it != m_sides.end()) {
         return it->second;
     }
-    return BaseCapacity();
+    return CapacitySystem();
 }
 #pragma warning(pop)  // Restore warning settings
 
 
-//const BaseCapacity& DiceCapacity::rollAdvantage(void) {
+//const CapacitySystem& DiceCapacitySystem::rollAdvantage(void) {
 //    // TODO: Return the capacity with the highest rarity
 //    return ;
 //}
 //
 //
-//const BaseCapacity& DiceCapacity::rollDisadvantage(void) {
+//const CapacitySystem& DiceCapacitySystem::rollDisadvantage(void) {
 //	// TODO: Return the capacity with the highest rarity
 //    return ;
 //}

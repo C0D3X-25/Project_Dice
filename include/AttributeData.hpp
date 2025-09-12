@@ -1,7 +1,7 @@
 #pragma once
 
-#include "SFind.hpp"
-#include "EAttribute.hpp"
+#include "SFindSystem.hpp"
+#include "EAttributeData.hpp"
 
 #include <cstdint>
 #include <iostream>
@@ -12,7 +12,8 @@ namespace attribute {
 	inline constexpr int8_t ATTRIBUTE_MAX_VALUE{ 30 };
 
 	/// <summary>
-	/// Struct to hold the attributes of an character.
+	/// Struct to hold the attributes of a character.
+	/// Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma.
 	/// Minimum value is -10.
 	/// Maximum value is 30
 	/// </summary>
@@ -28,7 +29,7 @@ namespace attribute {
 				<< "CHA: " << static_cast<int>(m_charisma) << '\n';
 		}
 
-		void setAttribute(const EAttribute attribute_type, int8_t value) {
+		void setAttribute(const EAttributeData attribute_type, int8_t value) {
 
 			int8_t safe_value = helper::find::getValueInRange(value, ATTRIBUTE_MIN_VALUE, ATTRIBUTE_MAX_VALUE);
 
@@ -57,7 +58,7 @@ namespace attribute {
 		}
 
 
-		int8_t getAttribute(const EAttribute attribute_type) const {
+		int8_t getAttribute(const EAttributeData attribute_type) const {
 			switch (attribute_type) {
 			case attribute::STRENGTH:
 				return m_strength;

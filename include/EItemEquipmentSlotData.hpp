@@ -7,7 +7,7 @@ namespace item {
 	/// <summary>
 	/// Slot an item can occupy or block on an character.
 	/// </summary>
-	enum EItemEquipmentSlot {
+	enum EItemEquipmentSlotData {
 		HELMET,
 		BODY_ARMOR,
 		SHOULDER_ARMOR,

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "CharacterSystem.hpp""
+#include "CharacterSystem.hpp"
 #include "AttributeData.hpp"
-#include "SRandom.hpp"
+#include "SRandomSystem.hpp"
 
 #include <iostream>
 #include <memory>
@@ -11,10 +11,10 @@
 
 namespace character {
 
-	class CharacterGenerator {
+	class CharacterGeneratorSystem {
 	public:
-		CharacterGenerator(void) = default;
-		~CharacterGenerator(void) = default;
+		CharacterGeneratorSystem(void) = default;
+		~CharacterGeneratorSystem(void) = default;
 
 		CharacterSystem generateNewPlayercharacter(void) {
 

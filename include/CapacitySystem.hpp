@@ -1,9 +1,9 @@
 #pragma once
 
-#include "CapacityDTO.hpp"
-#include "ECapacity.hpp"
-#include "BaseCapacityAction.hpp"
-#include "EAttribute.hpp"
+#include "EAttributeData.hpp"
+#include "ECapacityData.hpp"
+#include "CapacityActionData.hpp"
+#include "BaseCapacityActionSystem.hpp"
 
 #include <queue>
 #include <string>
@@ -21,29 +21,29 @@ namespace capacity {
 	/// It's composed of a name, description, purposes, targets, triggers, attributes and capacity DTO.
 	/// When an character uses a capacity, there is only the capacity DTO who is send tho the target manager.
 	/// </summary>
-	class BaseCapacity {
+	class CapacitySystem {
 	public:
-		virtual ~BaseCapacity(void) = default;
+		virtual ~CapacitySystem(void) = default;
 
 
-		std::queue<CapacityDTO> getAllCapacityDTO(void) {
+		std::queue<CapacityActionData> getAllCapacityDTO(void) {
 			return m_capacity_dto_queue;
 		}
 
 
-		void queueCapacityDTO(const CapacityDTO& capacity_dto) {
+		void queueCapacityDTO(const CapacityActionData& capacity_dto) {
 			addCapacityTarget(capacity_dto);
 			m_capacity_dto_queue.push(capacity_dto);
 		}
 
 
-		CapacityDTO getNextCapacityDTO(void) {
+		CapacityActionData getNextCapacityDTO(void) {
 			if (!m_capacity_dto_queue.empty()) {
-				CapacityDTO m_current_dto = m_capacity_dto_queue.front();
+				CapacityActionData m_current_dto = m_capacity_dto_queue.front();
 				m_capacity_dto_queue.pop();
 				return m_current_dto;
 			}
-			return CapacityDTO{};
+			return CapacityActionData{};
 		}
 
 
@@ -71,21 +71,21 @@ namespace capacity {
 		}
 
 
-		void setCapacityName(const std::string& name)							{ m_name = name; }
-		void setCapacityDescription(const std::string& description)				{ m_description = description; }
-		void setCapacityPurposes(const std::vector<ECapacityPurpose>& purpose)	{ m_capacity_purpose = purpose; }
-		void setCapacityTriggers(const std::vector<ECapacityTrigger>& trigger)	{ m_capacity_trigger = trigger; }
-		void setCapacityAttribute(const std::vector<EAttribute>& attribute)		{ m_capacity_attribute = attribute; }
+		void setCapacityName(const std::string& name)								{ m_name = name; }
+		void setCapacityDescription(const std::string& description)					{ m_description = description; }
+		void setCapacityPurposes(const std::vector<ECapacityPurposeData>& purpose)	{ m_capacity_purpose = purpose; }
+		void setCapacityTriggers(const std::vector<ECapacityTriggerData>& trigger)	{ m_capacity_trigger = trigger; }
+		void setCapacityAttribute(const std::vector<EAttributeData>& attribute)		{ m_capacity_attribute = attribute; }
 		
-		std::string_view getCapacityName(void) const					{ return m_name; }
-		std::string_view getCapacityDescription(void) const				{ return m_description; }
-		std::vector<ECapacityPurpose> getCapacityPurposes(void) const	{ return m_capacity_purpose; }
-		std::vector<ECapacityTarget> getCapacityTargets(void) const		{ return m_capacity_target; }
-		std::vector<ECapacityTrigger> getCapacityTriggers(void) const	{ return m_capacity_trigger; }
-		std::vector<EAttribute> getCapacityAttributes(void) const		{ return m_capacity_attribute; }
+		std::string_view getCapacityName(void)								const { return m_name; }
+		std::string_view getCapacityDescription(void)						const { return m_description; }
+		std::vector<ECapacityPurposeData> getCapacityPurposes(void)			const { return m_capacity_purpose; }
+		std::vector<ECapacityTargetData> getCapacityTargets(void)			const { return m_capacity_target; }
+		std::vector<ECapacityTriggerData> getCapacityTriggers(void)			const { return m_capacity_trigger; }
+		std::vector<EAttributeData> getCapacityAttributes(void)				const { return m_capacity_attribute; }
 
 	private:
-		void addCapacityTarget(const CapacityDTO& capacity_dto) {
+		void addCapacityTarget(const CapacityActionData& capacity_dto) {
 			for (const auto& target : capacity_dto.m_targets) {
 				if (std::find(m_capacity_target.begin(), m_capacity_target.end(), target) == m_capacity_target.end()) {
 					m_capacity_target.push_back(target);
@@ -96,10 +96,10 @@ namespace capacity {
 	private:
 		std::string m_name{ "N/A" };
 		std::string m_description{ "N/A" };
-		std::queue<CapacityDTO> m_capacity_dto_queue;
-		std::vector<ECapacityPurpose> m_capacity_purpose;
-		std::vector<ECapacityTarget> m_capacity_target;
-		std::vector<ECapacityTrigger> m_capacity_trigger;
-		std::vector<EAttribute> m_capacity_attribute;
+		std::queue<CapacityActionData> m_capacity_dto_queue;
+		std::vector<ECapacityPurposeData> m_capacity_purpose;
+		std::vector<ECapacityTargetData> m_capacity_target;
+		std::vector<ECapacityTriggerData> m_capacity_trigger;
+		std::vector<EAttributeData> m_capacity_attribute;
 	};
 }

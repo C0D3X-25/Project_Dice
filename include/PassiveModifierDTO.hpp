@@ -14,7 +14,7 @@ namespace passive {
     struct PassiveModifierDTO {
         //std::shared_ptr<Icharacter> m_source_character;
         //std::shared_ptr<Icharacter> m_destination_character;
-        AttributeData m_bonus_attributes;
+        AttributeData m_temp_attributes;
         int32_t m_modifier_value{ 0 };
     };
 }

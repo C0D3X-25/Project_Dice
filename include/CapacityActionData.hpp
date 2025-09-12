@@ -1,25 +1,22 @@
 #pragma once
-#include "ECapacity.hpp"
-//#include "CharacterSystem.hpp"
+#include "ECapacityData.hpp"
 
 #include <cstdint>
 #include <vector>
 #include <memory>
 
-
-
 namespace capacity {
-
-	//using character::CharacterSystem;
 
 	/// <summary>
 	/// Represent the data who need to be transfered when a character use a capacity, from source to target.
 	/// </summary>
-	struct CapacityDTO {
+	struct CapacityActionData {
 
-		std::vector<ECapacityTarget> m_targets;
-
-		//std::shared_ptr<CharacterSystem> m_p_user;
+		/// <summary>
+		/// Vector holding elements of type ECapacityTargetData, 
+		/// because a capacity can have multiple actions who have different targets.
+		/// </summary>
+		std::vector<ECapacityTargetData> m_targets;
 
 		uint16_t m_damage{ 0 };
 		uint16_t m_heal{ 0 };
@@ -30,4 +27,4 @@ namespace capacity {
 		
 		// TODO: Status
 	};
-} // namespace capacity
+}

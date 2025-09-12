@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CharacterSystem.hpp""
+#include "CharacterSystem.hpp"
 
 #include <array>
 #include <memory>

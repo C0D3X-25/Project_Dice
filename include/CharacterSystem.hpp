@@ -2,12 +2,12 @@
 
 //#include "IPassive.hpp"
 //#include "IResolutionCapacity.hpp"
-#include "SFind.hpp"
-#include "EAttribute.hpp"
+#include "SFindSystem.hpp"
+#include "EAttributeData.hpp"
 #include "EStatsData.hpp"
-#include "BaseCapacity.hpp"
-//#include "DiceCapacity.hpp"
-#include "CapacityDTO.hpp"
+//#include "CapacitySystem.hpp"
+#include "DiceCapacitySystem.hpp"
+//#include "CapacityActionData.hpp"
 #include "AttributeData.hpp"
 #include "StatsData.hpp"
 //#include "ResolutionCapacity.hpp"
@@ -21,6 +21,15 @@
 #include <string_view>
 #include <cstdint>
 
+namespace dice {
+	class DiceCapacitySystem;
+}
+
+namespace attribute {
+	enum EAttributeData;
+	struct AttributeData;
+}
+
 namespace character {
 
 	inline constexpr uint8_t BASE_MAX_LIFE{ 20 };
@@ -28,11 +37,11 @@ namespace character {
 	inline constexpr uint8_t BASE_MAX_ARMOR{ 2 };
 	inline constexpr uint8_t BASE_MIN_ARMOR{ 0 };
 
-    using capacity::BaseCapacity;
-    using capacity::CapacityDTO;
+    //using capacity::CapacitySystem;
+    //using capacity::CapacityActionData;
     using attribute::AttributeData;
-    using attribute::EAttribute;
-	//using dice::DiceCapacity;
+    using attribute::EAttributeData;
+	using dice::DiceCapacitySystem;
 
     /// <summary>
     /// Base Class for any character.
@@ -44,20 +53,17 @@ namespace character {
         ~CharacterSystem() = default;
 
         void updateAttributes(const AttributeData& update_attributes);
-        //void addPassive(passive::IPassive& sp_passive) { m_passive.addPassive(sp_passive); }
-
-
 
 		/**
 		* @brief Assigns a capacity to a specific side of the dice capacity
 		* @param sp_capacity The capacity to assign
 		* @param side The side number to assign the capacity to (1-10)
 		*/
-		void setCapacity(const BaseCapacity& capacity, const uint8_t side);
+		//void setCapacity(const CapacitySystem& capacity, const uint8_t side);
 
-		const BaseCapacity rollDiceCapacity();
+		//const CapacitySystem rollDiceCapacity();
 
-		//void useCapacity(const BaseCapacity& capacity, CharacterSystem& target) override;
+		//void useCapacity(const CapacitySystem& capacity, CharacterSystem& target) override;
 
 
 		void printcharacter() const;
@@ -75,45 +81,32 @@ namespace character {
 			//setResolution();
 		}
 
-		//void resolveCapacity(CapacityDTO& capacity_comp, CharacterSystem& target) {
+		//void resolveCapacity(CapacityActionData& capacity_comp, CharacterSystem& target) {
 		//	m_capacity_resolution.resolveCapacity(capacity_comp, target);
 		//}
 
         std::string getcharacterName()								const { return m_stats.getStatsInString(EStatsData::NAME); }
-		int8_t getAttribute(const EAttribute attribute_type)		const { return m_attributes.getAttribute(attribute_type); }
-		int8_t getBonusAttribute(const EAttribute attribute_type)	const { return m_bonus_attributes.getAttribute(attribute_type); }
+		int8_t getAttribute(const EAttributeData attribute_type)		const { return m_attributes.getAttribute(attribute_type); }
+		int8_t getBonusAttribute(const EAttributeData attribute_type)	const { return m_temp_attributes.getAttribute(attribute_type); }
 		int8_t getStats(const EStatsData stats)						const { return m_stats.getStats(stats); }
 
         void setcharacterName(const std::string& name)							{ m_stats.setStatsInString(EStatsData::NAME, name); }
-		void setAttribute(const EAttribute attribute_type, int8_t value)		{ m_attributes.setAttribute(attribute_type, value); }
-		void setBonusAttribute(const EAttribute attribute_type, int8_t value)	{ m_bonus_attributes.setAttribute(attribute_type, value); }
+		void setAttribute(const EAttributeData attribute_type, int8_t value)		{ m_attributes.setAttribute(attribute_type, value); }
+		void setBonusAttribute(const EAttributeData attribute_type, int8_t value)	{ m_temp_attributes.setAttribute(attribute_type, value); }
 		void setStats(const EStatsData stats, int16_t value)					{ m_stats.setStats(stats, value); }
 
 	private:
 
-		void calculateMaxLife() {
-
-			int16_t max_life{ BASE_MAX_LIFE };
-			// TODO: max_life += bonus_life;
-			max_life += int16_t(m_attributes.getAttribute(attribute::CONSTITUTION) * 1.5);
-
-			setStats(EStatsData::MAX_LIFE, max_life);
-		}
+		/// <summary>
+		/// Calculates the maximum life value.
+		/// </summary>
+		void calculateMaxLife();
 
 
-		// Calculate the maximum armor value based on the attributes
-		// best physic = max(strength, dexterity)
-		// best psychic = max(wisdom, intelligence, charisma)
-		// max_armor = base_max_armor + best_physic + best_psychic
-		void calculateMaxArmor(void) {
-
-			// TODO: max_armor += bonus_armor;
-			int16_t best_physic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::STRENGTH), m_attributes.getAttribute(attribute::DEXTERITY), 0) };
-			int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::WISDOM), m_attributes.getAttribute(attribute::INTELLIGENCE), m_attributes.getAttribute(attribute::CHARISMA), 0) };
-			int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
-
-			setStats(EStatsData::MAX_ARMOR, max_armor);
-		}
+		/// <summary>
+		/// Calculates the maximum armor value.
+		/// </summary>
+		void calculateMaxArmor();
 
 
 		// TODO: Move this method in another class (need to work with the passives)
@@ -142,11 +135,11 @@ namespace character {
 			// TODO: m_passives[];
 			// TODO: m_status;
 			// TODO: m_feat;
-			AttributeData m_attributes;
-			AttributeData m_bonus_attributes;
 			StatsData m_stats;
+			DiceCapacitySystem m_dice_capacity;
+			AttributeData m_attributes;
+			AttributeData m_temp_attributes;
 			//ResolutionCapacity m_capacity_resolution;
-			//DiceCapacity m_dice_capacity;
 			// TODO: Equipment m_equipment;
 
 	};

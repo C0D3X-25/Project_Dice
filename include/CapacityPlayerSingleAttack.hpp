@@ -1,10 +1,10 @@
 //#pragma once 
 //
-//#include "BaseCapacity.hpp"
-//#include "CapacityActionDamage.hpp"
+//#include "BasECapacityData.hpp"
+//#include "CapacityActionDamageSystem.hpp"
 //#include "AttributeData.hpp"
 //#include "CharacterSystem.hpp" 
-//#include "SFind.hpp"
+//#include "SFindSystem.hpp"
 //
 //#include <vector>
 //
@@ -13,7 +13,7 @@
 //	using namespace character;
 //	using namespace attribute;
 //
-//	class CapacityPlayerSingleAttack : public BaseCapacity {
+//	class CapacityPlayerSingleAttack : public CapacitySystem {
 //	public:
 //
 //		CapacityPlayerSingleAttack(const CharacterSystem& user) {
@@ -25,25 +25,25 @@
 //
 //			// Take the best between dexterity and strength
 //			{
-//				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_SINGLE, TARGET_ENNEMY };
+//				std::vector<ECapacityTargetData> targets{ TARGET_ALIVE, TARGET_SINGLE, TARGET_ENNEMY };
 //
 //				constexpr int8_t min_damage{ 1 };
 //				constexpr int8_t base_damage{ 3 };
 //				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
-//				CapacityActionDamage attack(total_damage, targets);
+//				CapacityActionDamageSystem attack(total_damage, targets);
 //				queueCapacityDTO(attack.doAction());
 //			}
 //
 //			// Take the best between dexterity and strength
 //			{
-//				std::vector<ECapacityTarget> targets{ TARGET_ALIVE, TARGET_RANDOM, TARGET_ENNEMY };
+//				std::vector<ECapacityTargetData> targets{ TARGET_ALIVE, TARGET_RANDOM, TARGET_ENNEMY };
 //
 //				constexpr int8_t min_damage{ 1 };
 //				constexpr int8_t base_damage{ 5 };
 //				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
-//				CapacityActionDamage attack(total_damage, targets);
+//				CapacityActionDamageSystem attack(total_damage, targets);
 //				queueCapacityDTO(attack.doAction());
 //			}
 //		}
