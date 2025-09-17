@@ -12,9 +12,9 @@ namespace character {
 	/// <summary>
 	/// Struct to hold the stats of a character.
 	/// </summary>
-	struct StatsData {
+	struct CharacterStatsData {
 
-		void printAllStats() const {
+		void printCharacterStats() const {
 			std::cout
 				<< m_name
 				<< " || " << m_life << "/" << m_max_life << " Life "
@@ -22,7 +22,7 @@ namespace character {
 				<< '\n';
 		}
 		
-		void setStats(const EStatsData stats, const int16_t value) {
+		void setCharacterStats(const EStatsData stats, const int16_t value) {
 			switch (stats) {
 			case character::MAX_LIFE:
 				m_max_life = value;
@@ -41,7 +41,7 @@ namespace character {
 			}
 		}
 
-		void setStatsInString(const EStatsData stats, const std::string& value) {
+		void setCharacterStatsInString(const EStatsData stats, const std::string& value) {
 			switch (stats) {
 			case character::NAME:
 				m_name = value;
@@ -51,7 +51,7 @@ namespace character {
 			}
 		}
 
-		int16_t getStats(const EStatsData stats) const {
+		int16_t getCharacterStats(const EStatsData stats) const {
 			switch (stats) {
 			case character::MAX_LIFE:
 				return m_max_life;
@@ -70,7 +70,7 @@ namespace character {
 			}
 		}
 
-		std::string getStatsInString(const EStatsData stats) const {
+		std::string getCharacterStatsInString(const EStatsData stats) const {
 			switch (stats) {
 			case character::NAME:
 				return m_name;

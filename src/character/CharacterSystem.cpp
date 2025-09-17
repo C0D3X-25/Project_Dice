@@ -2,15 +2,15 @@
 
 
 character::CharacterSystem::CharacterSystem(const std::string& name) {
-    m_stats.setStatsInString(character::NAME, name);
+    m_stats.setCharacterStatsInString(character::NAME, name);
 }
 
 
 character::CharacterSystem::CharacterSystem(const std::string& name, const int16_t max_life, const int16_t max_armor) {
 
-    m_stats.setStatsInString(character::NAME, name);
-    m_stats.setStats(character::MAX_LIFE, max_life);
-    m_stats.setStats(character::MAX_ARMOR, max_armor);
+    m_stats.setCharacterStatsInString(character::NAME, name);
+    m_stats.setCharacterStats(character::MAX_LIFE, max_life);
+    m_stats.setCharacterStats(character::MAX_ARMOR, max_armor);
 
     resetToDefaultValues();
 }
@@ -18,12 +18,12 @@ character::CharacterSystem::CharacterSystem(const std::string& name, const int16
 
 void character::CharacterSystem::updateAttributes(const AttributeData& update_attribute) {
 
-    m_attributes.setAttribute(attribute::STRENGTH, update_attribute.getAttribute(attribute::STRENGTH));
-    m_attributes.setAttribute(attribute::DEXTERITY, update_attribute.getAttribute(attribute::DEXTERITY));
-    m_attributes.setAttribute(attribute::CONSTITUTION, update_attribute.getAttribute(attribute::CONSTITUTION));
-    m_attributes.setAttribute(attribute::INTELLIGENCE, update_attribute.getAttribute(attribute::INTELLIGENCE));
-    m_attributes.setAttribute(attribute::WISDOM, update_attribute.getAttribute(attribute::WISDOM));
-    m_attributes.setAttribute(attribute::CHARISMA, update_attribute.getAttribute(attribute::CHARISMA));
+    m_attributes.setAttributeData(attribute::STRENGTH, update_attribute.getAttributeData(attribute::STRENGTH));
+    m_attributes.setAttributeData(attribute::DEXTERITY, update_attribute.getAttributeData(attribute::DEXTERITY));
+    m_attributes.setAttributeData(attribute::CONSTITUTION, update_attribute.getAttributeData(attribute::CONSTITUTION));
+    m_attributes.setAttributeData(attribute::INTELLIGENCE, update_attribute.getAttributeData(attribute::INTELLIGENCE));
+    m_attributes.setAttributeData(attribute::WISDOM, update_attribute.getAttributeData(attribute::WISDOM));
+    m_attributes.setAttributeData(attribute::CHARISMA, update_attribute.getAttributeData(attribute::CHARISMA));
 
     updatecharacter();
 }
@@ -41,13 +41,13 @@ void character::CharacterSystem::updateAttributes(const AttributeData& update_at
 
 void character::CharacterSystem::printcharacter(void) const {
 
-	m_stats.printAllStats();
+	m_stats.printCharacterStats();
 
     std::cout << "\n---------- Attributes ----------\n";
-    m_attributes.printAllAttributes();
+    m_attributes.printAllAttributesData();
 
-    std::cout << "\n---------- Bonus Attributes ----------\n";
-    m_temp_attributes.printAllAttributes();
+    std::cout << "\n---------- Temp Attributes ----------\n";
+    m_temp_attributes.printAllAttributesData();
 
     std::cout << "\n---------- Dice Capacity ----------\n";
     m_dice_capacity.printDiceSides();
@@ -62,7 +62,7 @@ void character::CharacterSystem::calculateMaxLife() {
 
     int16_t max_life{ BASE_MAX_LIFE };
     // TODO: max_life += bonus_life;
-    max_life += int16_t(m_attributes.getAttribute(attribute::CONSTITUTION) * 1.5);
+    max_life += int16_t(m_attributes.getAttributeData(attribute::CONSTITUTION) * 1.5);
 
     setStats(EStatsData::MAX_LIFE, max_life);
 }
@@ -75,8 +75,8 @@ void character::CharacterSystem::calculateMaxLife() {
 void character::CharacterSystem::calculateMaxArmor() {
 
     // TODO: max_armor += bonus_armor;
-    int16_t best_physic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::STRENGTH), m_attributes.getAttribute(attribute::DEXTERITY), 0) };
-    int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttribute(attribute::WISDOM), m_attributes.getAttribute(attribute::INTELLIGENCE), m_attributes.getAttribute(attribute::CHARISMA), 0) };
+    int16_t best_physic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttributeData(attribute::STRENGTH), m_attributes.getAttributeData(attribute::DEXTERITY), 0) };
+    int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttributeData(attribute::WISDOM), m_attributes.getAttributeData(attribute::INTELLIGENCE), m_attributes.getAttributeData(attribute::CHARISMA), 0) };
     int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
 
     setStats(EStatsData::MAX_ARMOR, max_armor);

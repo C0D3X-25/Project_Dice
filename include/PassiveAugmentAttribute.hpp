@@ -23,22 +23,22 @@ namespace passive {
 
 			switch (m_attribute_type) {
 			case attribute::STRENGTH:
-				passive_mod.m_temp_attributes.setAttribute(attribute::STRENGTH, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::STRENGTH, m_augment_value);
 				break;
 			case attribute::DEXTERITY:
-				passive_mod.m_temp_attributes.setAttribute(attribute::DEXTERITY, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::DEXTERITY, m_augment_value);
 				break;
 			case attribute::CONSTITUTION:
-				passive_mod.m_temp_attributes.setAttribute(attribute::CONSTITUTION, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::CONSTITUTION, m_augment_value);
 				break;
 			case attribute::INTELLIGENCE:
-				passive_mod.m_temp_attributes.setAttribute(attribute::INTELLIGENCE, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::INTELLIGENCE, m_augment_value);
 				break;
 			case attribute::WISDOM:
-				passive_mod.m_temp_attributes.setAttribute(attribute::WISDOM, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::WISDOM, m_augment_value);
 				break;
 			case attribute::CHARISMA:
-				passive_mod.m_temp_attributes.setAttribute(attribute::CHARISMA, m_augment_value);
+				passive_mod.m_temp_attributes.setAttributeData(attribute::CHARISMA, m_augment_value);
 				break;
 			default:
 				break;

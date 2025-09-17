@@ -6,10 +6,10 @@
 #include "EAttributeData.hpp"
 #include "EStatsData.hpp"
 //#include "CapacitySystem.hpp"
-#include "DiceCapacitySystem.hpp"
+#include "DiceCapacitySystem.hpp" // TODO: Should be moved ?
 //#include "CapacityActionData.hpp"
 #include "AttributeData.hpp"
-#include "StatsData.hpp"
+#include "CharacterStatsData.hpp"
 //#include "ResolutionCapacity.hpp"
 //#include "ResolutionArmorDefault.hpp"
 //#include "ResolutionDeathDefault.hpp"
@@ -85,15 +85,15 @@ namespace character {
 		//	m_capacity_resolution.resolveCapacity(capacity_comp, target);
 		//}
 
-        std::string getcharacterName()								const { return m_stats.getStatsInString(EStatsData::NAME); }
-		int8_t getAttribute(const EAttributeData attribute_type)		const { return m_attributes.getAttribute(attribute_type); }
-		int8_t getBonusAttribute(const EAttributeData attribute_type)	const { return m_temp_attributes.getAttribute(attribute_type); }
-		int8_t getStats(const EStatsData stats)						const { return m_stats.getStats(stats); }
+        std::string getcharacterName()									const { return m_stats.getCharacterStatsInString(EStatsData::NAME); }
+		int8_t getAttribute(const EAttributeData attribute_type)		const { return m_attributes.getAttributeData(attribute_type); }
+		int8_t getBonusAttribute(const EAttributeData attribute_type)	const { return m_temp_attributes.getAttributeData(attribute_type); }
+		int8_t getStats(const EStatsData stats)							const { return m_stats.getCharacterStats(stats); }
 
-        void setcharacterName(const std::string& name)							{ m_stats.setStatsInString(EStatsData::NAME, name); }
-		void setAttribute(const EAttributeData attribute_type, int8_t value)		{ m_attributes.setAttribute(attribute_type, value); }
-		void setBonusAttribute(const EAttributeData attribute_type, int8_t value)	{ m_temp_attributes.setAttribute(attribute_type, value); }
-		void setStats(const EStatsData stats, int16_t value)					{ m_stats.setStats(stats, value); }
+        void setcharacterName(const std::string& name)								{ m_stats.setCharacterStatsInString(EStatsData::NAME, name); }
+		void setAttribute(const EAttributeData attribute_type, int8_t value)		{ m_attributes.setAttributeData(attribute_type, value); }
+		void setBonusAttribute(const EAttributeData attribute_type, int8_t value)	{ m_temp_attributes.setAttributeData(attribute_type, value); }
+		void setStats(const EStatsData stats, int16_t value)						{ m_stats.setCharacterStats(stats, value); }
 
 	private:
 
@@ -135,7 +135,7 @@ namespace character {
 			// TODO: m_passives[];
 			// TODO: m_status;
 			// TODO: m_feat;
-			StatsData m_stats;
+			CharacterStatsData m_stats;
 			DiceCapacitySystem m_dice_capacity;
 			AttributeData m_attributes;
 			AttributeData m_temp_attributes;

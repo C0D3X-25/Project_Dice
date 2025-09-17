@@ -40,12 +40,12 @@ namespace character {
 
 			AttributeData generated_attributes;
 
-			generated_attributes.setAttribute(attribute::STRENGTH, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setAttribute(attribute::DEXTERITY, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setAttribute(attribute::CONSTITUTION, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setAttribute(attribute::INTELLIGENCE, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setAttribute(attribute::WISDOM, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
-			generated_attributes.setAttribute(attribute::CHARISMA, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::STRENGTH, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::DEXTERITY, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::CONSTITUTION, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::INTELLIGENCE, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::WISDOM, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
+			generated_attributes.setAttributeData(attribute::CHARISMA, getRandomValue(DICE_SIDES, DICE_NBR_ROLLS, BASE_VALUE));
 
 			character.updateAttributes(generated_attributes);
 		}
