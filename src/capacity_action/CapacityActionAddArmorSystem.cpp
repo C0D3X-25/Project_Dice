@@ -6,8 +6,8 @@ capacity_action::CapacityActionAddArmorSystem::CapacityActionAddArmorSystem(cons
 
 
 capacity_action::CapacityActionData capacity_action::CapacityActionAddArmorSystem::doAction(void) {
-	m_capacity_dto.m_add_armor = m_armor;
-	return m_capacity_dto;
+	m_capacity_action_data.m_add_armor = m_armor;
+	return m_capacity_action_data;
 }
 
 

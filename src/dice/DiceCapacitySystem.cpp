@@ -1,9 +1,9 @@
-#include "../include/DiceCapacitySystem.hpp"
+#include "DiceCapacitySystem.hpp"
 
 
 using namespace dice;
 
-DiceCapacitySystem::DiceCapacitySystem(void) {
+dice::DiceCapacitySystem::DiceCapacitySystem() {
 	//CapacityFactory capacity_factory;
 
  //   // Initialize sides 1 through m_SIDES_COUNT (inclusive)
@@ -13,7 +13,7 @@ DiceCapacitySystem::DiceCapacitySystem(void) {
 }
 
 
-void DiceCapacitySystem::setCapacity(const CapacitySystem& capacity, const uint8_t side) {
+void dice::DiceCapacitySystem::setCapacity(const CapacitySystem& capacity, const uint8_t side) {
     if (side > m_SIDES_COUNT || side < 1) {
         std::cerr << "Out of range-> capacity {" << capacity.getCapacityName() << "} for side " << static_cast<int>(side) << '\n';
         throw std::runtime_error("Invalid side for capacity assignment.");
@@ -22,7 +22,7 @@ void DiceCapacitySystem::setCapacity(const CapacitySystem& capacity, const uint8
 }
 
 
-const CapacitySystem* DiceCapacitySystem::getCapacity(const uint8_t side) const {
+const dice::CapacitySystem* DiceCapacitySystem::getCapacity(const uint8_t side) const {
     auto it = m_sides.find(side);
     if (it != m_sides.end()) {
         return &(it->second);  // Return address of the found capacity
@@ -31,7 +31,7 @@ const CapacitySystem* DiceCapacitySystem::getCapacity(const uint8_t side) const 
 }
 
 
-void DiceCapacitySystem::printDiceSides(void) const {
+void dice::DiceCapacitySystem::printDiceSides() const {
     for (const auto& [side, capacity] : m_sides) {
         std::cout << "Side " << static_cast<int>(side) << ":\n";
         capacity.printCapacity();
@@ -41,7 +41,7 @@ void DiceCapacitySystem::printDiceSides(void) const {
 
 #pragma warning(push)
 #pragma warning(disable: 4244) // Disable warning about possible data loss
-const CapacitySystem DiceCapacitySystem::roll(void) {
+const dice::CapacitySystem DiceCapacitySystem::roll() {
 
     auto it = m_sides.find(getRandomValue(m_SIDES_COUNT));
 
@@ -53,13 +53,13 @@ const CapacitySystem DiceCapacitySystem::roll(void) {
 #pragma warning(pop)  // Restore warning settings
 
 
-//const CapacitySystem& DiceCapacitySystem::rollAdvantage(void) {
+//const dice::CapacitySystem& DiceCapacitySystem::rollAdvantage() {
 //    // TODO: Return the capacity with the highest rarity
 //    return ;
 //}
 //
 //
-//const CapacitySystem& DiceCapacitySystem::rollDisadvantage(void) {
+//const dice::CapacitySystem& DiceCapacitySystem::rollDisadvantage() {
 //	// TODO: Return the capacity with the highest rarity
 //    return ;
 //}

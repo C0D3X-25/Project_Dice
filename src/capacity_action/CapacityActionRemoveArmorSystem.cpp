@@ -8,6 +8,6 @@ capacity_action::CapacityActionRemoveArmorSystem::CapacityActionRemoveArmorSyste
 
 
 capacity_action::CapacityActionData CapacityActionRemoveArmorSystem::doAction(void) {
-	m_capacity_dto.m_remove_armor = m_armor;
-	return m_capacity_dto;
+	m_capacity_action_data.m_remove_armor = m_armor;
+	return m_capacity_action_data;
 }

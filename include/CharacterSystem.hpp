@@ -4,7 +4,7 @@
 //#include "IResolutionCapacity.hpp"
 #include "SFindSystem.hpp"
 #include "EAttributeData.hpp"
-#include "EStatsData.hpp"
+#include "ECharacterStatsData.hpp"
 //#include "CapacitySystem.hpp"
 #include "DiceCapacitySystem.hpp" // TODO: Should be moved ?
 //#include "CapacityActionData.hpp"
@@ -50,7 +50,6 @@ namespace character {
     public:
         CharacterSystem(const std::string& name);
         CharacterSystem(const std::string& name, const int16_t max_life, const int16_t max_armor);
-        ~CharacterSystem() = default;
 
         void updateAttributes(const AttributeData& update_attributes);
 
@@ -70,8 +69,8 @@ namespace character {
 
 		void resetToDefaultValues() {
 			updatecharacter();
-			setStats(EStatsData::LIFE, getStats(EStatsData::MAX_LIFE));
-			setStats(EStatsData::ARMOR, getStats(EStatsData::MAX_ARMOR));
+			setStats(ECharacterStatsData::LIFE, getStats(ECharacterStatsData::MAX_LIFE));
+			setStats(ECharacterStatsData::ARMOR, getStats(ECharacterStatsData::MAX_ARMOR));
 		}
 
 
@@ -85,15 +84,15 @@ namespace character {
 		//	m_capacity_resolution.resolveCapacity(capacity_comp, target);
 		//}
 
-        std::string getcharacterName()									const { return m_stats.getCharacterStatsInString(EStatsData::NAME); }
+        std::string getcharacterName()									const { return m_stats.getCharacterStatsInString(ECharacterStatsData::NAME); }
 		int8_t getAttribute(const EAttributeData attribute_type)		const { return m_attributes.getAttributeData(attribute_type); }
 		int8_t getBonusAttribute(const EAttributeData attribute_type)	const { return m_temp_attributes.getAttributeData(attribute_type); }
-		int8_t getStats(const EStatsData stats)							const { return m_stats.getCharacterStats(stats); }
+		int8_t getStats(const ECharacterStatsData stats)							const { return m_stats.getCharacterStats(stats); }
 
-        void setcharacterName(const std::string& name)								{ m_stats.setCharacterStatsInString(EStatsData::NAME, name); }
+        void setcharacterName(const std::string& name)								{ m_stats.setCharacterStatsInString(ECharacterStatsData::NAME, name); }
 		void setAttribute(const EAttributeData attribute_type, int8_t value)		{ m_attributes.setAttributeData(attribute_type, value); }
 		void setBonusAttribute(const EAttributeData attribute_type, int8_t value)	{ m_temp_attributes.setAttributeData(attribute_type, value); }
-		void setStats(const EStatsData stats, int16_t value)						{ m_stats.setCharacterStats(stats, value); }
+		void setStats(const ECharacterStatsData stats, int16_t value)						{ m_stats.setCharacterStats(stats, value); }
 
 	private:
 

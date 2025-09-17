@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BaseCapacityActionSystem.hpp"
-#include "CapacityActionData.hpp"
 
 #include <cstdint>
 #include <vector>
@@ -12,7 +11,7 @@ namespace capacity_action {
 	public:
 		CapacityActionDamageSystem(const uint8_t damage, const std::vector<ECapacityTargetData>& targets);
 
-		CapacityActionData doAction(void) override;
+		CapacityActionData doAction() override;
 
 	private:
 		uint8_t m_damage{ 0 };

@@ -8,7 +8,7 @@ capacity_action::CapacityActionDamageSystem::CapacityActionDamageSystem(const ui
 
 
 CapacityActionData capacity_action::CapacityActionDamageSystem::doAction(void) {
-	m_capacity_dto = BaseCapacityActionSystem::doAction();
-	m_capacity_dto.m_damage = m_damage;
-	return m_capacity_dto;
+	m_capacity_action_data = BaseCapacityActionSystem::doAction();
+	m_capacity_action_data.m_damage = m_damage;
+	return m_capacity_action_data;
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BaseCapacityActionSystem.hpp"
-#include "CapacityActionData.hpp"
 
 #include <cstdint>
 
@@ -13,7 +12,7 @@ namespace capacity_action {
 	public:
 		CapacityActionRemoveArmorSystem(const uint8_t armor, const std::vector<ECapacityTargetData>& targets);
 
-		CapacityActionData doAction(void) override;
+		CapacityActionData doAction() override;
 
 	private:
 		uint8_t m_armor{ 0 };

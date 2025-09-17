@@ -1,17 +1,25 @@
 ```mermaid
+---
+config:
+  theme: dark
+  look: classic
+---
 classDiagram
 
 
 note for Find "T = any type, Args... = a unknow number of parameter"
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 namespace helper {
 
-    class Random:::styleStatic {
+    class SRandomSystem:::styleStatic {
         <<static functions>>
 
         + getRandomNumber(int min, int max) int
     }
 
-    class Find:::styleStatic {
+    class SFindSystem:::styleStatic {
         <<static functions>>
 
         + getHighestValue(T first_value, Args... others_values) T
@@ -21,8 +29,8 @@ namespace helper {
 }
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 namespace attribute {
-
     class AttributeData:::styleClass {
         <<struct>>
 
@@ -52,116 +60,276 @@ namespace attribute {
 }
 
 AttributeData --> EAttributeData : uses
-AttributeData --> Find : uses
+AttributeData --> SFindSystem : uses
 
 
-https://www.youtube.com/watch?v=HpyVBF03vI8
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+namespace character {
+    class CharacterSystem:::styleClass {
+
+    	- CharacterStatsData m_stats
+		- DiceCapacitySystem m_dice_capacity
+		- AttributeData m_attributes
+		- AttributeData m_temp_attributes
+
+        + CharacterSystem(const std::string& name)
+        + CharacterSystem(const std::string& name, const int16_t max_life, const int16_t max_armor)
+
+        + updateAttributes(const AttributeData& update_attributes)
+		+ printcharacter()
+		+ resetToDefaultValues()
+		+ updatecharacter()
+
+        + std::string getcharacterName()
+		+ getAttribute(const EAttributeData attribute_type) int8_t
+		+ getBonusAttribute(const EAttributeData attribute_type) int8_t
+		+ getStats(const EStatsData stats) int8_t
+        + setcharacterName(const std::string& name)			
+		+ setAttribute(const EAttributeData attribute_type, int8_t value)
+		+ setBonusAttribute(const EAttributeData attribute_type, int8_t value)
+		+ setStats(const EStatsData stats, int16_t value)
+
+		- calculateMaxLife()
+		- calculateMaxArmor()
+	}
+
+    class CharacterStatsData:::styleClass {
+        <<struct>>
+
+		- std::string m_name
+		- int16_t m_max_life
+		- int16_t m_life
+		- int16_t m_max_armor
+		- int16_t m_armor
+
+		+ printCharacterStats()
+		+ setCharacterStats(const ECharacterStatsData stats, const int16_t value)
+		+ setCharacterStatsInString(const ECharacterStatsData stats, const std::string& value)
+		+ getCharacterStats(const ECharacterStatsData stats) int16_t
+		+ getCharacterStatsInString(const ECharacterStatsData stats) std::string
+	}
+
+    class ECharacterStatsData:::styleEnum {
+        <<enumeration>>
+
+		NAME
+		LIFE
+		MAX_LIFE
+		ARMOR
+		MAX_ARMOR
+		LEVEL
+		XP
+		NEXT_LEVEL_XP
+	}
+
+	class CharacterGeneratorSystem:::styleClass {
+
+		+ generateNewPlayercharacter() CharacterSystem
+
+		- generateAttributes(CharacterSystem& character)
+		- getRandomValue(uint8_t max_value, uint8_t nbr_roll = 1, int8_t base_value = 0) int8_t
+	}
+}
+CharacterSystem --> SFindSystem : uses
+CharacterSystem --> EAttributeData : uses
+CharacterSystem --> ECharacterStatsData : uses
+CharacterSystem --> DiceCapacitySystem : uses
+CharacterSystem *--> AttributeData : compose
+CharacterSystem --> CharacterStatsData : uses
+
+CharacterStatsData --> SFindSystem : uses
+CharacterStatsData --> ECharacterStatsData : uses
+
+CharacterGeneratorSystem --> CharacterSystem : uses
+CharacterGeneratorSystem --> AttributeData : uses
+CharacterGeneratorSystem --> SRandomSystem : uses
 
 
-namespace capacity {
-    class CapacitySystem:::styleClass {
-        -string m_name
-        -string m_description
-        -queue~CapacityActionData~ m_capacity_dto_queue
-        -vector~ECapacityPurposeData~ m_capacity_purpose
-        -vector~ECapacityTargetData~ m_capacity_target
-        -vector~ECapacityTriggerData~ m_capacity_trigger
-        -vector~EAttributeData~ m_capacity_attribute
-        +getAllCapacityDTO() queue~CapacityActionData~
-        +queueCapacityDTO(CapacityActionData)
-        +getNextCapacityDTO() CapacityActionData
-        +isNextCapacityDTO() bool
-        +isEmpty() bool
-        +printCapacity()
-        +setters/getters()
-        -addCapacityTarget(CapacityActionData)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+namespace dice {
+    class ABaseDiceSystem:::styleAbstract {
+        <<abstract>>
+
+        + ~ABaseDiceSystem()
+        + roll() const T 
+        + printDiceSides()
+
+        # getRandomValue(const uint16_t max_value, const uint16_t min_value = 1) uint16_t
     }
-    
+
+    class DiceCapacitySystem:::styleClass {
+
+        - std::map~uint8_t, CapacitySystem~ m_sides
+
+        + DiceCapacitySystem()
+        + ~DiceCapacitySystem()
+
+        + printDiceSides() 
+        + roll() const CapacitySystem
+
+        + setCapacity(const CapacitySystem& capacity, const uint8_t side)
+        + getCapacity(const uint8_t side) const CapacitySystem*
+
+    }
+}
+
+ABaseDiceSystem --> SRandomSystem : uses
+
+DiceCapacitySystem ..|> ABaseDiceSystem : realize
+DiceCapacitySystem --> CapacitySystem : uses
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+namespace capacity__action {
+	class BaseCapacityActionSystem:::styleClass {
+
+		- std::vector~ECapacityTargetData~ m_targets
+
+		# CapacityActionData m_capacity_action_data 
+
+		+ BaseCapacityActionSystem(const std::vector~ECapacityTargetData~ & targets)
+		+ ~BaseCapacityActionSystem()
+		+ doAction() CapacityActionData
+		+ getTargets() std::vector~ECapacityTargetData~ 
+	}
+
+	class CapacityActionAddArmorSystem:::styleClass {
+
+		- uint8_t m_armor
+
+		+ CapacityActionAddArmorSystem(const uint8_t armor, const std::vector~ECapacityTargetData~ & targets)
+		+ doAction() CapacityActionData
+	}
+
+    class CapacityActionDamageSystem:::styleClass {
+
+		- uint8_t m_damage
+
+		+ CapacityActionDamageSystem(const uint8_t damage, const std::vector~ECapacityTargetData~ & targets)
+		+ doAction() CapacityActionData
+	}
+
+	class CapacityActionHealSystem:::styleClass {
+
+		- uint8_t m_heal
+
+		+ CapacityActionHealSystem(const uint8_t heal, const std::vector~ECapacityTargetData~ & targets)
+		+ doAction() CapacityActionData
+	}
+
+	class CapacityActionRemoveArmorSystem:::styleClass {
+
+		- uint8_t m_armor
+
+		+ CapacityActionRemoveArmorSystem(const uint8_t armor, const std::vector~ECapacityTargetData~ & targets)
+		+ doAction() CapacityActionData
+	}
+
     class CapacityActionData:::styleClass {
-        +vector~ECapacityTargetData~ m_targets
-        +uint16_t m_damage
-        +uint16_t m_heal
-        +uint16_t m_add_armor
-        +uint16_t m_remove_armor
-    }
-    
-    class BaseCapacityActionSystem:::styleInterface {
-        <<interface>>
-    }
+        <<struct>>
 
-    class ECapacityPurposeData:::styleEnum  {
-        <<enumeration>>
-    }
-    
-    class ECapacityTargetData:::styleEnum  {
-        <<enumeration>>
-    }
-    
-    class ECapacityTriggerData:::styleEnum {
-        <<enumeration>>
-    }
+		- std::vector~ECapacityTargetData~ m_targets
+		- uint16_t m_damage
+		- uint16_t m_heal
+		- uint16_t m_add_armor
+		- uint16_t m_remove_armor
+	}
 }
-    
-class IEntity:::styleInterface {
-    <<interface>>
-    +updateAttributes(Attribute)
-    +addPassive(shared_ptr~IPassive~)
-    +getEntityName() string_view
-    +getMaxLife() int16_t
-    +getCurrentLife() int16_t
-    +getMaxArmor() int16_t
-    +getCurrentArmor() int16_t
-    +getAttribute(EAttribute) int8_t
-    +setters...
-}
-    
-class PassiveHandler:::styleClass {
-    -vector~shared_ptr~IPassive~~ m_persistent_passives
-    -shared_ptr~IEntity~ m_source_entity
-    +initializePassiveHandler(IEntity&)
-    +addPassive(IPassive&)
-    +executePersistentPassives() PassiveModifierDTO
-    +executeGettingHitPassives(IEntity&) PassiveModifierDTO
-    +printListPassives()
-}
-    
-class IPassive:::styleInterface {
-    <<interface>>
-    +executePassive(PassiveModifierDTO&)
-    +printPassive()
-}
-    
-class PassiveModifierDTO:::styleClass {
-    +shared_ptr~IEntity~ m_source_entity
-    +shared_ptr~IEntity~ m_target_entity
-}
-    
 
+BaseCapacityActionSystem o--> CapacityActionData : agregation
+BaseCapacityActionSystem --> ECapacityTargetData : uses
 
+CapacityActionAddArmorSystem --|> BaseCapacityActionSystem : inherits
+CapacityActionDamageSystem --|> BaseCapacityActionSystem : inherits
+CapacityActionHealSystem --|> BaseCapacityActionSystem : inherits
+CapacityActionRemoveArmorSystem --|> BaseCapacityActionSystem : inherits
 
-    
-
-    
-
-CapacitySystem *--> CapacityActionData : contains
-CapacitySystem --> EAttributeData : uses
-CapacitySystem --> ECapacityPurposeData : uses
-CapacitySystem --> ECapacityTargetData : uses
-CapacitySystem --> ECapacityTriggerData : uses
-CapacitySystem --|> BaseCapacityActionSystem : extends
-    
 CapacityActionData --> ECapacityTargetData : uses
-    
-PassiveHandler *--> "0..*" IPassive : contains
-PassiveHandler --> "1" IEntity : references
-    
-IPassive ..> PassiveModifierDTO : uses
-    
-PassiveModifierDTO --> IEntity : references
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+namespace capacity {
+	class ECapacityPurposeData:::styleEnum {
+        <<enumeration>>
+
+		ATTACK
+		DEFENSE
+		SUPPORT
+		HEAL
+		BUFF
+		DEBUFF
+		SPECIAL
+	}
+
+	class ECapacityTargetData:::styleEnum {
+        <<enumeration>>
+
+		TARGET_SELF
+		TARGET_SINGLE
+		TARGET_RANDOM
+		TARGET_AREA
+		TARGET_TEAM
+		TARGET_EVERYONE
+		TARGET_ALLY
+		TARGET_ENNEMY
+		TARGET_ALIVE
+		TARGET_DEAD
+	}
+
+	class ECapacityTriggerData:::styleEnum {
+        <<enumeration>>
+
+		TRIGGERED_WHEN_TURN_END,
+		TRIGGERED_WHEN_TURN_START,
+		TRIGGERED_WHEN_ASSIGNED
+	}
+
+	class CapacitySystem:::styleClass {
+
+		- std::string m_name
+		- std::string m_description
+		- std::queue~CapacityActionData~
+		- std::vector~ECapacityPurposeData~
+		- std::vector~ECapacityTargetData~
+		- std::vector~ECapacityTriggerData~
+		- std::vector~EAttributeData~
+
+		- addCapacityTarget(const CapacityActionData& capacity_dto)
+
+		+ ~CapacitySystem()
+		+ getAllCapacityActionData() std::queue~CapacityActionData~
+		+ queueCapacityActionData(const CapacityActionData& capacity_dto)
+		+ getNextCapacityActionData() CapacityActionData
+		+ isNextCapacityDTO() bool
+		+ isEmpty() bool
+		+ printCapacity()
+
+		+ setCapacityName(const std::string& name)
+		+ setCapacityDescription(const std::string& description)
+		+ setCapacityPurposes(const std::vector~ECapacityPurposeData~& purpose)
+		+ setCapacityTriggers(const std::vector~ECapacityTriggerData~& trigger)
+		+ setCapacityAttribute(const std::vector~EAttributeData~& attribute)
+		
+		+ getCapacityName() std::string_view
+		+ getCapacityDescription() std::string_view
+		+ getCapacityPurposes() std::vector~ECapacityPurposeData~
+		+ getCapacityTargets() std::vector~ECapacityTargetData~
+		+ getCapacityTriggers() std::vector~ECapacityTriggerData~
+		+ getCapacityAttributes() std::vector~EAttributeData~
+	}
+}
+
+CapacitySystem o--> EAttributeData : agregation
+CapacitySystem o--> ECapacityTargetData : agregation
+CapacitySystem o--> ECapacityPurposeData : agregation
+CapacitySystem o--> ECapacityTriggerData : agregation
+CapacitySystem o--> CapacityActionData : agregation
     
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 classDef styleClass fill:#d3733b,color:#000;
+classDef styleInterface fill:#d372c5,color:#000;
+classDef styleAbstract fill:#d372c5,color:#000;
 classDef styleStatic fill:#0195af,color:#000;
 classDef styleEnum fill:#75d372,color:#000;
-classDef styleInterface fill:#d372c5,color:#000;
 ```

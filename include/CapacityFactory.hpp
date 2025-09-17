@@ -42,8 +42,8 @@ namespace capacity {
 			CapacitySystem capacity;
 			capacity.setCapacityName("1 Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with STR or DEX");
-			capacity.setCapacityPurposes({ ATTACK_PHYSICAL });
-			capacity.setCapacityTriggers({ USED_WHEN_TURN_END });
+			capacity.setCapacityPurposes({ ATTACK });
+			capacity.setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 			capacity.setCapacityAttribute({ STRENGTH, DEXTERITY });
 
 			// Take the best between dexterity and strength
@@ -53,7 +53,7 @@ namespace capacity {
 				constexpr int8_t base_damage{ 3 };
 				int8_t total_damage = base_damage + helper::find::getHighestValue(source_character.getAttribute(STRENGTH), source_character.getAttribute(DEXTERITY), min_damage);
 				CapacityActionDamageSystem attack(total_damage, targets);
-				capacity.queueCapacityDTO(attack.doAction());
+				capacity.queueCapacityActionData(attack.doAction());
 			}
 			return capacity;
 		}
@@ -63,8 +63,8 @@ namespace capacity {
 			CapacitySystem capacity;
 			capacity.setCapacityName("1 Attack and 1 Random Attack");
 			capacity.setCapacityDescription("Attack a single ennemy with worst STR or DEX, then attack another random ennemy with best STR or DEX");
-			capacity.setCapacityPurposes({ ATTACK_PHYSICAL });
-			capacity.setCapacityTriggers({ USED_WHEN_TURN_END });
+			capacity.setCapacityPurposes({ ATTACK });
+			capacity.setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 			capacity.setCapacityAttribute({ STRENGTH, DEXTERITY });
 
 			// Take the best between dexterity and strength 
@@ -76,7 +76,7 @@ namespace capacity {
 				int8_t total_damage = base_damage + helper::find::getLowestValue(source_character.getAttribute(STRENGTH), source_character.getAttribute(DEXTERITY), min_damage);
 
 				CapacityActionDamageSystem attack(total_damage, targets);
-				capacity.queueCapacityDTO(attack.doAction());
+				capacity.queueCapacityActionData(attack.doAction());
 			}
 
 			// Take the best between dexterity and strength
@@ -88,7 +88,7 @@ namespace capacity {
 				int8_t total_damage = base_damage + helper::find::getHighestValue(source_character.getAttribute(STRENGTH), source_character.getAttribute(DEXTERITY), min_damage);
 
 				CapacityActionDamageSystem attack(total_damage, targets);
-				capacity.queueCapacityDTO(attack.doAction());
+				capacity.queueCapacityActionData(attack.doAction());
 			}
 			return capacity;
 		}
@@ -97,8 +97,8 @@ namespace capacity {
 			CapacitySystem capacity;
 			capacity.setCapacityName("Strike the ennemy team once");
 			capacity.setCapacityDescription("Attack all ennemy with best INT, WIS or CHA");
-			capacity.setCapacityPurposes({ ATTACK_PHYSICAL });
-			capacity.setCapacityTriggers({ USED_WHEN_TURN_END });
+			capacity.setCapacityPurposes({ ATTACK });
+			capacity.setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 			capacity.setCapacityAttribute({ INTELLIGENCE, WISDOM, CHARISMA });
 
 			// Take the best between dexterity and strength
@@ -108,7 +108,7 @@ namespace capacity {
 				constexpr int8_t base_damage{ 2 };
 				int8_t total_damage = base_damage + helper::find::getHighestValue(source_character.getAttribute(CHARISMA), source_character.getAttribute(WISDOM), source_character.getAttribute(INTELLIGENCE), min_damage);
 				CapacityActionDamageSystem attack(total_damage, targets);
-				capacity.queueCapacityDTO(attack.doAction());
+				capacity.queueCapacityActionData(attack.doAction());
 			}
 			return capacity;
 		}
@@ -119,7 +119,7 @@ namespace capacity {
 			capacity.setCapacityName("Protect self");
 			capacity.setCapacityDescription("Protect yourself with your armor");
 			capacity.setCapacityPurposes({ DEFENSE });
-			capacity.setCapacityTriggers({ USED_WHEN_TURN_END });
+			capacity.setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 			capacity.setCapacityAttribute({ STRENGTH, DEXTERITY });
 
 			// Take the best between dexterity and strength
@@ -129,7 +129,7 @@ namespace capacity {
 				constexpr int8_t base_armor{ 3 };
 				int8_t total_armor = base_armor + helper::find::getHighestValue(source_character.getAttribute(STRENGTH), source_character.getAttribute(WISDOM), min_armor);
 				CapacityActionDamageSystem protect(total_armor, targets);
-				capacity.queueCapacityDTO(protect.doAction());
+				capacity.queueCapacityActionData(protect.doAction());
 			}
 			return capacity;
 		}
@@ -139,8 +139,8 @@ namespace capacity {
 			CapacitySystem capacity;
 			capacity.setCapacityName("Fast heal");
 			capacity.setCapacityDescription("Heal directly a single ally with best INT, WIS or CHA");
-			capacity.setCapacityPurposes({ HEALING });
-			capacity.setCapacityTriggers({ USED_WHEN_ASSIGNED });
+			capacity.setCapacityPurposes({ HEAL });
+			capacity.setCapacityTriggers({ TRIGGERED_WHEN_ASSIGNED });
 			capacity.setCapacityAttribute({ INTELLIGENCE, WISDOM, CHARISMA });
 
 			// Take the best between INT, WIS or CHA
@@ -150,7 +150,7 @@ namespace capacity {
 				constexpr int8_t base_heal{ 1 };
 				int8_t total_heal = base_heal + helper::find::getHighestValue(source_character.getAttribute(CHARISMA), source_character.getAttribute(WISDOM), source_character.getAttribute(INTELLIGENCE), min_heal);
 				CapacityActionDamageSystem heal(total_heal, targets);
-				capacity.queueCapacityDTO(heal.doAction());
+				capacity.queueCapacityActionData(heal.doAction());
 			}
 			return capacity;
 		}

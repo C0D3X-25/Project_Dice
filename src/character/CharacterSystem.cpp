@@ -64,7 +64,7 @@ void character::CharacterSystem::calculateMaxLife() {
     // TODO: max_life += bonus_life;
     max_life += int16_t(m_attributes.getAttributeData(attribute::CONSTITUTION) * 1.5);
 
-    setStats(EStatsData::MAX_LIFE, max_life);
+    setStats(ECharacterStatsData::MAX_LIFE, max_life);
 }
 
 
@@ -79,7 +79,7 @@ void character::CharacterSystem::calculateMaxArmor() {
     int16_t best_psychic{ helper::find::getHighestValue<int16_t>(m_attributes.getAttributeData(attribute::WISDOM), m_attributes.getAttributeData(attribute::INTELLIGENCE), m_attributes.getAttributeData(attribute::CHARISMA), 0) };
     int16_t max_armor{ BASE_MAX_ARMOR + best_physic + best_psychic };
 
-    setStats(EStatsData::MAX_ARMOR, max_armor);
+    setStats(ECharacterStatsData::MAX_ARMOR, max_armor);
 }
 
 

@@ -20,8 +20,8 @@
 //
 //			setcharacterName("1 Attack and 1 Random Attack");
 //			setCapacityDescription("Attack a single ennemy with STR or DEX, then attack a random ennemy with STR or DEX");
-//			setCapacityPurposes({ ATTACK_PHYSICAL });
-//			setCapacityTriggers({ USED_WHEN_TURN_END });
+//			setCapacityPurposes({ ATTACK });
+//			setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 //
 //			// Take the best between dexterity and strength
 //			{
@@ -32,7 +32,7 @@
 //				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
 //				CapacityActionDamageSystem attack(total_damage, targets);
-//				queueCapacityDTO(attack.doAction());
+//				queueCapacityActionData(attack.doAction());
 //			}
 //
 //			// Take the best between dexterity and strength
@@ -44,7 +44,7 @@
 //				int8_t total_damage = base_damage + helper::find::getHighestValue(user.getAttribute(attribute::STRENGTH), user.getAttribute(attribute::DEXTERITY), min_damage);
 //
 //				CapacityActionDamageSystem attack(total_damage, targets);
-//				queueCapacityDTO(attack.doAction());
+//				queueCapacityActionData(attack.doAction());
 //			}
 //		}
 //		~CapacityPlayerSingleAttack(void) = default;

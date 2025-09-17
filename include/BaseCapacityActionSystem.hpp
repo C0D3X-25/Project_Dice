@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CapacityActionData.hpp"
-#include "ECapacityData.hpp"
+#include "ECapacityTargetData.hpp"
 
 #include <vector>
 #include <string>
@@ -19,18 +19,18 @@ namespace capacity_action {
 	public:
 		BaseCapacityActionSystem(const std::vector<ECapacityTargetData>& targets) 
 			: m_targets(targets) {}
-		virtual ~BaseCapacityActionSystem(void) = default;
+		virtual ~BaseCapacityActionSystem() = default;
 
-		virtual CapacityActionData doAction(void) {
-			m_capacity_dto.m_targets = m_targets;
-			return m_capacity_dto;
+		virtual CapacityActionData doAction() {
+			m_capacity_action_data.m_targets = m_targets;
+			return m_capacity_action_data;
 		}
 
-		virtual std::vector<ECapacityTargetData> getTargets(void) const { return m_targets; }
+		virtual std::vector<ECapacityTargetData> getTargets() const { return m_targets; }
 
 	protected:
 
-		CapacityActionData m_capacity_dto;
+		CapacityActionData m_capacity_action_data;
 
 	private:
 

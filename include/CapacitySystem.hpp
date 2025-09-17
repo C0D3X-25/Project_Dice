@@ -1,9 +1,11 @@
 #pragma once
 
 #include "EAttributeData.hpp"
-#include "ECapacityData.hpp"
+#include "ECapacityTargetData.hpp"
+#include "ECapacityPurposeData.hpp"
+#include "ECapacityTriggerData.hpp"
 #include "CapacityActionData.hpp"
-#include "BaseCapacityActionSystem.hpp"
+//#include "BaseCapacityActionSystem.hpp"
 
 #include <queue>
 #include <string>
@@ -23,52 +25,18 @@ namespace capacity {
 	/// </summary>
 	class CapacitySystem {
 	public:
-		virtual ~CapacitySystem(void) = default;
+		virtual ~CapacitySystem() = default;
 
+		std::queue<CapacityActionData> getAllCapacityActionData() {	return m_capacity_dto_queue; }
 
-		std::queue<CapacityActionData> getAllCapacityDTO(void) {
-			return m_capacity_dto_queue;
-		}
+		void queueCapacityActionData(const CapacityActionData& capacity_dto);
 
+		CapacityActionData getNextCapacityActionData();
 
-		void queueCapacityDTO(const CapacityActionData& capacity_dto) {
-			addCapacityTarget(capacity_dto);
-			m_capacity_dto_queue.push(capacity_dto);
-		}
+		bool isNextCapacityDTO() { return m_capacity_dto_queue.size() > 1; }
+		bool isEmpty() const { return m_capacity_dto_queue.empty(); }
 
-
-		CapacityActionData getNextCapacityDTO(void) {
-			if (!m_capacity_dto_queue.empty()) {
-				CapacityActionData m_current_dto = m_capacity_dto_queue.front();
-				m_capacity_dto_queue.pop();
-				return m_current_dto;
-			}
-			return CapacityActionData{};
-		}
-
-
-		bool isNextCapacityDTO(void) { return m_capacity_dto_queue.size() > 1; }
-		bool isEmpty(void) const { return m_capacity_dto_queue.empty(); }
-
-		void printCapacity(void) const {
-			std::cout << " - " << getCapacityName()
-				<< " - \n" << getCapacityDescription() << '\n';
-			std::cout << "Capacity purposes: [ ";
-			for (const auto& purpose : m_capacity_purpose) {
-				std::cout << toString(purpose) << " ";
-			}
-			std::cout << "]\n";
-			std::cout << "Capacity targets:  [ ";
-			for (const auto& target : m_capacity_target) {
-				std::cout << toString(target) << " ";
-			}
-			std::cout << "]\n";
-			std::cout << "Capacity triggers: [ ";
-			for (const auto& trigger : m_capacity_trigger) {
-				std::cout << toString(trigger) << " ";
-			}
-			std::cout << "]\n";
-		}
+		void printCapacity() const;
 
 
 		void setCapacityName(const std::string& name)								{ m_name = name; }
@@ -77,21 +45,15 @@ namespace capacity {
 		void setCapacityTriggers(const std::vector<ECapacityTriggerData>& trigger)	{ m_capacity_trigger = trigger; }
 		void setCapacityAttribute(const std::vector<EAttributeData>& attribute)		{ m_capacity_attribute = attribute; }
 		
-		std::string_view getCapacityName(void)								const { return m_name; }
-		std::string_view getCapacityDescription(void)						const { return m_description; }
-		std::vector<ECapacityPurposeData> getCapacityPurposes(void)			const { return m_capacity_purpose; }
-		std::vector<ECapacityTargetData> getCapacityTargets(void)			const { return m_capacity_target; }
-		std::vector<ECapacityTriggerData> getCapacityTriggers(void)			const { return m_capacity_trigger; }
-		std::vector<EAttributeData> getCapacityAttributes(void)				const { return m_capacity_attribute; }
+		std::string_view getCapacityName()								const { return m_name; }
+		std::string_view getCapacityDescription()						const { return m_description; }
+		std::vector<ECapacityPurposeData> getCapacityPurposes()			const { return m_capacity_purpose; }
+		std::vector<ECapacityTargetData> getCapacityTargets()			const { return m_capacity_target; }
+		std::vector<ECapacityTriggerData> getCapacityTriggers()			const { return m_capacity_trigger; }
+		std::vector<EAttributeData> getCapacityAttributes()				const { return m_capacity_attribute; }
 
 	private:
-		void addCapacityTarget(const CapacityActionData& capacity_dto) {
-			for (const auto& target : capacity_dto.m_targets) {
-				if (std::find(m_capacity_target.begin(), m_capacity_target.end(), target) == m_capacity_target.end()) {
-					m_capacity_target.push_back(target);
-				}
-			}
-		}
+		void addCapacityTarget(const CapacityActionData& capacity_dto);
 
 	private:
 		std::string m_name{ "N/A" };

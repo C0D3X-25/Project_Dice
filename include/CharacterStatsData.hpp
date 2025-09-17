@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SFindSystem.hpp"
-#include "EStatsData.hpp"
+#include "ECharacterStatsData.hpp"
 
 #include <cstdint>
 #include <iostream>
@@ -14,71 +14,13 @@ namespace character {
 	/// </summary>
 	struct CharacterStatsData {
 
-		void printCharacterStats() const {
-			std::cout
-				<< m_name
-				<< " || " << m_life << "/" << m_max_life << " Life "
-				<< " | " << m_armor << "/" << m_max_armor << " Armor "
-				<< '\n';
-		}
+		void printCharacterStats() const;
 		
-		void setCharacterStats(const EStatsData stats, const int16_t value) {
-			switch (stats) {
-			case character::MAX_LIFE:
-				m_max_life = value;
-				break;
-			case character::LIFE:
-				m_life = value;
-				break;
-			case character::MAX_ARMOR:
-				m_max_armor = value;
-				break;
-			case character::ARMOR:
-				m_armor = value;
-				break;
-			default:
-				break;
-			}
-		}
+		void setCharacterStats(const ECharacterStatsData stats, const int16_t value);
+		void setCharacterStatsInString(const ECharacterStatsData stats, const std::string& value);
 
-		void setCharacterStatsInString(const EStatsData stats, const std::string& value) {
-			switch (stats) {
-			case character::NAME:
-				m_name = value;
-				break;
-			default:
-				break;
-			}
-		}
-
-		int16_t getCharacterStats(const EStatsData stats) const {
-			switch (stats) {
-			case character::MAX_LIFE:
-				return m_max_life;
-				break;
-			case character::LIFE:
-				return m_life;
-				break;
-			case character::MAX_ARMOR:
-				return m_max_armor;
-				break;
-			case character::ARMOR:
-				return m_armor;
-				break;
-			default:
-				break;
-			}
-		}
-
-		std::string getCharacterStatsInString(const EStatsData stats) const {
-			switch (stats) {
-			case character::NAME:
-				return m_name;
-				break;
-			default:
-				break;
-			}
-		}
+		int16_t getCharacterStats(const ECharacterStatsData stats) const;
+		std::string getCharacterStatsInString(const ECharacterStatsData stats) const;
 
 	private:
 		std::string m_name{ "N/A" };

@@ -3,7 +3,7 @@
 
 namespace character {
 
-	enum EStatsData {
+	enum ECharacterStatsData {
 		NAME,
 		LIFE,
 		MAX_LIFE,
@@ -14,7 +14,7 @@ namespace character {
 		NEXT_LEVEL_XP,
 	};
 
-	constexpr std::string_view toString(EStatsData stats) {
+	constexpr std::string_view toString(ECharacterStatsData stats) {
 		switch (stats) {
 		case LIFE:			return "LIFE";
 		case MAX_LIFE:		return "MAX_LIFE";

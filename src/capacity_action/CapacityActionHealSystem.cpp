@@ -7,6 +7,6 @@ capacity_action::CapacityActionHealSystem::CapacityActionHealSystem(const uint8_
 }
 
 CapacityActionData capacity_action::CapacityActionHealSystem::doAction(void) {
-	m_capacity_dto.m_heal = m_heal;
-	return m_capacity_dto;
+	m_capacity_action_data.m_heal = m_heal;
+	return m_capacity_action_data;
 }
