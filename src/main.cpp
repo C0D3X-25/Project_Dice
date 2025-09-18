@@ -33,7 +33,7 @@ int main() {
 	 SetConfigFlags(FLAG_WINDOW_RESIZABLE);
 	 InitWindow(800, 450, "Project Dice");
 
-	 CapacityFactory capacity_factory;
+	 //CapacityFactory capacity_factory;
 
 	 CharacterGeneratorSystem character_generator;
 	 CharacterSystem character_1 = character_generator.generateNewPlayercharacter();
@@ -59,6 +59,7 @@ int main() {
 	 //team_2.printGroup();
 
 	 std::cout << "========================================================\n\n";
+	 character_1.
 	 //CapacitySystem capacity = capacity_factory.attackSingle(character_1);
 	 //std::cout << "Before: " << character_1.getCurrentLife() << '\n';
 	 //CapacityDTO capacity_modifier = capacity.getNextCapacityActionData();

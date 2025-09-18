@@ -58,7 +58,7 @@ namespace character {
 		* @param sp_capacity The capacity to assign
 		* @param side The side number to assign the capacity to (1-10)
 		*/
-		//void setCapacity(const CapacitySystem& capacity, const uint8_t side);
+		void setCapacity(const CapacitySystem& capacity, const uint8_t side);
 
 		//const CapacitySystem rollDiceCapacity();
 

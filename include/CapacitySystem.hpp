@@ -5,7 +5,7 @@
 #include "ECapacityPurposeData.hpp"
 #include "ECapacityTriggerData.hpp"
 #include "CapacityActionData.hpp"
-//#include "BaseCapacityActionSystem.hpp"
+//#include "CharacterSystem.hpp"
 
 #include <queue>
 #include <string>
@@ -28,16 +28,14 @@ namespace capacity {
 		virtual ~CapacitySystem() = default;
 
 		std::queue<CapacityActionData> getAllCapacityActionData() {	return m_capacity_dto_queue; }
-
 		void queueCapacityActionData(const CapacityActionData& capacity_dto);
-
 		CapacityActionData getNextCapacityActionData();
 
-		bool isNextCapacityDTO() { return m_capacity_dto_queue.size() > 1; }
-		bool isEmpty() const { return m_capacity_dto_queue.empty(); }
+		bool isNextCapacityDTO()	{ return m_capacity_dto_queue.size() > 1; }
+		bool isEmpty()				const { return m_capacity_dto_queue.empty(); }
 
 		void printCapacity() const;
-
+		virtual void executeCapacity() = 0; //////////////////
 
 		void setCapacityName(const std::string& name)								{ m_name = name; }
 		void setCapacityDescription(const std::string& description)					{ m_description = description; }

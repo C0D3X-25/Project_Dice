@@ -59,8 +59,8 @@ namespace attribute {
     }
 }
 
-AttributeData --> EAttributeData : uses
-AttributeData --> SFindSystem : uses
+AttributeData --> EAttributeData : Association
+AttributeData --> SFindSystem : Association
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -130,19 +130,19 @@ namespace character {
 		- getRandomValue(uint8_t max_value, uint8_t nbr_roll = 1, int8_t base_value = 0) int8_t
 	}
 }
-CharacterSystem --> SFindSystem : uses
-CharacterSystem --> EAttributeData : uses
-CharacterSystem --> ECharacterStatsData : uses
-CharacterSystem --> DiceCapacitySystem : uses
-CharacterSystem *--> AttributeData : compose
-CharacterSystem --> CharacterStatsData : uses
+CharacterSystem --> SFindSystem : Association
+CharacterSystem --> EAttributeData : Association
+CharacterSystem --> ECharacterStatsData : Association
+CharacterSystem --> DiceCapacitySystem : Association
+CharacterSystem *--> AttributeData : Composition
+CharacterSystem --> CharacterStatsData : Association
 
-CharacterStatsData --> SFindSystem : uses
-CharacterStatsData --> ECharacterStatsData : uses
+CharacterStatsData --> SFindSystem : Association
+CharacterStatsData --> ECharacterStatsData : Association
 
-CharacterGeneratorSystem --> CharacterSystem : uses
-CharacterGeneratorSystem --> AttributeData : uses
-CharacterGeneratorSystem --> SRandomSystem : uses
+CharacterGeneratorSystem --> CharacterSystem : Association
+CharacterGeneratorSystem --> AttributeData : Association
+CharacterGeneratorSystem --> SRandomSystem : Association
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -173,10 +173,10 @@ namespace dice {
     }
 }
 
-ABaseDiceSystem --> SRandomSystem : uses
+ABaseDiceSystem --> SRandomSystem : Association
 
-DiceCapacitySystem ..|> ABaseDiceSystem : realize
-DiceCapacitySystem --> CapacitySystem : uses
+DiceCapacitySystem ..|> ABaseDiceSystem : Realization
+DiceCapacitySystem --> CapacitySystem : Association
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -236,15 +236,15 @@ namespace capacity__action {
 	}
 }
 
-BaseCapacityActionSystem o--> CapacityActionData : agregation
-BaseCapacityActionSystem --> ECapacityTargetData : uses
+BaseCapacityActionSystem o--> CapacityActionData : Aggregation
+BaseCapacityActionSystem --> ECapacityTargetData : Association
 
-CapacityActionAddArmorSystem --|> BaseCapacityActionSystem : inherits
-CapacityActionDamageSystem --|> BaseCapacityActionSystem : inherits
-CapacityActionHealSystem --|> BaseCapacityActionSystem : inherits
-CapacityActionRemoveArmorSystem --|> BaseCapacityActionSystem : inherits
+CapacityActionAddArmorSystem --|> BaseCapacityActionSystem : Inheritance
+CapacityActionDamageSystem --|> BaseCapacityActionSystem : Inheritance
+CapacityActionHealSystem --|> BaseCapacityActionSystem : Inheritance
+CapacityActionRemoveArmorSystem --|> BaseCapacityActionSystem : Inheritance
 
-CapacityActionData --> ECapacityTargetData : uses
+CapacityActionData --> ECapacityTargetData : Association
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -319,11 +319,11 @@ namespace capacity {
 	}
 }
 
-CapacitySystem o--> EAttributeData : agregation
-CapacitySystem o--> ECapacityTargetData : agregation
-CapacitySystem o--> ECapacityPurposeData : agregation
-CapacitySystem o--> ECapacityTriggerData : agregation
-CapacitySystem o--> CapacityActionData : agregation
+CapacitySystem o--> EAttributeData : Aggregation
+CapacitySystem o--> ECapacityTargetData : Aggregation
+CapacitySystem o--> ECapacityPurposeData : Aggregation
+CapacitySystem o--> ECapacityTriggerData : Aggregation
+CapacitySystem o--> CapacityActionData : Aggregation
     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

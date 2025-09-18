@@ -18,37 +18,48 @@ void dice::DiceCapacitySystem::setCapacity(const CapacitySystem& capacity, const
         std::cerr << "Out of range-> capacity {" << capacity.getCapacityName() << "} for side " << static_cast<int>(side) << '\n';
         throw std::runtime_error("Invalid side for capacity assignment.");
     }
-    m_sides.at(side) = capacity;
+    //m_sides.at(side) = std::make_shared<CapacitySystem>(capacity);
+}
+
+void dice::DiceCapacitySystem::setCapacity(const std::weak_ptr<CapacitySystem> wp_capacity, const uint8_t side) {
+    if (side > m_SIDES_COUNT || side < 1) {
+        std::cerr << "Out of range-> capacity {" << wp_capacity.lock()->getCapacityName() << "} for side " << static_cast<int>(side) << '\n';
+        throw std::runtime_error("Invalid side for capacity assignment.");
+    }
 }
 
 
-const dice::CapacitySystem* DiceCapacitySystem::getCapacity(const uint8_t side) const {
+const std::weak_ptr<CapacitySystem> DiceCapacitySystem::getCapacity(const uint8_t side) const {
     auto it = m_sides.find(side);
     if (it != m_sides.end()) {
-        return &(it->second);  // Return address of the found capacity
+        return it->second;  // Return the weak_ptr of the found capacity
     }
-    return nullptr;
+    return std::weak_ptr<CapacitySystem>();
 }
 
 
 void dice::DiceCapacitySystem::printDiceSides() const {
     for (const auto& [side, capacity] : m_sides) {
         std::cout << "Side " << static_cast<int>(side) << ":\n";
-        capacity.printCapacity();
+        if (auto capacityPtr = capacity.lock()) {
+            capacityPtr->printCapacity();
+        } else {
+            std::cout << "Capacity no longer exists.\n";
+        }
         std::cout << "---------------\n";
     }
 }
 
 #pragma warning(push)
 #pragma warning(disable: 4244) // Disable warning about possible data loss
-const dice::CapacitySystem DiceCapacitySystem::roll() {
+const std::weak_ptr<CapacitySystem> DiceCapacitySystem::roll() {
 
     auto it = m_sides.find(getRandomValue(m_SIDES_COUNT));
 
     if (it != m_sides.end()) {
         return it->second;
     }
-    return CapacitySystem();
+    return std::weak_ptr<CapacitySystem>();
 }
 #pragma warning(pop)  // Restore warning settings
 

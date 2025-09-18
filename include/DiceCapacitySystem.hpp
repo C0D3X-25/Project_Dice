@@ -8,11 +8,6 @@
 #include <map>
 #include <memory>
 
-//namespace capacity {
-//    class CapacitySystem;
-//    //class CapacityFactory;
-//}
-
 namespace dice {
 
     using capacity::CapacitySystem;
@@ -21,7 +16,7 @@ namespace dice {
     /// <summary>
     /// Represents a dice system where each side is associated with a specific capacity, providing methods to set, retrieve, roll, and print dice sides.
     /// </summary>
-    class DiceCapacitySystem: public ABaseDiceSystem<CapacitySystem>/*,
+    class DiceCapacitySystem: public ABaseDiceSystem<std::weak_ptr<CapacitySystem>>/*,
         IRollAdvantageDisadvantage<std::shared_ptr<CapacitySystem>>*/ {
 
     public:
@@ -34,6 +29,7 @@ namespace dice {
         /// <param name="capacity">Reference to the CapacitySystem object to modify.</param>
         /// <param name="side">The side (as an unsigned 8-bit integer) for which to set the capacity.</param>
         void setCapacity(const CapacitySystem& capacity, const uint8_t side);
+        void setCapacity(const std::weak_ptr<CapacitySystem> wp_capacity, const uint8_t side);
         
         
         /// <summary>
@@ -41,7 +37,7 @@ namespace dice {
         /// </summary>
         /// <param name="side">The side identifier for which to get the capacity system.</param>
         /// <returns>A pointer to the CapacitySystem associated with the given side.</returns>
-        const CapacitySystem* getCapacity(const uint8_t side) const;
+        const std::weak_ptr<CapacitySystem> getCapacity(const uint8_t side) const;
 
         /**
          * @brief Performs an advantage roll (rolls twice and takes the better result)
@@ -59,7 +55,7 @@ namespace dice {
         /// Performs a single roll of the dice
         /// </summary>
         /// <returns>The capacity from the rolled side</returns>
-        const CapacitySystem roll() override;
+        const std::weak_ptr<CapacitySystem> roll() override;
 
         /// <summary>
         /// Prints the sides of a dice to the standard output.
@@ -70,6 +66,6 @@ namespace dice {
 
     private:
         /** @brief Map storing the capacity for each side of the dice */
-        std::map<uint8_t, CapacitySystem> m_sides{};
+        std::map<uint8_t, std::weak_ptr<CapacitySystem>> m_sides{};
     };
 }
