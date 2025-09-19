@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CharacterSystem.hpp"
-#include "AttributeData.hpp"
+//#include "AttributeData.hpp"
 #include "SRandomSystem.hpp"
 
 #include <iostream>
