@@ -1,21 +1,16 @@
 #pragma once
 
 #include "ACapacitySystem.hpp"
-#include "CapacityPlayerSingleAttack"
+#include "Capacity_NotImplemented.hpp"
+#include "Capacity_Nothing.hpp"
+#include "Capacity_SingleAttack.hpp"
 
 #include <map>
 
 namespace capacity {
 
+	using character::CharacterSystem;
 
-	enum EListCapacityData {
-		NOTHING = 0,
-		ATTACK_SINGLE,
-		ATTACK_RANDOM,
-		PROTECT_SELF,
-		FAST_HEAL,
-		// More capacities can be added here
-	};
 
 	/// <summary>
 	/// This class is a library for all the capacities.
@@ -25,16 +20,46 @@ namespace capacity {
 	static class SListCapacityData {
 	public:
 
-		const std::map<EListCapacityData, ACapacitySystem> getAllCapacities() const { return m_all_capacities; }
+		static CapacityActionData executeCapacity(const EListCapacityData capacity, CharacterSystem& source_character, CharacterSystem& target_character) {
+			auto it = m_all_capacities.find(capacity);
+			if (it != m_all_capacities.end()) {
+				it->second.executeCapacity(source_character, target_character);
+				return it->second.getNextCapacityActionData();
+			}
+			else {
+				std::cerr << "Error: Capacity not found in the list.\n";
+				return CapacityActionData{};
+			}
+		}
+
+		static void printCapacity(const EListCapacityData capacity) {
+			auto it = m_all_capacities.find(capacity);
+			if (it != m_all_capacities.end()) {
+				it->second.printCapacity();
+			}
+			else {
+				std::cerr << "Error: Capacity not found in the list.\n";
+			}
+		}
 		
 
 	private:
-		static const std::map<EListCapacityData, ACapacitySystem> m_all_capacities{
-			{NOTHING, CapacityFactory::nothing()},
-			{ATTACK_SINGLE, CapacityFactory::attackSingle()},
-			{ATTACK_RANDOM, CapacityFactory::attackRandom()},
-			{PROTECT_SELF, CapacityFactory::protectSelf()},
-			{FAST_HEAL, CapacityFactory::fastHeal()},
-		}
+		static const std::map<EListCapacityData, CapacityData> m_all_capacities{
+			{NOT_IMPLEMENTED, m_capacity_not_implemented},
+			{NOTHING, m_capacity_nothing},
+			{ATTACK_SINGLE, m_capacity_single_attack},
+			//{ATTACK_RANDOM, Capacity_RandomAttack},
+			//{DEFEND_SELF, Capacity_DefendSelf},
+			//{HEAL_FAST, Capacity_HealFas)}
+		};
+
+		static Capacity_NotImplemented m_capacity_not_implemented;
+		static Capacity_Nothing m_capacity_nothing;
+		static Capacity_SingleAttack m_capacity_single_attack;
 	};
+
+	// Define static member variables
+	Capacity_NotImplemented SListCapacityData::m_capacity_not_implemented;
+	Capacity_Nothing SListCapacityData::m_capacity_nothing;
+	Capacity_SingleAttack SListCapacityData::m_capacity_single_attack;
 }

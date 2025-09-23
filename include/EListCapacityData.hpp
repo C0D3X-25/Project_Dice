@@ -8,14 +8,23 @@ namespace capacity {
 	/// Key for the Capacity std::map
 	/// </summary>
 	enum EListCapacityData {
+		NOT_IMPLEMENTED = -1,
 		NOTHING,
-		SINGLE_ATTACK,
+		ATTACK_SINGLE,
+		ATTACK_RANDOM,
+		DEFEND_SELF,
+		HEAL_FAST,
+		// More capacities can be added here
 	};
 
 	constexpr std::string_view toString(EListCapacityData capacity) {
 		switch (capacity) {
+		case NOT_IMPLEMENTED:	return "NOT_IMPLEMENTED";
 		case NOTHING:			return "NOTHING";
-		case SINGLE_ATTACK:		return "SINGLE_ATTACK";
+		case ATTACK_SINGLE:		return "ATTACK_SINGLE";
+		case ATTACK_RANDOM:		return "ATTACK_RANDOM";
+		case DEFEND_SELF:		return "DEFEND_SELF";
+		case HEAL_FAST:			return "HEAL_FAST";
 		default:				return "N/A";
 		}
 	}

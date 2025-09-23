@@ -9,12 +9,7 @@
 
 #include "raylib.h"
 
-#include "../include/CapacityPlayerSingleAttack.hpp"
-#include "../include/PassiveAugmentAttribute.hpp"
-#include "../include/CapacityFactory.hpp"
-#include "../include/ACapacitySystem.hpp"
-#include "../include/DiceCapacitySystem.hpp"
-#include "../include/CharacterGeneratorSystem.hpp"
+#include "CharacterManager.hpp"
 
 #include <iostream>
 #include <array>
