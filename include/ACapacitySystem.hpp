@@ -5,7 +5,7 @@
 #include "ECapacityPurposeData.hpp"
 #include "ECapacityTriggerData.hpp"
 #include "CapacityActionData.hpp"
-//#include "CharacterSystem.hpp"
+#include "CharacterSystem.hpp"
 
 #include <queue>
 #include <string>
@@ -15,7 +15,8 @@
 
 namespace capacity {
 
-	using namespace attribute;
+	using attribute::EAttributeData;
+	using character::CharacterSystem;
 
 	/// <summary>
 	/// Base class for all capacities.
@@ -23,9 +24,9 @@ namespace capacity {
 	/// It's composed of a name, description, purposes, targets, triggers, attributes and capacity DTO.
 	/// When an character uses a capacity, there is only the capacity DTO who is send tho the target manager.
 	/// </summary>
-	class CapacitySystem {
+	class ACapacitySystem {
 	public:
-		virtual ~CapacitySystem() = default;
+		virtual ~ACapacitySystem() = default;
 
 		std::queue<CapacityActionData> getAllCapacityActionData() {	return m_capacity_dto_queue; }
 		void queueCapacityActionData(const CapacityActionData& capacity_dto);
@@ -35,7 +36,7 @@ namespace capacity {
 		bool isEmpty()				const { return m_capacity_dto_queue.empty(); }
 
 		void printCapacity() const;
-		virtual void executeCapacity() = 0; //////////////////
+		virtual void executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) = 0; //////////////////
 
 		void setCapacityName(const std::string& name)								{ m_name = name; }
 		void setCapacityDescription(const std::string& description)					{ m_description = description; }

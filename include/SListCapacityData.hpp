@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CapacitySystem.hpp"
+#include "ACapacitySystem.hpp"
 #include "CapacityPlayerSingleAttack"
 
 #include <map>
@@ -20,16 +20,16 @@ namespace capacity {
 	/// <summary>
 	/// This class is a library for all the capacities.
 	/// 1 method = 1 Capacity
-	/// A method must return a CapacitySystem object.
+	/// A method must return a ACapacitySystem object.
 	/// </summary>
 	static class SListCapacityData {
 	public:
 
-		const std::map<EListCapacityData, CapacitySystem> getAllCapacities() const { return m_all_capacities; }
+		const std::map<EListCapacityData, ACapacitySystem> getAllCapacities() const { return m_all_capacities; }
 		
 
 	private:
-		static const std::map<EListCapacityData, CapacitySystem> m_all_capacities{
+		static const std::map<EListCapacityData, ACapacitySystem> m_all_capacities{
 			{NOTHING, CapacityFactory::nothing()},
 			{ATTACK_SINGLE, CapacityFactory::attackSingle()},
 			{ATTACK_RANDOM, CapacityFactory::attackRandom()},

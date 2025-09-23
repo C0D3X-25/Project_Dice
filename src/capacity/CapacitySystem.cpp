@@ -1,13 +1,12 @@
-#include "CapacitySystem.hpp"
-#include "../include/CapacitySystem.hpp"
+#include "ACapacitySystem.hpp"
 
 
-void capacity::CapacitySystem::queueCapacityActionData(const CapacityActionData& capacity_dto) {
+void capacity::ACapacitySystem::queueCapacityActionData(const CapacityActionData& capacity_dto) {
 	addCapacityTarget(capacity_dto);
 	m_capacity_dto_queue.push(capacity_dto);
 }
 
-capacity::CapacityActionData capacity::CapacitySystem::getNextCapacityActionData() {
+capacity::CapacityActionData capacity::ACapacitySystem::getNextCapacityActionData() {
 	if (!m_capacity_dto_queue.empty()) {
 		CapacityActionData m_current_dto = m_capacity_dto_queue.front();
 		m_capacity_dto_queue.pop();
@@ -16,7 +15,7 @@ capacity::CapacityActionData capacity::CapacitySystem::getNextCapacityActionData
 	return CapacityActionData{};
 }
 
-void capacity::CapacitySystem::printCapacity() const {
+void capacity::ACapacitySystem::printCapacity() const {
 	std::cout << " - " << getCapacityName()
 		<< " - \n" << getCapacityDescription() << '\n';
 	std::cout << "Capacity purposes: [ ";
@@ -36,7 +35,7 @@ void capacity::CapacitySystem::printCapacity() const {
 	std::cout << "]\n";
 }
 
-void capacity::CapacitySystem::addCapacityTarget(const CapacityActionData& capacity_dto) {
+void capacity::ACapacitySystem::addCapacityTarget(const CapacityActionData& capacity_dto) {
 	for (const auto& target : capacity_dto.m_targets) {
 		if (std::find(m_capacity_target.begin(), m_capacity_target.end(), target) == m_capacity_target.end()) {
 			m_capacity_target.push_back(target);

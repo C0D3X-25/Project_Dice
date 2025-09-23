@@ -1,6 +1,6 @@
 //#pragma once 
 //
-//#include "CapacitySystem.hpp"
+//#include "ACapacitySystem.hpp"
 //#include "CapacityActionDamageSystem.hpp"
 //#include "AttributeData.hpp"
 //#include "CharacterSystem.hpp"
@@ -21,7 +21,7 @@
 //	/// <summary>
 //	/// This class is a library for all the capacities.
 //	/// 1 method = 1 Capacity
-//	/// A method must return a CapacitySystem object.
+//	/// A method must return a ACapacitySystem object.
 //	/// </summary>
 //	class CapacityFactory {
 //	public:
@@ -30,16 +30,16 @@
 //		~CapacityFactory(void) = default;
 //
 //
-//		CapacitySystem nothing(void) {
-//			CapacitySystem capacity;
+//		ACapacitySystem nothing(void) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("Nothing");
 //			capacity.setCapacityDescription("Just skip your turn");
 //			return capacity;
 //		}
 //
 //
-//		CapacitySystem attackSingle(const CharacterSystem& source_character) {
-//			CapacitySystem capacity;
+//		ACapacitySystem attackSingle(const CharacterSystem& source_character) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("1 Attack");
 //			capacity.setCapacityDescription("Attack a single ennemy with STR or DEX");
 //			capacity.setCapacityPurposes({ ATTACK });
@@ -59,8 +59,8 @@
 //		}
 //
 //
-//		CapacitySystem attackRandom(const CharacterSystem& source_character) {
-//			CapacitySystem capacity;
+//		ACapacitySystem attackRandom(const CharacterSystem& source_character) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("1 Attack and 1 Random Attack");
 //			capacity.setCapacityDescription("Attack a single ennemy with worst STR or DEX, then attack another random ennemy with best STR or DEX");
 //			capacity.setCapacityPurposes({ ATTACK });
@@ -93,8 +93,8 @@
 //			return capacity;
 //		}
 //
-//		CapacitySystem attackEnnemyTeam(const CharacterSystem& source_character) {
-//			CapacitySystem capacity;
+//		ACapacitySystem attackEnnemyTeam(const CharacterSystem& source_character) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("Strike the ennemy team once");
 //			capacity.setCapacityDescription("Attack all ennemy with best INT, WIS or CHA");
 //			capacity.setCapacityPurposes({ ATTACK });
@@ -114,8 +114,8 @@
 //		}
 //
 //
-//		CapacitySystem protectSelf(const CharacterSystem& source_character) {
-//			CapacitySystem capacity;
+//		ACapacitySystem protectSelf(const CharacterSystem& source_character) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("Protect self");
 //			capacity.setCapacityDescription("Protect yourself with your armor");
 //			capacity.setCapacityPurposes({ DEFENSE });
@@ -135,8 +135,8 @@
 //		}
 //
 //
-//		CapacitySystem fastHeal(const CharacterSystem& source_character) {
-//			CapacitySystem capacity;
+//		ACapacitySystem fastHeal(const CharacterSystem& source_character) {
+//			ACapacitySystem capacity;
 //			capacity.setCapacityName("Fast heal");
 //			capacity.setCapacityDescription("Heal directly a single ally with best INT, WIS or CHA");
 //			capacity.setCapacityPurposes({ HEAL });

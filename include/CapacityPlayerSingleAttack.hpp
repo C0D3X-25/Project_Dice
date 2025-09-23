@@ -1,10 +1,7 @@
 #pragma once 
 
-#include "SFindSystem.hpp"
-#include "EAttributeData.hpp"
-#include "CapacitySystem.hpp"
+#include "ACapacitySystem.hpp"
 #include "CapacityActionDamageSystem.hpp"
-#include "AttributeData.hpp"
 #include "CharacterSystem.hpp" 
 
 #include <vector>
@@ -15,10 +12,10 @@ namespace capacity {
 	using namespace attribute;
 	using namespace capacity_action;
 
-	class Capacity_SingleAttack : public CapacitySystem {
+	class Capacity_SingleAttack : public ACapacitySystem {
 	public:
 
-		Capacity_SingleAttack(const CharacterSystem& source_character) {
+		void executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) override {
 			setCapacityName("1 Attack");
 			setCapacityDescription("Attack a single ennemy with STR or DEX");
 			setCapacityPurposes({ ATTACK });
@@ -37,9 +34,5 @@ namespace capacity {
 		}
 
 		~Capacity_SingleAttack(void) override = default;
-
-		void executeCapacity() override {
-			// Implementation for executing the capacity
-		}
 	};
 }

@@ -12,9 +12,8 @@
 #include "../include/CapacityPlayerSingleAttack.hpp"
 #include "../include/PassiveAugmentAttribute.hpp"
 #include "../include/CapacityFactory.hpp"
-#include "../include/CapacitySystem.hpp"
+#include "../include/ACapacitySystem.hpp"
 #include "../include/DiceCapacitySystem.hpp"
-
 #include "../include/CharacterGeneratorSystem.hpp"
 
 #include <iostream>
@@ -26,7 +25,7 @@ using namespace dice;
 using namespace character;
 using namespace capacity;
 using namespace attribute;
-using namespace passive;
+//using namespace passive;
 
 int main() {
 
@@ -59,15 +58,14 @@ int main() {
 	 //team_2.printGroup();
 
 	 std::cout << "========================================================\n\n";
-	 character_1.
-	 //CapacitySystem capacity = capacity_factory.attackSingle(character_1);
+	 //ACapacitySystem capacity = capacity_factory.attackSingle(character_1);
 	 //std::cout << "Before: " << character_1.getCurrentLife() << '\n';
 	 //CapacityDTO capacity_modifier = capacity.getNextCapacityActionData();
 	 //character_1.resolveCapacity(capacity_modifier, character_1);
 	 //std::cout << "After:  " << character_1.getCurrentLife() << '\n';
 
 	 std::cout << "========================================================\n\n";
-	 PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);
+	 //PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);
 	 //character_1.addPassive(passive_strength);
 	 //character_1.executePassives();
 	 character_1.printcharacter();

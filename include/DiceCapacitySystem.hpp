@@ -1,8 +1,7 @@
 #pragma once
 #include "ABaseDiceSystem.hpp"
 //#include "IRollAdvantageDisadvantage.hpp"
-#include "CapacitySystem.hpp"
-//#include "CapacityFactory.hpp"
+#include "EListCapacityData.hpp"
 
 #include <array>
 #include <map>
@@ -10,52 +9,50 @@
 
 namespace dice {
 
-    using capacity::CapacitySystem;
-    //using capacity::CapacityFactory;
+	using capacity::EListCapacityData;
 
     /// <summary>
     /// Represents a dice system where each side is associated with a specific capacity, providing methods to set, retrieve, roll, and print dice sides.
     /// </summary>
-    class DiceCapacitySystem: public ABaseDiceSystem<std::weak_ptr<CapacitySystem>>/*,
-        IRollAdvantageDisadvantage<std::shared_ptr<CapacitySystem>>*/ {
+    class DiceCapacitySystem: public ABaseDiceSystem<EListCapacityData>/*,
+        IRollAdvantageDisadvantage<std::shared_ptr<ACapacitySystem>>*/ {
 
     public:
         DiceCapacitySystem();
         ~DiceCapacitySystem() = default;
 
         /// <summary>
-        /// Sets the capacity for a specified side in the given CapacitySystem.
+        /// Sets the capacity for a specified side in the given ACapacitySystem.
         /// </summary>
-        /// <param name="capacity">Reference to the CapacitySystem object to modify.</param>
+        /// <param name="capacity">Reference to the ACapacitySystem object to modify.</param>
         /// <param name="side">The side (as an unsigned 8-bit integer) for which to set the capacity.</param>
-        void setCapacity(const CapacitySystem& capacity, const uint8_t side);
-        void setCapacity(const std::weak_ptr<CapacitySystem> wp_capacity, const uint8_t side);
+        void setCapacity(const EListCapacityData capacity, const uint8_t side);
         
         
         /// <summary>
         /// Retrieves the capacity system associated with the specified side.
         /// </summary>
         /// <param name="side">The side identifier for which to get the capacity system.</param>
-        /// <returns>A pointer to the CapacitySystem associated with the given side.</returns>
-        const std::weak_ptr<CapacitySystem> getCapacity(const uint8_t side) const;
+        /// <returns>A pointer to the ACapacitySystem associated with the given side.</returns>
+        const EListCapacityData getCapacity(const uint8_t side) const;
 
         /**
          * @brief Performs an advantage roll (rolls twice and takes the better result)
          * @return The capacity from the higher roll
          */
-        //const std::shared_ptr<CapacitySystem> rollAdvantage(void) override;
+        //const std::shared_ptr<ACapacitySystem> rollAdvantage(void) override;
 
         /**
          * @brief Performs a disadvantage roll (rolls twice and takes the worse result)
          * @return The capacity from the lower roll
          */
-        //const std::shared_ptr<CapacitySystem> rollDisadvantage(void) override;
+        //const std::shared_ptr<ACapacitySystem> rollDisadvantage(void) override;
 
         /// <summary>
         /// Performs a single roll of the dice
         /// </summary>
         /// <returns>The capacity from the rolled side</returns>
-        const std::weak_ptr<CapacitySystem> roll() override;
+        const EListCapacityData roll() override;
 
         /// <summary>
         /// Prints the sides of a dice to the standard output.
@@ -66,6 +63,6 @@ namespace dice {
 
     private:
         /** @brief Map storing the capacity for each side of the dice */
-        std::map<uint8_t, std::weak_ptr<CapacitySystem>> m_sides{};
+        std::map<uint8_t, EListCapacityData> m_sides{};
     };
 }

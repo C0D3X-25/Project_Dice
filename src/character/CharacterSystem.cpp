@@ -29,12 +29,12 @@ void character::CharacterSystem::updateAttributes(const AttributeData& update_at
 }
 
 
-//void character::CharacterSystem::setCapacity(const CapacitySystem& capacity, const uint8_t side) {
+//void character::CharacterSystem::setCapacity(const ACapacitySystem& capacity, const uint8_t side) {
 //    m_dice_capacity.setCapacity(capacity, side);
 //}
 
 
-//const CapacitySystem character::CharacterSystem::rollDiceCapacity(void) {
+//const ACapacitySystem character::CharacterSystem::rollDiceCapacity(void) {
 //    return m_dice_capacity.roll();
 //}
 
@@ -83,7 +83,7 @@ void character::CharacterSystem::calculateMaxArmor() {
 }
 
 
-//void character::CharacterSystem::useCapacity(const CapacitySystem& capacity, CharacterSystem& target) {
+//void character::CharacterSystem::useCapacity(const ACapacitySystem& capacity, CharacterSystem& target) {
 //	std::cout
 //		<< m_name
 //		<< " use capacity " << capacity.getCapacityName()

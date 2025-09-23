@@ -17,7 +17,7 @@
 //		* @param capacity The capacity to use
 //		* @param target The target character
 //		*/
-//		virtual void useCapacity(const CapacitySystem& capacity, Character& target) = 0;
+//		virtual void useCapacity(const ACapacitySystem& capacity, Character& target) = 0;
 //
 //
 //		/**

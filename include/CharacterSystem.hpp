@@ -5,7 +5,7 @@
 //#include "SFindSystem.hpp"
 //#include "EAttributeData.hpp"
 //#include "ECharacterStatsData.hpp"
-//#include "CapacitySystem.hpp"
+//#include "ACapacitySystem.hpp"
 #include "DiceCapacitySystem.hpp" // TODO: Should be moved ?
 //#include "CapacityActionData.hpp"
 #include "AttributeData.hpp"
@@ -47,11 +47,11 @@ namespace character {
 		* @param sp_capacity The capacity to assign
 		* @param side The side number to assign the capacity to (1-10)
 		*/
-		//void setCapacity(const CapacitySystem& capacity, const uint8_t side);
+		//void setCapacity(const ACapacitySystem& capacity, const uint8_t side);
 
-		//const CapacitySystem rollDiceCapacity();
+		//const ACapacitySystem rollDiceCapacity();
 
-		//void useCapacity(const CapacitySystem& capacity, CharacterSystem& target) override;
+		//void useCapacity(const ACapacitySystem& capacity, CharacterSystem& target) override;
 
 
 		void printcharacter() const;
