@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CharacterGeneratorSystem.hpp"
-#include "SListCapacityData.hpp"
+#include "ListCapacityData.hpp"
 
 namespace character {
 	class CharacterManager {
@@ -15,5 +15,6 @@ namespace character {
 		
 	private:
 		CharacterGeneratorSystem m_character_generator;
+		ListCapacityData m_list_capacity;
 	};
 }
