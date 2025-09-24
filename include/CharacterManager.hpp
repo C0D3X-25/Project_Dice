@@ -9,9 +9,16 @@ namespace character {
 		CharacterManager() = default;
 		~CharacterManager() = default;
 		CharacterSystem createNewPlayerCharacter() {
-			return m_character_generator.generateNewPlayercharacter();
+
+			CharacterSystem character =	m_character_generator.generateNewPlayercharacter();
+			printCharacter(character);
+			return character;
 		}
 
+		void printCharacter(const CharacterSystem& character) {
+			character.printcharacter();
+			character.getDiceCapacity().printDiceSides();
+		}
 		
 	private:
 		CharacterGeneratorSystem m_character_generator;

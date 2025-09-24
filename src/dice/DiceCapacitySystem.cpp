@@ -31,15 +31,15 @@ const EListCapacityData DiceCapacitySystem::getCapacity(const uint8_t side) cons
 }
 
 
-void dice::DiceCapacitySystem::printDiceSides() const {
-    for (const auto& [side, capacity] : m_sides) {
-        std::cout << "Side " << static_cast<int>(side) << ":\n";
-        //if (auto capacityPtr = capacity.lock()) {
-        //    capacityPtr->printCapacity();
-        //}
-        std::cout << "---------------\n";
-    }
-}
+//void dice::DiceCapacitySystem::printDiceSides() const {
+//    for (const auto& [side, capacity] : m_sides) {
+//        std::cout << "Side " << static_cast<int>(side) << ":\n";
+//        //if (auto capacityPtr = capacity.lock()) {
+//        //    capacityPtr->printCapacity();
+//        //}
+//        std::cout << "---------------\n";
+//    }
+//}
 
 #pragma warning(push)
 #pragma warning(disable: 4244) // Disable warning about possible data loss

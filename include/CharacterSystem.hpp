@@ -76,12 +76,14 @@ namespace character {
         std::string getcharacterName()									const { return m_stats.getCharacterStatsInString(ECharacterStatsData::NAME); }
 		int8_t getAttribute(const EAttributeData attribute_type)		const { return m_attributes.getAttributeData(attribute_type); }
 		int8_t getBonusAttribute(const EAttributeData attribute_type)	const { return m_temp_attributes.getAttributeData(attribute_type); }
-		int8_t getStats(const ECharacterStatsData stats)							const { return m_stats.getCharacterStats(stats); }
+		int8_t getStats(const ECharacterStatsData stats)				const { return m_stats.getCharacterStats(stats); }
+		DiceCapacitySystem getDiceCapacity()							const { return m_dice_capacity; }
 
         void setcharacterName(const std::string& name)								{ m_stats.setCharacterStatsInString(ECharacterStatsData::NAME, name); }
 		void setAttribute(const EAttributeData attribute_type, int8_t value)		{ m_attributes.setAttributeData(attribute_type, value); }
 		void setBonusAttribute(const EAttributeData attribute_type, int8_t value)	{ m_temp_attributes.setAttributeData(attribute_type, value); }
-		void setStats(const ECharacterStatsData stats, int16_t value)						{ m_stats.setCharacterStats(stats, value); }
+		void setStats(const ECharacterStatsData stats, int16_t value)				{ m_stats.setCharacterStats(stats, value); }
+		void setDiceCapacity(const EListCapacityData capacity, const uint8_t side)	{ m_dice_capacity.setCapacity(capacity, side); }
 
 	private:
 
