@@ -48,13 +48,6 @@ void character::CharacterSystem::printcharacter(void) const {
 
     std::cout << "\n---------- Temp Attributes ----------\n";
     m_temp_attributes.printAllAttributesData();
-
-    std::cout << "\n---------- Dice Capacity ----------\n";
-    m_dice_capacity.printDiceSides();
-
-    std::cout << "\n---------- Passives ----------\n";
-    //m_passive.printListPassives();
-
 }
 
 

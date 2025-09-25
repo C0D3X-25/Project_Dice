@@ -4,20 +4,27 @@
 #include "ListCapacityData.hpp"
 
 namespace character {
+
+	using capacity::ListCapacityData;
+
 	class CharacterManager {
 		public:
-		CharacterManager() = default;
-		~CharacterManager() = default;
 		CharacterSystem createNewPlayerCharacter() {
 
 			CharacterSystem character =	m_character_generator.generateNewPlayercharacter();
-			printCharacter(character);
 			return character;
 		}
 
 		void printCharacter(const CharacterSystem& character) {
 			character.printcharacter();
-			character.getDiceCapacity().printDiceSides();
+			DiceCapacitySystem dice_capacity = character.getDiceCapacity();
+
+			std::cout << "\n---------- Dice Capacity ----------\n";
+			for (uint8_t side = 1; side <= dice_capacity.m_SIDES_COUNT; ++side) {
+				std::cout << "Side " << static_cast<int>(side) << " -> Enum: " << toString(dice_capacity.getCapacity(side));
+				m_list_capacity.printCapacity(dice_capacity.getCapacity(side));
+				std::cout << "\n";
+			}
 		}
 		
 	private:

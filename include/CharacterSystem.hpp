@@ -1,13 +1,8 @@
 #pragma once 
 
-//#include "IPassive.hpp"
-//#include "IResolutionCapacity.hpp"
-//#include "SFindSystem.hpp"
-//#include "EAttributeData.hpp"
-//#include "ECharacterStatsData.hpp"
-//#include "ACapacitySystem.hpp"
-#include "DiceCapacitySystem.hpp" // TODO: Should be moved ?
-//#include "CapacityActionData.hpp"
+
+#include "DiceCapacitySystem.hpp"
+#include "EListCapacityData.hpp"
 #include "AttributeData.hpp"
 #include "CharacterStatsData.hpp"
 //#include "ResolutionCapacity.hpp"
@@ -31,6 +26,7 @@ namespace character {
     using attribute::AttributeData;
     using attribute::EAttributeData;
 	using dice::DiceCapacitySystem;
+	using capacity::EListCapacityData;
 
     /// <summary>
     /// Base Class for any character.

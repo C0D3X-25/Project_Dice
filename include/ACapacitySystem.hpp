@@ -27,9 +27,11 @@ namespace capacity {
 
 		bool isNextCapacityDTO()	{ return m_capacity_data.m_capacity_dto_queue.size() > 1; }
 		bool isEmpty()				const { return m_capacity_data.m_capacity_dto_queue.empty(); }
+		virtual void printCapacity() const;
 
-		void printCapacity() const;
-		virtual CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) = 0; //////////////////
+
+		virtual CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) = 0;
+		virtual CapacityData getCapacity() = 0;
 
 		void setCapacityName(const std::string& name)								{ m_capacity_data.m_name = name; }
 		void setCapacityDescription(const std::string& description)					{ m_capacity_data.m_description = description; }

@@ -11,13 +11,19 @@ namespace capacity {
 	class Capacity_Nothing : public ACapacitySystem {
 	public:
 
-		CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& target_character) override {
+		Capacity_Nothing() {
 			setCapacityName("Nothing");
 			setCapacityDescription("Just skip your turn");
 			setCapacityPurposes({ });
 			setCapacityTriggers({ TRIGGERED_WHEN_TURN_END });
 			setCapacityAttribute({ });
+		}
 
+		CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& target_character) override {
+			return m_capacity_data;
+		}
+
+		CapacityData getCapacity() override {
 			return m_capacity_data;
 		}
 

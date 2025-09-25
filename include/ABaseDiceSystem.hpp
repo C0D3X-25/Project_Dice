@@ -21,10 +21,10 @@ namespace dice {
         virtual const T roll() = 0;
 
 
-        /// <summary>
-        /// Pure virtual method to display dice informations in console
-        /// </summary>
-        virtual void printDiceSides() const = 0;
+        ///// <summary>
+        ///// Pure virtual method to display dice informations in console
+        ///// </summary>
+        //virtual void printDiceSides() const = 0;
 
     protected:
 

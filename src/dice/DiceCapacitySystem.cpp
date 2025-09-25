@@ -4,12 +4,9 @@
 using namespace dice;
 
 dice::DiceCapacitySystem::DiceCapacitySystem() {
-	//CapacityFactory capacity_factory;
-
- //   // Initialize sides 1 through m_SIDES_COUNT (inclusive)
- //   for (uint8_t i{ 1 }; i <= m_SIDES_COUNT; i++) {
- //       m_sides.emplace(i, capacity_factory.nothing());
- //   }
+    for (uint8_t side{ 1 }; side <= m_SIDES_COUNT; side++) {
+        m_sides.emplace(side, EListCapacityData::NOTHING);
+    }
 }
 
 
@@ -25,9 +22,9 @@ void dice::DiceCapacitySystem::setCapacity(const EListCapacityData capacity, con
 const EListCapacityData DiceCapacitySystem::getCapacity(const uint8_t side) const {
     auto it = m_sides.find(side);
     if (it != m_sides.end()) {
-        return it->second;  // Return the weak_ptr of the found capacity
+        return it->second;
     }
-    return EListCapacityData();
+    return EListCapacityData::NOT_IMPLEMENTED;
 }
 
 
