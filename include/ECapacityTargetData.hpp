@@ -13,7 +13,7 @@ namespace capacity {
 		TARGET_TEAM,
 		TARGET_EVERYONE,
 		TARGET_ALLY,
-		TARGET_ENNEMY,
+		TARGET_ENEMY,
 		TARGET_ALIVE,
 		TARGET_DEAD,
 	};
@@ -27,7 +27,7 @@ namespace capacity {
 		case TARGET_TEAM:      return "TARGET_TEAM";
 		case TARGET_EVERYONE:  return "TARGET_EVERYONE";
 		case TARGET_ALLY:      return "TARGET_ALLY";
-		case TARGET_ENNEMY:    return "TARGET_ENNEMY";
+		case TARGET_ENEMY:    return "TARGET_ENEMY";
 		case TARGET_ALIVE:     return "TARGET_ALIVE";
 		case TARGET_DEAD:      return "TARGET_DEAD";
 		default:               return "N/A";

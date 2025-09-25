@@ -27,8 +27,6 @@ namespace capacity {
 
 		bool isNextCapacityDTO()	{ return m_capacity_data.m_capacity_dto_queue.size() > 1; }
 		bool isEmpty()				const { return m_capacity_data.m_capacity_dto_queue.empty(); }
-		virtual void printCapacity() const;
-
 
 		virtual CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) = 0;
 		virtual CapacityData getCapacity() = 0;

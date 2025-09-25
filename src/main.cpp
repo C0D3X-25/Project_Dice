@@ -28,11 +28,12 @@ int main() {
 	 CharacterManager character_manager;
 	 CharacterSystem character_1 = character_manager.createNewPlayerCharacter();
 
-	 character_manager.printCharacter(character_1);
-
 	 std::cout << "========================================================\n\n";
 
-
+	 character_1.setDiceCapacity(ATTACK_SINGLE, 1);
+	 character_1.setDiceCapacity(ATTACK_RANDOM, 4);
+	 character_1.setDiceCapacity(DEFEND_SELF, 6);
+	 character_manager.printCharacter(character_1);
 
 	 std::cout << "========================================================\n\n";
 	 //PassiveAugmentAttribute passive_strength(attribute::STRENGTH, 2);

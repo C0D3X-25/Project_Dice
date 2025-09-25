@@ -62,7 +62,7 @@ else()
 
 endif()
 
-target_sources("${CMAKE_PROJECT_NAME}" PRIVATE ${MY_SOURCES}  "src/attribute/AttributeData.cpp" "src/character/CharacterStatsData.cpp")
+target_sources("${CMAKE_PROJECT_NAME}" PRIVATE ${MY_SOURCES}  "src/attribute/AttributeData.cpp" "src/character/CharacterStatsData.cpp" "src/capacity/Capacity_AttackSingleSystem.cpp" "src/capacity/Capacity_DefendSelfSystem.cpp" "src/capacity/Capacity_AttackTeamSystem.cpp" "src/capacity/Capacity_HealFastSystem.cpp" "src/capacity/Capacity_NotImplementedSystem.cpp" "src/capacity/Capacity_NothingSystem.cpp")
 
 
 if(MSVC) # If using the VS compiler...

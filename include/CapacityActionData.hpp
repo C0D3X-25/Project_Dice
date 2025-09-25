@@ -1,9 +1,9 @@
 #pragma once
 #include "ECapacityTargetData.hpp"
+#include "ECapacityPurposeData.hpp"
+#include "ECapacityTriggerData.hpp"
 
-#include <cstdint>
 #include <vector>
-#include <memory>
 
 namespace capacity {
 

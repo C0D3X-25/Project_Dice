@@ -21,9 +21,9 @@ namespace character {
 
 			std::cout << "\n---------- Dice Capacity ----------\n";
 			for (uint8_t side = 1; side <= dice_capacity.m_SIDES_COUNT; ++side) {
-				std::cout << "Side " << static_cast<int>(side) << " -> Enum: " << toString(dice_capacity.getCapacity(side));
-				m_list_capacity.printCapacity(dice_capacity.getCapacity(side));
-				std::cout << "\n";
+				std::cout << "Side " << static_cast<int>(side) << ":\n";
+				m_list_capacity.printCapacityData(dice_capacity.getCapacity(side));
+				std::cout << "----------\n";
 			}
 		}
 		

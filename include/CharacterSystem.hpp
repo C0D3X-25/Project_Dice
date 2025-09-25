@@ -1,8 +1,6 @@
 #pragma once 
 
-
 #include "DiceCapacitySystem.hpp"
-#include "EListCapacityData.hpp"
 #include "AttributeData.hpp"
 #include "CharacterStatsData.hpp"
 //#include "ResolutionCapacity.hpp"

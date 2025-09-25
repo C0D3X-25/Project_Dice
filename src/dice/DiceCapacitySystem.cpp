@@ -1,6 +1,5 @@
 #include "DiceCapacitySystem.hpp"
 
-
 using namespace dice;
 
 dice::DiceCapacitySystem::DiceCapacitySystem() {

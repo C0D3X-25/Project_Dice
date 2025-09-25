@@ -1,9 +1,14 @@
 #pragma once
 
 #include "ACapacitySystem.hpp"
-#include "Capacity_NotImplemented.hpp"
-#include "Capacity_Nothing.hpp"
-#include "Capacity_SingleAttack.hpp"
+#include "Capacity_NotImplementedSystem.hpp"
+#include "Capacity_NothingSystem.hpp"
+#include "Capacity_AttackSingleSystem.hpp"
+#include "Capacity_AttackRandomSystem.hpp"
+#include "Capacity_DefendSelfSystem.hpp"
+#include "Capacity_HealFastSystem.hpp"
+#include "Capacity_AttackTeamSystem.hpp"
+
 
 #include <map>
 
@@ -11,24 +16,11 @@ namespace capacity {
 
 	using character::CharacterSystem;
 
-
 	/// <summary>
 	/// This class is a library for all the capacities.
-	/// 1 method = 1 Capacity
-	/// A method must return a ACapacitySystem object.
 	/// </summary>
 	class ListCapacityData {
 	public:
-
-		//ListCapacityData() {
-		//	m_all_capacities.emplace(NOT_IMPLEMENTED, m_capacity_not_implemented.getCapacity());
-		//	m_all_capacities.emplace(NOTHING, m_capacity_nothing.getCapacity());
-		//	m_all_capacities.emplace(ATTACK_SINGLE, m_capacity_single_attack.getCapacity());
-
-		//		//{ATTACK_RANDOM, std::make_shared<Capacity_RandomAttack>()},
-		//		//{DEFEND_SELF, std::make_shared<Capacity_DefendSelf>()},
-		//		//{HEAL_FAST, std::make_shared<Capacity_HealFast>()}
-		//}
 
 		//CapacityData executeCapacity(const EListCapacityData capacity, CharacterSystem& source_character, CharacterSystem& target_character) {
 		//	auto it = m_all_capacities_ptr.find(capacity);
@@ -41,46 +33,40 @@ namespace capacity {
 		//	}
 		//}
 
-		//void printCapacity(const EListCapacityData capacity) {
-		//	auto it = m_all_capacities_ptr.find(capacity);
-		//	if (it != m_all_capacities_ptr.end()) {
-		//		it->second->printCapacity();
-		//	}
-		//}
-		CapacityData printCapacity(const EListCapacityData capacity) { // TODO : CapacityData or ACapacitySystem
+		void printCapacityData(const EListCapacityData capacity) {
+			auto it = m_all_capacities.find(capacity);
+			if (it != m_all_capacities.end()) {
+				it->second.printCapacityData();
+			}
+		}
+
+
+		CapacityData getCapacityData(const EListCapacityData capacity) {
 			auto it = m_all_capacities.find(capacity);
 			if (it != m_all_capacities.end()) {
 				return it->second;
 			}
-			else {
-				std::cerr << "Error: Capacity not found in the list.\n";
-				return CapacityData{};
-			}
 		}
 		
 	private:
-		//const std::map<EListCapacityData, std::shared_ptr<ACapacitySystem>> m_all_capacities_ptr{
-		//	{NOT_IMPLEMENTED, std::make_shared<Capacity_NotImplemented>()},
-		//	{NOTHING, std::make_shared<Capacity_Nothing>()},
-		//	{ATTACK_SINGLE, std::make_shared<Capacity_SingleAttack>()}
-		//	//{ATTACK_RANDOM, std::make_shared<Capacity_RandomAttack>()},
-		//	//{DEFEND_SELF, std::make_shared<Capacity_DefendSelf>()},
-		//	//{HEAL_FAST, std::make_shared<Capacity_HealFast>()}
-		//};
 
-		Capacity_NotImplemented m_capacity_not_implemented;
-		Capacity_Nothing m_capacity_nothing;
-		Capacity_SingleAttack m_capacity_single_attack;
+		Capacity_NotImplementedSystem m_capacity_not_implemented;
+		Capacity_NothingSystem m_capacity_nothing;
+		Capacity_AttackSingleSystem m_capacity_single_attack;
+		Capacity_AttackRandomSystem m_capacity_random_attack;
+		Capacity_DefendSelfSystem m_capacity_defend_self;
+		Capacity_HealFastSystem m_capacity_heal_fast;
+		Capacity_AttackTeamSystem m_capacity_attack_team;
+
 
 		const std::map<EListCapacityData, CapacityData> m_all_capacities{
 			{NOT_IMPLEMENTED, m_capacity_not_implemented.getCapacity()},
 			{NOTHING, m_capacity_nothing.getCapacity()},
-			{ATTACK_SINGLE, m_capacity_single_attack.getCapacity()}
-			//{ATTACK_RANDOM, std::make_shared<Capacity_RandomAttack>()},
-			//{DEFEND_SELF, std::make_shared<Capacity_DefendSelf>()},
-			//{HEAL_FAST, std::make_shared<Capacity_HealFast>()}
+			{ATTACK_SINGLE, m_capacity_single_attack.getCapacity()},
+			{ATTACK_RANDOM, m_capacity_random_attack.getCapacity()},
+			{DEFEND_SELF, m_capacity_defend_self.getCapacity()},
+			{HEAL_FAST, m_capacity_heal_fast.getCapacity()},
+			{ATTACK_TEAM, m_capacity_attack_team.getCapacity()},
 		};
-
-		//std::map<EListCapacityData, CapacityData> m_all_capacities;
 	};
 }

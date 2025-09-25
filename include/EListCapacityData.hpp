@@ -14,6 +14,7 @@ namespace capacity {
 		ATTACK_RANDOM,
 		DEFEND_SELF,
 		HEAL_FAST,
+		ATTACK_TEAM,
 		// More capacities can be added here
 	};
 
@@ -25,6 +26,7 @@ namespace capacity {
 		case ATTACK_RANDOM:		return "ATTACK_RANDOM";
 		case DEFEND_SELF:		return "DEFEND_SELF";
 		case HEAL_FAST:			return "HEAL_FAST";
+		case ATTACK_TEAM:		return "ATTACK_TEAM";
 		default:				return "N/A";
 		}
 	}
