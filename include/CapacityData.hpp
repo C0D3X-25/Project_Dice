@@ -35,12 +35,12 @@ namespace capacity {
 				std::cout << toString(trigger) << " ";
 			}
 			std::cout << "]\n";
-			std::cout << "Capacity Actions in Queue: " << m_capacity_dto_queue.size() << "\n";
+			std::cout << "Capacity Actions in Queue: " << m_capacity_action_data_queue.size() << "\n";
 		}
 
 		std::string m_name{ "N/A" };
 		std::string m_description{ "N/A" };
-		std::queue<CapacityActionData> m_capacity_dto_queue;
+		std::queue<CapacityActionData> m_capacity_action_data_queue;
 		std::vector<ECapacityPurposeData> m_capacity_purpose;
 		std::vector<ECapacityTargetData> m_capacity_target;
 		std::vector<ECapacityTriggerData> m_capacity_trigger;

@@ -21,14 +21,15 @@ namespace capacity {
 	public:
 		virtual ~ACapacitySystem() = default;
 
-		std::queue<CapacityActionData> getAllCapacityActionData() {	return m_capacity_data.m_capacity_dto_queue; }
-		void queueCapacityActionData(const CapacityActionData& capacity_dto);
+		std::queue<CapacityActionData> getAllCapacityActionData() {	return m_capacity_data.m_capacity_action_data_queue;
+		}
+		void queueCapacityActionData(const CapacityActionData& capacity_action_data);
 		CapacityActionData getNextCapacityActionData();
 
-		bool isNextCapacityDTO()	{ return m_capacity_data.m_capacity_dto_queue.size() > 1; }
-		bool isEmpty()				const { return m_capacity_data.m_capacity_dto_queue.empty(); }
+		bool hasNextCapacityActionData()	{ return m_capacity_data.m_capacity_action_data_queue.size() > 1; }
+		bool isEmpty()				const { return m_capacity_data.m_capacity_action_data_queue.empty(); }
 
-		virtual CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& dest_character) = 0;
+		virtual CapacityData executeCapacity(CharacterSystem& source_character, CharacterSystem& target_character) = 0;
 		virtual CapacityData getCapacity() = 0;
 
 		void setCapacityName(const std::string& name)								{ m_capacity_data.m_name = name; }
@@ -48,6 +49,6 @@ namespace capacity {
 		CapacityData m_capacity_data;
 
 	private:
-		void addCapacityTarget(const CapacityActionData& capacity_dto);
+		void addCapacityTarget(const CapacityActionData& capacity_action_data);
 	};
 }

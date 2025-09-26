@@ -2,10 +2,9 @@
 
 #include "BaseCapacityActionSystem.hpp"
 
-#include <cstdint>
-#include <vector>
-
 namespace capacity_action {
+
+	using capacity::CapacityActionData;
 
 	class CapacityActionDamageSystem : public BaseCapacityActionSystem {
 	public:

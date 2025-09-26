@@ -2,8 +2,6 @@
 
 #include "BaseCapacityActionSystem.hpp"
 
-#include <cstdint>
-
 namespace capacity_action {
 
 	using capacity::CapacityActionData;

@@ -44,7 +44,6 @@ int main() {
 
 
 
-
 	 // Game loop
 	 while (!WindowShouldClose()) {
 

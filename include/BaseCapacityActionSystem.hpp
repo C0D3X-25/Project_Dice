@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CapacityActionData.hpp"
-//#include "ECapacityTargetData.hpp"
 
 #include <vector>
 #include <string>
@@ -13,7 +12,7 @@ namespace capacity_action {
 
 	/// <summary>
 	/// Base class for Capacity Action.
-	/// Capacity Action hold one DTO. This is a simple action who gonna serve in Capacities
+	/// Capacity Action is one simple action who is part of a Capacity
 	/// </summary>
 	class BaseCapacityActionSystem {
 	public:
